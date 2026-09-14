@@ -1,0 +1,165 @@
+/* Shared responsive typography; keep the existing brand palette. */
+html[lang="ru"] body {overflow-wrap:anywhere;}
+html[lang="zh"] body {font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;overflow-wrap:anywhere;}
+html[lang="zh"] h1,html[lang="zh"] h2,html[lang="zh"] h3 {font-family:inherit;line-height:1.3;letter-spacing:0;}
+html[lang="ru"] .split-heading>*,html[lang="ru"] .technology-card>*,html[lang="ru"] .laser-ai-grid>* {min-width:0;}
+html[lang="ru"] .btn,html[lang="ru"] .laser-ai-chips button {white-space:normal;line-height:1.4;}
+html[lang="ru"] .booking-modal-formpane h2,html[lang="zh"] .booking-modal-formpane h2 {font-size:clamp(28px,3.2vw,44px);line-height:1.2;}
+html[lang="ru"] .booking-visual-copy,html[lang="zh"] .booking-visual-copy {color:#fff;text-shadow:0 2px 8px #362616;}
+html[lang="ru"] .booking-visual-copy strong,html[lang="zh"] .booking-visual-copy strong {font-size:clamp(23px,2.1vw,34px);line-height:1.3;}
+html[lang="ru"] .brand-text-lockup small,html[lang="zh"] .brand-text-lockup small {white-space:normal;max-width:230px;line-height:1.4;}
+html[lang="ko"] body {font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;word-break:keep-all;overflow-wrap:anywhere;}
+html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] .laser-ai-panel strong {font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;line-height:1.25;letter-spacing:-.035em;}
+html[lang="ko"] .eyebrow,html[lang="ko"] .kicker,html[lang="ko"] .topbar {letter-spacing:.03em;}
+html[lang="ko"] .booking-modal-formpane h2 {font-size:clamp(28px,3.5vw,46px);}
+html[lang="ko"] .booking-benefits {font-size:12px;line-height:1.5;}
+html[lang="ko"] .booking-visual-copy {color:#fff;text-shadow:0 2px 8px #362616;}
+html[lang="ko"] .booking-visual-copy strong {font-size:clamp(25px,2.2vw,34px);line-height:1.35;}
+.language-switch {display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:10px 16px;background:#f7f0e8;}
+.language-switch button {font:inherit;min-height:40px;padding:6px 13px;border:1px solid #bda58e;border-radius:20px;background:transparent;cursor:pointer;}
+.language-switch button.active {background:#33251d;color:#fff;}
+.landing-hours {text-align:center;border-top:1px solid #ddd0c0;padding-top:18px;margin-top:20px;}
+.landing-hours p {margin:6px 0;}
+.booking-promo {background:#f7eee2;border-radius:12px;padding:12px;margin-block:15px;}
+.booking-promo p {margin:4px 0;}
+#successBox[hidden],#bookingWhatsApp[hidden],#bookingForm[hidden] {display:none!important;}
+@media(max-width:760px){
+  html[lang="ru"] h1,html[lang="zh"] h1 {font-size:clamp(30px,8vw,44px);line-height:1.15;}
+  html[lang="ru"] h2,html[lang="ru"] .laser-ai-copy h2,html[lang="zh"] h2 {font-size:clamp(27px,7.5vw,38px);line-height:1.2;}
+  html[lang="ru"] .booking-modal-visual,html[lang="zh"] .booking-modal-visual {min-height:370px;}
+  html[lang="ru"] .booking-visual-copy,html[lang="zh"] .booking-visual-copy {top:6%;}
+  html[lang="ru"] .booking-benefits {font-size:10px;line-height:1.4;}
+  html[lang="ko"] h1 {font-size:clamp(30px,8vw,46px);}
+  html[lang="ko"] h2,html[lang="ko"] .laser-ai-copy h2 {font-size:clamp(26px,7vw,38px);}
+  html[lang="ko"] .booking-benefits {font-size:10px;}
+  html[lang="ko"] .booking-modal-visual {min-height:350px;}
+  html[lang="ko"] .booking-visual-copy {top:7%;}
+  html[lang="ko"] .booking-visual-copy span {font-size:20px;}
+  .booking-modal-formpane {min-width:0;}
+  .booking-modal-formpane input,.booking-modal-formpane select,.booking-modal-formpane textarea {min-width:0;max-width:100%;}
+}
+
+/* Compact, distinct heading levels shared by both editions and all languages. */
+.uploaded-gallery {display:flex;gap:16px;margin-block:12px 24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:auto;scrollbar-color:#a97d4e #eee5da;padding:4px 4px 16px;overscroll-behavior-x:contain;}
+.uploaded-gallery a {display:flex;flex:0 0 36%;min-width:0;flex-direction:column;align-items:center;justify-content:center;background:#eee5da;border-radius:16px;overflow:hidden;scroll-snap-align:start;}
+.uploaded-gallery img {display:block;width:100%;height:280px;object-fit:contain;}
+.uploaded-gallery a:focus-visible {outline:3px solid #9d6a24;outline-offset:4px;}
+@media(max-width:760px){.uploaded-gallery{gap:10px}.uploaded-gallery a{flex-basis:82%}.uploaded-gallery img{height:320px}}
+.uploaded-gallery a span{display:block;padding:14px 18px;font-weight:600;width:100%;background:#fffaf6;}
+.gallery-navigation{display:flex;justify-content:flex-end;gap:10px;margin-top:24px;}
+.gallery-navigation button{width:46px;height:46px;border:1px solid #a97d4e;border-radius:50%;background:#fffaf6;color:#614422;font-size:24px;cursor:pointer;}
+.gallery-navigation button:disabled{opacity:.35;cursor:default;}
+.gallery-navigation button:focus-visible{outline:3px solid #9d6a24;outline-offset:3px;}
+.zalo-qr-preview{display:block;width:min(360px,100%);}
+html body .bm109-proof img{width:100%;height:auto;object-fit:contain;}
+.bm109-proof a{display:block;}
+.bm109-proof a:focus-visible{outline:3px solid #9d6a24;outline-offset:-3px;}
+.whatsapp-qr-preview{display:block;width:min(360px,100%);margin-bottom:18px;}
+html body .whatsapp-qr-preview img{display:block;width:100%;height:auto;object-fit:contain;border-radius:16px;}
+html body .qr-card .zalo-qr-preview img{width:100%;height:auto;padding:0;object-fit:contain;}
+.uploaded-gallery::-webkit-scrollbar{height:10px;}
+.uploaded-gallery::-webkit-scrollbar-track{background:#eee5da;border-radius:10px;}
+.uploaded-gallery::-webkit-scrollbar-thumb{background:#a97d4e;border-radius:10px;}
+@media(max-width:380px){.uploaded-gallery img{height:180px}}
+:root { --miki-copy-size:16px; --miki-title-size:24px; }
+html body :is(main,section,article,.modal-card) p {
+  font-size:var(--miki-copy-size)!important;
+  line-height:1.65;
+}
+html body :is(.signature-grid article>strong,.service-photo-overlay>strong,
+  .review-story-body>strong,.review-card>strong,.trust-reason-grid article>strong,
+  .concierge-grid article>strong,.thumb-card strong,.media-info>strong,
+  .side-copy>strong,.hero-note>strong) {
+  font-size:var(--miki-title-size)!important;
+  line-height:1.15!important;
+  overflow-wrap:anywhere;
+  max-width:100%;
+}
+html body :is(h1,h2,h3,h4) :is(span,em) { font-size:inherit!important; }
+html body :is(main,section,.modal-card) h1 {font-size:clamp(34px,4vw,48px)!important;}
+html body :is(main,section,.modal-card) h2 {font-size:clamp(28px,3vw,36px)!important;line-height:1.22!important;}
+html body :is(main,section,.modal-card) h3 {font-size:24px!important;line-height:1.3!important;}
+html body :is(main,section,.modal-card) h4 {font-size:18px!important;}
+html body :is(.section-heading,.section-head,.split-heading,.service-cards,.signature-grid,
+  .trust-reason-grid,.concierge-grid,.review-story-grid,.review-grid)>* {min-width:0;}
+html body :is(.service-photo-overlay,.side-copy,.hero-note) {max-width:100%;}
+
+/* A welcoming room image for the booking panel, unobstructed by an hours card. */
+html body .booking-modal-visual {
+  background-image:url('assets/optimized/miki-laser-treatment-enhanced.webp');
+  background-position:center 60%;
+}
+html body .booking-visual-overlay {
+  background:linear-gradient(180deg,rgba(40,27,18,.55),transparent 55%,rgba(40,27,18,.6));
+}
+html body .booking-visual-copy {color:#fff;text-shadow:0 2px 8px rgba(30,20,12,.55);}
+
+/* Simplified page: one purpose per section, fewer competing image blocks. */
+/* Footer labels use a compact hierarchy instead of the section-title scale. */
+html body .footer {
+  grid-template-columns:minmax(190px,1.15fr) minmax(150px,.8fr) minmax(240px,1.25fr) minmax(150px,.8fr);
+  gap:28px;
+  padding-top:40px;
+  padding-bottom:100px;
+  align-items:start;
+}
+html body .footer>div {min-width:0;grid-column:auto;}
+html body .footer.footer h4 {
+  font-size:18px!important;line-height:1.35!important;
+  letter-spacing:.06em;margin:0 0 14px;overflow-wrap:normal;
+}
+html body .footer a,html body .footer p {
+  font-size:14px;line-height:1.55;margin:6px 0;overflow-wrap:anywhere;
+}
+html body .footer p>a {margin:0;}
+html body .footer .footer-brand p {font-size:12px;letter-spacing:.04em;}
+html body .footer .brand-text-lockup small {white-space:normal;line-height:1.5;}
+html body .footer .footer-bottom {grid-column:1/-1;padding-top:16px;margin-top:4px;font-size:12px;}
+@media(max-width:1100px){
+  html body .footer {grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 32px;}
+}
+@media(max-width:540px){
+  html body .footer {grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 20px;padding-top:30px;}
+  html body .footer .footer-brand,html body .footer>div:nth-child(3) {grid-column:1/-1;}
+  html body .footer>div:nth-child(2) {grid-column:1;grid-row:2;}
+  html body .footer>div:nth-child(4) {grid-column:2;grid-row:2;}
+  html body .footer.footer h4 {font-size:16px!important;}
+}
+html body .hero-visual-grid {display:block;}
+html body .hero-visual-grid .hero-room {height:420px;width:100%;}
+html body .reviews-layout {grid-template-columns:1fr;}
+html body .pricing-catalog-layout {grid-template-columns:1fr;}
+html body .pricing-source-card {min-height:0;padding:12px 20px;box-shadow:none;}
+html body .pricing-source-card span {position:static;display:block;}
+html body .gallery-grid {grid-template-columns:1fr;max-width:900px;margin-inline:auto;}
+html body .feature-video {max-height:480px;object-fit:contain;background:#211a16;}
+html body .thumb-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+html body .academy-showcase {grid-template-columns:1.2fr 1fr;}
+html body :is(main>.section-pad,.section,.laser-ai-consult) {padding-block:48px;}
+html body :is(.section-heading,.section-head) {margin-bottom:24px;gap:20px;}
+html body :is(.service-grid,.service-cards,.process-grid,.price-grid) {gap:18px;}
+html body .service-card {min-height:0;padding:24px;}
+html body .service-card p {margin-block:10px 16px;}
+html body .hero {gap:32px;}
+html body :is(.hero-actions,.actions) {margin-block:20px;}
+html body .hero h1 .hero-line-accent {padding-left:0;}
+html body .booking-visual-copy strong {font-size:28px;line-height:1.3;}
+html body .booking-visual-copy span {font-size:22px;}
+html body .faq-panel .accordion {max-height:480px;overflow-y:auto;padding-right:12px;}
+@media(max-width:760px){
+  html body .academy-showcase {grid-template-columns:1fr;}
+  html body :is(main>.section-pad,.section,.laser-ai-consult) {padding-block:32px;}
+  html body .hero-visual-grid .hero-room {height:300px;}
+  html body :is(main,section,.modal-card) h3 {font-size:22px!important;}
+  html body .service-card {padding:20px;}
+  html body .booking-modal-visual {min-height:250px;}
+  html body .booking-visual-copy {top:8%;}
+  html body .booking-visual-copy strong {font-size:24px;}
+  html body .thumb-grid {grid-template-columns:1fr;}
+}
+
+/* Preserve the full treatment photo on desktop and mobile. */
+html body .hero-visual-grid .hero-room {height:auto;aspect-ratio:912/992;}
+html body .hero-room img {object-fit:contain;object-position:center;}
+html body .booking-modal-visual {background-size:contain;background-position:center;background-color:#e9dfd1;min-height:480px;}
+@media(max-width:900px){html body .booking-modal-visual {min-height:0;aspect-ratio:912/992;}}

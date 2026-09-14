@@ -1,0 +1,519 @@
+{
+  "version": "2.4",
+  "supported_languages": [
+    "vi",
+    "en",
+    "ko",
+    "zh",
+    "ru"
+  ],
+  "answer_policy": {
+    "vi": "Trả lời tự nhiên, ngắn gọn, không chẩn đoán.",
+    "en": "Answer naturally and concisely; do not diagnose.",
+    "ko": "자연스럽고 간결하게 답변하며 의학적 진단을 하지 않습니다.",
+    "zh": "自然、简洁地回答，不进行医学诊断。",
+    "ru": "Отвечайте естественно и кратко; не ставьте медицинских диагнозов."
+  },
+  "faq": [
+    {
+      "category": "waxing",
+      "q": "Waxing là gì?",
+      "a": "Waxing là phương pháp dùng sáp để lấy sợi lông ra khỏi nang. Kết quả thường kéo dài hơn cạo vì lông không chỉ bị cắt ở bề mặt da."
+    },
+    {
+      "category": "waxing",
+      "q": "Waxing khác cạo lông như thế nào?",
+      "a": "Cạo chỉ cắt phần lông trên bề mặt, còn waxing kéo sợi lông ra từ gốc. Waxing có thể cho cảm giác da mịn lâu hơn nhưng dễ gây đỏ, kích ứng hoặc lông mọc ngược ở một số người."
+    },
+    {
+      "category": "waxing",
+      "q": "Waxing có đau không?",
+      "a": "Có thể có cảm giác đau hoặc rát ngắn khi kéo sáp. Mức độ phụ thuộc vùng làm, độ dày lông, ngưỡng đau và tình trạng da."
+    },
+    {
+      "category": "waxing",
+      "q": "Lông nên dài bao nhiêu trước khi waxing?",
+      "a": "Lông cần đủ dài để sáp bám chắc nhưng không nên quá dài. Nếu chưa chắc, hãy để chuyên viên kiểm tra thay vì tự cắt quá sát trước buổi hẹn."
+    },
+    {
+      "category": "waxing",
+      "q": "Có nên cạo ngay trước khi waxing không?",
+      "a": "Không nên cạo sát ngay trước buổi waxing vì sáp cần đủ thân lông để bám và kéo lông ra hiệu quả."
+    },
+    {
+      "category": "waxing",
+      "q": "Vì sao da đỏ sau waxing?",
+      "a": "Waxing tạo lực kéo lên lông và bề mặt da nên đỏ nhẹ hoặc nhạy cảm tạm thời có thể xảy ra. Nếu đau, phồng rộp hoặc kéo dài bất thường nên được đánh giá."
+    },
+    {
+      "category": "waxing",
+      "q": "Waxing có gây viêm nang lông không?",
+      "a": "Waxing có thể làm nang lông kích ứng và trong một số trường hợp góp phần gây viêm nang lông. Vệ sinh phù hợp, hạn chế ma sát và không cạy nặn giúp giảm nguy cơ."
+    },
+    {
+      "category": "waxing",
+      "q": "Lông mọc ngược sau waxing là gì?",
+      "a": "Đó là khi sợi lông mới cong hoặc phát triển trở lại vào da thay vì đi thẳng ra ngoài. Lông xoăn, dày sừng và ma sát có thể làm tình trạng này dễ xuất hiện hơn."
+    },
+    {
+      "category": "waxing",
+      "q": "Có nên nặn lông mọc ngược không?",
+      "a": "Không nên cạy hoặc nặn vì có thể tăng viêm, nhiễm trùng, thâm và sẹo. Nếu vùng đó đau tăng, có mủ hoặc sưng nóng, nên đi khám."
+    },
+    {
+      "category": "waxing",
+      "q": "Khi nào nên tẩy tế bào chết sau waxing?",
+      "a": "Không nên tẩy mạnh ngay sau waxing. Hãy chờ da hết đỏ và nhạy cảm rồi mới quay lại tẩy tế bào chết nhẹ, tùy khả năng dung nạp của da."
+    },
+    {
+      "category": "waxing",
+      "q": "Có nên tắm nước nóng ngay sau waxing không?",
+      "a": "Nên tránh nhiệt cao khi da còn đỏ hoặc nhạy cảm. Tắm nước quá nóng, xông hơi và ma sát mạnh có thể làm cảm giác khó chịu tăng lên."
+    },
+    {
+      "category": "waxing",
+      "q": "Có nên tập thể thao ngay sau waxing không?",
+      "a": "Nếu vùng da còn nhạy cảm, nên hạn chế hoạt động gây nhiều mồ hôi và ma sát trong thời gian đầu để giảm kích ứng."
+    },
+    {
+      "category": "waxing",
+      "q": "Có nên đi biển hoặc hồ bơi ngay sau waxing không?",
+      "a": "Nên đợi da ổn định trước khi tiếp xúc nhiều với nắng, nước hồ bơi hoặc môi trường có thể gây kích ứng."
+    },
+    {
+      "category": "waxing",
+      "q": "Waxing vùng bikini cần lưu ý gì?",
+      "a": "Da vùng bikini dễ chịu ma sát và có nguy cơ lông mọc ngược. Mặc đồ thoáng, giữ sạch và tránh cạy nặn các nốt sau waxing."
+    },
+    {
+      "category": "waxing",
+      "q": "Waxing nách có làm thâm nách không?",
+      "a": "Waxing không phải nguyên nhân duy nhất của thâm. Viêm, ma sát, cơ địa tăng sắc tố và kích ứng lặp lại đều có thể làm vùng nách sẫm màu hơn."
+    },
+    {
+      "category": "waxing",
+      "q": "Da đang cháy nắng có waxing được không?",
+      "a": "Không nên waxing trên vùng da đang cháy nắng, bong tróc, trầy xước hoặc viêm rõ. Nên chờ da hồi phục."
+    },
+    {
+      "category": "waxing",
+      "q": "Đang dùng retinol hoặc tretinoin có waxing được không?",
+      "a": "Cần báo trước cho chuyên viên. Retinoid và các hoạt chất gây bong có thể làm da nhạy hơn, đặc biệt ở vùng mặt, nên có thể cần hoãn waxing."
+    },
+    {
+      "category": "waxing",
+      "q": "Đang dùng isotretinoin có nên waxing không?",
+      "a": "Isotretinoin làm da rất nhạy và dễ tổn thương. Hãy trao đổi với bác sĩ điều trị và thông báo cho cơ sở trước bất kỳ thủ thuật waxing nào."
+    },
+    {
+      "category": "waxing",
+      "q": "Waxing có làm lông mọc dày hơn không?",
+      "a": "Waxing không làm tăng số lượng nang lông. Cảm nhận về độ dày khi lông mọc lại có thể khác nhau theo cơ địa và chu kỳ lông."
+    },
+    {
+      "category": "waxing",
+      "q": "Khi nào cần đi khám sau waxing?",
+      "a": "Nếu có đau tăng, phồng rộp, sưng nóng, mủ, vùng đỏ lan rộng hoặc phản ứng kéo dài, nên được nhân viên y tế đánh giá."
+    },
+    {
+      "category": "laser",
+      "q": "Triệt lông laser hoạt động như thế nào?",
+      "a": "Năng lượng ánh sáng được sắc tố trong lông hấp thu và chuyển thành nhiệt, làm tổn thương nang lông để giảm khả năng mọc lông về sau."
+    },
+    {
+      "category": "laser",
+      "q": "Laser có loại bỏ lông vĩnh viễn 100% không?",
+      "a": "Không nên cam kết sạch lông 100% vĩnh viễn. Laser có thể giảm lông lâu dài; lông mọc lại thường ít, mảnh hoặc nhạt hơn và một số người cần buổi duy trì."
+    },
+    {
+      "category": "laser",
+      "q": "Tại sao cần nhiều buổi laser?",
+      "a": "Lông không đồng thời ở cùng một giai đoạn tăng trưởng. Một chuỗi buổi giúp tác động vào nhiều nhóm lông ở thời điểm phù hợp hơn."
+    },
+    {
+      "category": "laser",
+      "q": "Thông thường cần bao nhiêu buổi?",
+      "a": "Số buổi thay đổi theo vùng, màu và độ dày lông, màu da, thiết bị, hormone và đáp ứng cá nhân. Nguồn y khoa thường mô tả cần nhiều buổi, thường khoảng 4–8 hoặc hơn."
+    },
+    {
+      "category": "laser",
+      "q": "Bao lâu làm laser một lần?",
+      "a": "Khoảng cách buổi phụ thuộc vùng và chu kỳ lông. Nhiều liệu trình được bố trí cách nhau vài tuần; lịch chính xác nên dựa trên đánh giá trực tiếp."
+    },
+    {
+      "category": "laser",
+      "q": "Sau buổi đầu lông có rụng ngay không?",
+      "a": "Không nhất thiết. Lông đã được tác động có thể rụng dần trong vài ngày đến vài tuần."
+    },
+    {
+      "category": "laser",
+      "q": "Laser có đau không?",
+      "a": "Nhiều người mô tả cảm giác châm nóng hoặc như dây thun bật nhẹ vào da. Mức độ phụ thuộc vùng, thiết bị, thông số và ngưỡng đau."
+    },
+    {
+      "category": "laser",
+      "q": "Sau laser da đỏ có bình thường không?",
+      "a": "Đỏ và sưng nhẹ quanh nang có thể xuất hiện tạm thời. Nếu đau nhiều, phồng rộp hoặc phản ứng kéo dài, cần liên hệ cơ sở hoặc nhân viên y tế."
+    },
+    {
+      "category": "laser",
+      "q": "Laser có cần nghỉ dưỡng không?",
+      "a": "Laser triệt lông thường không cần thời gian nghỉ dưỡng đáng kể, nhưng da có thể đỏ hoặc nhạy cảm tạm thời."
+    },
+    {
+      "category": "laser",
+      "q": "Trước laser nên cạo hay nhổ lông?",
+      "a": "Thông thường nên cạo theo hướng dẫn và tránh waxing, nhổ hoặc điện phân trước liệu trình vì laser cần mục tiêu lông còn trong nang."
+    },
+    {
+      "category": "laser",
+      "q": "Có nên waxing giữa các buổi laser không?",
+      "a": "Thường không nên vì waxing lấy lông ra khỏi nang. Nếu cần xử lý lông giữa các buổi, hãy làm theo hướng dẫn cạo của cơ sở."
+    },
+    {
+      "category": "laser",
+      "q": "Có cần tránh nắng trước laser không?",
+      "a": "Có. Da rám nắng có thể làm tăng nguy cơ tác dụng phụ và ảnh hưởng lựa chọn thông số. Nên tránh tanning và bảo vệ da khỏi nắng."
+    },
+    {
+      "category": "laser",
+      "q": "Sau laser có cần chống nắng không?",
+      "a": "Có. Bảo vệ vùng điều trị khỏi nắng và dùng kem chống nắng phổ rộng phù hợp giúp giảm nguy cơ kích ứng và thay đổi sắc tố."
+    },
+    {
+      "category": "laser",
+      "q": "Da ngăm có triệt laser được không?",
+      "a": "Có thể, nhưng lựa chọn thiết bị, bước sóng và thông số phải phù hợp. Kinh nghiệm của người thực hiện với nhiều tông da rất quan trọng."
+    },
+    {
+      "category": "laser",
+      "q": "Lông vàng, trắng hoặc xám có đáp ứng laser tốt không?",
+      "a": "Thường kém hơn lông sẫm vì các sợi lông này có ít sắc tố để hấp thu năng lượng laser."
+    },
+    {
+      "category": "laser",
+      "q": "Lông đỏ có đáp ứng laser không?",
+      "a": "Lông đỏ thường đáp ứng kém hơn lông đen hoặc nâu vì đặc tính sắc tố khác."
+    },
+    {
+      "category": "laser",
+      "q": "Laser có làm da bị bỏng không?",
+      "a": "Bỏng là biến chứng có thể xảy ra nếu thiết bị hoặc thông số không phù hợp. Vì vậy cần sàng lọc da và thực hiện bởi người được đào tạo phù hợp."
+    },
+    {
+      "category": "laser",
+      "q": "Laser có gây thâm hoặc sáng màu da không?",
+      "a": "Thay đổi sắc tố tối hoặc sáng có thể xảy ra, thường tạm thời nhưng hiếm khi kéo dài. Nguy cơ tăng khi da rám nắng hoặc thông số không phù hợp."
+    },
+    {
+      "category": "laser",
+      "q": "Laser có gây sẹo không?",
+      "a": "Sẹo là tác dụng phụ hiếm nhưng có thể xảy ra. Chọn cơ sở phù hợp và tuân thủ chăm sóc trước/sau giúp giảm rủi ro."
+    },
+    {
+      "category": "laser",
+      "q": "Có triệt laser trên hình xăm được không?",
+      "a": "Không nên chiếu laser triệt lông trực tiếp lên vùng có hình xăm vì sắc tố mực có thể hấp thu năng lượng và làm tăng nguy cơ tổn thương."
+    },
+    {
+      "category": "laser",
+      "q": "Có triệt vùng chân mày hoặc sát mắt được không?",
+      "a": "Laser triệt lông không được khuyến nghị ở mí mắt, chân mày hoặc vùng sát mắt do nguy cơ tổn thương mắt."
+    },
+    {
+      "category": "laser",
+      "q": "Vì sao phải đeo kính bảo hộ?",
+      "a": "Laser có thể gây tổn thương mắt. Người được điều trị và người thực hiện cần dùng bảo vệ mắt phù hợp trong quá trình chiếu."
+    },
+    {
+      "category": "laser",
+      "q": "Có thể dùng kem tê khi laser không?",
+      "a": "Một số vùng nhạy cảm có thể được cân nhắc kem tê theo quy trình phù hợp. Không nên tự ý bôi lượng lớn hoặc dùng sai hướng dẫn."
+    },
+    {
+      "category": "laser",
+      "q": "Laser vùng nách có hiệu quả không?",
+      "a": "Nách là vùng thường được điều trị. Hiệu quả phụ thuộc màu, độ dày lông, da và đáp ứng cá nhân."
+    },
+    {
+      "category": "laser",
+      "q": "Laser vùng bikini có được không?",
+      "a": "Bikini là vùng thường được triệt laser. Cần đánh giá da, tránh vùng tổn thương và tuân thủ hướng dẫn chăm sóc."
+    },
+    {
+      "category": "laser",
+      "q": "Laser vùng mặt nữ có cần duy trì không?",
+      "a": "Có thể. Lông mặt nữ chịu ảnh hưởng hormone nhiều hơn nên khả năng mọc lại và nhu cầu duy trì có thể cao hơn các vùng khác."
+    },
+    {
+      "category": "laser",
+      "q": "Hormone có ảnh hưởng kết quả triệt lông không?",
+      "a": "Có. Những tình trạng làm tăng mọc lông do hormone có thể khiến lông mới tiếp tục xuất hiện dù các sợi hiện tại đã được giảm."
+    },
+    {
+      "category": "laser",
+      "q": "PCOS có làm triệt lông kém hiệu quả không?",
+      "a": "PCOS có thể liên quan tăng lông do hormone. Laser có thể giảm lông hiện có nhưng không điều trị nguyên nhân hormone, nên có thể cần duy trì và đánh giá y khoa."
+    },
+    {
+      "category": "laser",
+      "q": "Khi nào nên hoãn laser?",
+      "a": "Nên hoãn và được đánh giá nếu vùng da đang cháy nắng, nhiễm trùng, tổn thương, phản ứng mạnh hoặc có yếu tố sức khỏe/thuốc làm tăng nguy cơ."
+    },
+    {
+      "category": "laser",
+      "q": "Cần báo những thuốc nào trước khi laser?",
+      "a": "Hãy báo tất cả thuốc kê đơn, không kê đơn và sản phẩm đang dùng, đặc biệt thuốc làm da nhạy sáng hoặc các liệu trình trị mụn như isotretinoin."
+    },
+    {
+      "category": "skincare",
+      "q": "Da dầu có cần dưỡng ẩm không?",
+      "a": "Có. Da dầu vẫn có thể thiếu nước hoặc hàng rào da suy yếu. Chọn dưỡng ẩm nhẹ, phù hợp và không gây bít tắc nếu da dễ nổi mụn."
+    },
+    {
+      "category": "skincare",
+      "q": "Da dầu có thể bị thiếu nước không?",
+      "a": "Có. Lượng dầu và lượng nước của lớp sừng là hai vấn đề khác nhau, nên da có thể vừa bóng dầu vừa căng hoặc thiếu nước."
+    },
+    {
+      "category": "skincare",
+      "q": "Rửa mặt càng nhiều càng sạch da đúng không?",
+      "a": "Không. Rửa hoặc chà xát quá mức có thể làm da kích ứng và tổn thương hàng rào bảo vệ."
+    },
+    {
+      "category": "skincare",
+      "q": "Nên rửa mặt bao nhiêu lần mỗi ngày?",
+      "a": "Với đa số người, làm sạch dịu nhẹ khoảng hai lần mỗi ngày và sau khi đổ nhiều mồ hôi là nguyên tắc phổ biến; cần điều chỉnh theo tình trạng da."
+    },
+    {
+      "category": "skincare",
+      "q": "Nước nóng có tốt cho da mặt không?",
+      "a": "Nước quá nóng có thể làm da khô và khó chịu hơn. Nước ấm vừa phải thường phù hợp hơn."
+    },
+    {
+      "category": "skincare",
+      "q": "Tẩy tế bào chết mỗi ngày có tốt không?",
+      "a": "Không phải ai cũng phù hợp. Tẩy quá thường xuyên có thể gây rát, bong tróc và suy yếu hàng rào da."
+    },
+    {
+      "category": "skincare",
+      "q": "AHA và BHA có nên dùng cùng lúc không?",
+      "a": "Có thể trong một số routine nhưng không phải lúc nào cũng cần. Khi mới dùng hoặc da nhạy cảm, nên tránh chồng quá nhiều hoạt chất mạnh."
+    },
+    {
+      "category": "skincare",
+      "q": "Retinol có thể gây bong da không?",
+      "a": "Có. Khô, đỏ hoặc bong có thể xảy ra khi mới bắt đầu. Tăng tần suất từ từ và dưỡng ẩm phù hợp thường giúp da dung nạp tốt hơn."
+    },
+    {
+      "category": "skincare",
+      "q": "Có nên dùng retinol khi da đang kích ứng?",
+      "a": "Nếu da đang đỏ, rát hoặc bong nhiều, tiếp tục hoạt chất mạnh có thể làm tình trạng nặng hơn. Nên ưu tiên phục hồi và hỏi chuyên gia khi cần."
+    },
+    {
+      "category": "skincare",
+      "q": "Kem chống nắng có cần dùng khi trời nhiều mây?",
+      "a": "Tia UV vẫn có thể hiện diện khi trời nhiều mây. Bảo vệ da khỏi nắng là một phần quan trọng của chăm sóc da hằng ngày."
+    },
+    {
+      "category": "skincare",
+      "q": "SPF 30 có đủ không?",
+      "a": "Các nguồn da liễu thường khuyến nghị kem chống nắng phổ rộng SPF 30 trở lên, kết hợp thoa đủ lượng và thoa lại khi cần."
+    },
+    {
+      "category": "skincare",
+      "q": "Da nhạy cảm nên chọn mỹ phẩm thế nào?",
+      "a": "Ưu tiên công thức đơn giản, dịu nhẹ và thử từng sản phẩm mới. Hương liệu hoặc nhiều hoạt chất mạnh có thể gây khó chịu ở một số người."
+    },
+    {
+      "category": "skincare",
+      "q": "Non-comedogenic nghĩa là gì?",
+      "a": "Đây là cách mô tả sản phẩm được thiết kế để ít có xu hướng làm bít tắc lỗ chân lông hơn, hữu ích khi chọn sản phẩm cho da dễ mụn."
+    },
+    {
+      "category": "skincare",
+      "q": "Da khô có nên dùng sữa rửa mặt tạo bọt mạnh?",
+      "a": "Nếu sau rửa da căng, rát hoặc bong, sản phẩm có thể quá mạnh với da. Một chất làm sạch dịu hơn thường phù hợp hơn."
+    },
+    {
+      "category": "skincare",
+      "q": "Hàng rào bảo vệ da là gì?",
+      "a": "Đó là lớp ngoài của da giúp giữ nước và hạn chế tác động từ môi trường. Khi suy yếu, da dễ khô, rát và nhạy cảm hơn."
+    },
+    {
+      "category": "skincare",
+      "q": "Dấu hiệu hàng rào da suy yếu là gì?",
+      "a": "Da có thể khô căng, châm chích, đỏ, bong hoặc đột nhiên không dung nạp những sản phẩm trước đây vẫn dùng được."
+    },
+    {
+      "category": "skincare",
+      "q": "Có nên đổi nhiều sản phẩm cùng lúc?",
+      "a": "Không nên nếu muốn biết da phản ứng với sản phẩm nào. Thêm từng sản phẩm giúp dễ theo dõi khả năng dung nạp."
+    },
+    {
+      "category": "skincare",
+      "q": "Stress có ảnh hưởng làn da không?",
+      "a": "Stress có thể ảnh hưởng thói quen chăm sóc, giấc ngủ và một số tình trạng da. Routine đơn giản, đều đặn thường hữu ích hơn việc thay đổi liên tục."
+    },
+    {
+      "category": "skincare",
+      "q": "Có nên nặn mọi loại mụn khi facial?",
+      "a": "Không. Không phải tổn thương nào cũng phù hợp để lấy nhân. Tổn thương viêm sâu, đau hoặc nghi nhiễm trùng cần được đánh giá cẩn thận."
+    },
+    {
+      "category": "skincare",
+      "q": "Khi nào vấn đề da nên được bác sĩ khám?",
+      "a": "Khi có tổn thương đau nhiều, lan nhanh, chảy dịch, nhiễm trùng, sẹo tiến triển, phản ứng kéo dài hoặc tình trạng không cải thiện với chăm sóc thông thường."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn hình thành như thế nào?",
+      "a": "Mụn liên quan đến bít tắc nang lông bởi dầu và tế bào chết, cùng với viêm và các yếu tố sinh học khác. Mức độ và loại tổn thương khác nhau ở từng người."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn đầu đen có phải do da bẩn không?",
+      "a": "Không. Màu đen chủ yếu do vật chất trong lỗ chân lông tiếp xúc không khí và bị oxy hóa, không phải vì bụi bẩn đơn thuần."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn đầu trắng là gì?",
+      "a": "Đó là dạng nhân kín khi lỗ nang bị bít nhưng bề mặt vẫn đóng. Không nên cố nặn mạnh vì có thể gây viêm."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn viêm khác mụn ẩn thế nào?",
+      "a": "Mụn viêm thường đỏ, sưng hoặc đau; mụn không viêm chủ yếu là đầu đen và đầu trắng. Cách xử lý có thể khác nhau."
+    },
+    {
+      "category": "acne",
+      "q": "Có nên nặn mụn tại nhà không?",
+      "a": "Không nên cạy hoặc bóp mụn thường xuyên vì có thể tăng viêm, nhiễm trùng, thâm và nguy cơ sẹo."
+    },
+    {
+      "category": "acne",
+      "q": "Rửa mặt nhiều có làm hết mụn nhanh hơn không?",
+      "a": "Không. Làm sạch quá mức và chà xát có thể kích ứng da, khiến việc kiểm soát mụn khó hơn."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn có phải do da không sạch không?",
+      "a": "Không đơn giản như vậy. Mụn chịu ảnh hưởng của dầu, bít tắc nang, viêm, hormone, di truyền và nhiều yếu tố khác."
+    },
+    {
+      "category": "acne",
+      "q": "Da mụn có cần dưỡng ẩm không?",
+      "a": "Có. Nhiều hoạt chất trị mụn gây khô; dưỡng ẩm không gây bít tắc có thể giúp da dung nạp routine tốt hơn."
+    },
+    {
+      "category": "acne",
+      "q": "Da mụn có cần chống nắng không?",
+      "a": "Có. Chống nắng đặc biệt quan trọng khi dùng hoạt chất làm da nhạy nắng và giúp hạn chế vết thâm sau viêm đậm thêm."
+    },
+    {
+      "category": "acne",
+      "q": "Benzoyl peroxide dùng để làm gì?",
+      "a": "Benzoyl peroxide giúp giảm vi khuẩn liên quan đến mụn và có tác dụng với tổn thương viêm. Nó có thể gây khô, kích ứng và làm bạc màu vải."
+    },
+    {
+      "category": "acne",
+      "q": "Benzoyl peroxide nồng độ cao có luôn tốt hơn không?",
+      "a": "Không. Nồng độ thấp có thể vẫn hiệu quả và ít kích ứng hơn. Nên bắt đầu thận trọng theo hướng dẫn phù hợp."
+    },
+    {
+      "category": "acne",
+      "q": "Salicylic acid có tác dụng gì với mụn?",
+      "a": "Salicylic acid giúp hạn chế bít tắc nang lông và thường có mặt trong sản phẩm cho mụn đầu đen, đầu trắng."
+    },
+    {
+      "category": "acne",
+      "q": "Adapalene là gì?",
+      "a": "Adapalene là retinoid bôi giúp ngăn bít tắc và giảm viêm. Nó có thể gây khô hoặc kích ứng khi mới sử dụng."
+    },
+    {
+      "category": "acne",
+      "q": "Tretinoin có phải mỹ phẩm thông thường không?",
+      "a": "Tretinoin là retinoid điều trị và ở nhiều nơi là thuốc kê đơn. Nên sử dụng theo hướng dẫn của bác sĩ hoặc chuyên gia y tế phù hợp."
+    },
+    {
+      "category": "acne",
+      "q": "Có nên dùng nhiều hoạt chất trị mụn cùng lúc?",
+      "a": "Không nên tự chồng nhiều hoạt chất mạnh ngay từ đầu. Kết hợp có thể hiệu quả nhưng cũng tăng kích ứng nếu không có kế hoạch phù hợp."
+    },
+    {
+      "category": "acne",
+      "q": "Bao lâu mới thấy sản phẩm trị mụn có hiệu quả?",
+      "a": "Hỗ trợ chăm sóc da mụn cần thời gian. Một số liệu trình cần khoảng 4–8 tuần để bắt đầu thấy thay đổi và 2–3 tháng hoặc lâu hơn để đánh giá rõ."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn có thể nặng hơn lúc mới dùng sản phẩm không?",
+      "a": "Một số người thấy da khô, đỏ hoặc mụn thay đổi khi bắt đầu. Nếu phản ứng mạnh, đau, sưng hoặc kéo dài, nên ngưng tự thử nghiệm và được đánh giá."
+    },
+    {
+      "category": "acne",
+      "q": "Kháng sinh bôi có nên dùng một mình không?",
+      "a": "Hướng dẫn da liễu hiện đại thường tránh dùng kháng sinh bôi đơn độc kéo dài vì nguy cơ kháng kháng sinh; phác đồ cần do bác sĩ quyết định."
+    },
+    {
+      "category": "acne",
+      "q": "Azelaic acid có dùng cho da mụn không?",
+      "a": "Azelaic acid có thể được dùng trong hỗ trợ chăm sóc da mụn và hỗ trợ một số vấn đề sắc tố sau mụn. Khả năng dung nạp tùy từng da."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn do mỹ phẩm là gì?",
+      "a": "Một số sản phẩm dầu hoặc gây bít tắc có thể góp phần tạo mụn, kể cả sản phẩm tóc chạm vào trán và đường chân tóc."
+    },
+    {
+      "category": "acne",
+      "q": "Sản phẩm tóc có thể gây mụn trán không?",
+      "a": "Có. Dầu hoặc thành phần từ sản phẩm tóc có thể tiếp xúc da và góp phần làm bít tắc ở đường chân tóc, trán hoặc gáy."
+    },
+    {
+      "category": "acne",
+      "q": "Mồ hôi có gây mụn không?",
+      "a": "Mồ hôi không phải nguyên nhân duy nhất, nhưng mồ hôi kết hợp dầu, ma sát và đồ bí có thể làm da dễ nổi mụn hơn. Nên làm sạch dịu nhẹ sau vận động."
+    },
+    {
+      "category": "acne",
+      "q": "Điện thoại có thể làm mụn nặng hơn không?",
+      "a": "Ma sát và vật dụng tiếp xúc thường xuyên với da có thể góp phần kích ứng. Giữ bề mặt tiếp xúc sạch và giảm cọ xát có thể hữu ích."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn ở lưng và ngực có cần điều trị khác mặt không?",
+      "a": "Da cơ thể và dạng tổn thương có thể khác, nên sản phẩm và cách dùng không nhất thiết giống mặt. Mụn lan rộng hoặc viêm nhiều nên được bác sĩ đánh giá."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn nội tiết là gì?",
+      "a": "Hormone có thể làm tăng hoạt động tuyến dầu và ảnh hưởng mụn. Mụn tái diễn theo chu kỳ hoặc kèm dấu hiệu hormone khác có thể cần đánh giá y khoa."
+    },
+    {
+      "category": "acne",
+      "q": "Ăn uống có gây mụn không?",
+      "a": "Mối liên hệ giữa chế độ ăn và mụn không giống nhau ở mọi người. Không nên quy mọi trường hợp mụn cho một món ăn duy nhất."
+    },
+    {
+      "category": "acne",
+      "q": "Mụn có để lại thâm không?",
+      "a": "Có. Sau viêm, da có thể để lại vết đỏ hoặc tăng sắc tố, đặc biệt khi tổn thương bị cạy nặn hoặc tiếp xúc nắng."
+    },
+    {
+      "category": "acne",
+      "q": "Thâm mụn có phải sẹo mụn không?",
+      "a": "Không. Vết đổi màu sau viêm khác với sẹo lõm hoặc sẹo lồi do thay đổi cấu trúc da, dù chúng có thể cùng tồn tại."
+    },
+    {
+      "category": "acne",
+      "q": "Khi nào mụn cần gặp bác sĩ da liễu?",
+      "a": "Nên đi khám khi mụn vừa-nặng, có nốt/cục đau, để lại sẹo, lan rộng, không đáp ứng sản phẩm không kê đơn hoặc ảnh hưởng nhiều đến chất lượng cuộc sống."
+    },
+    {
+      "category": "acne",
+      "q": "Spa có thể thay thế bác sĩ hỗ trợ chăm sóc da mụn nặng không?",
+      "a": "Không. Spa có thể hỗ trợ chăm sóc da phù hợp phạm vi dịch vụ, nhưng mụn nặng, mụn nang/cục, nhiễm trùng hoặc cần thuốc phải được bác sĩ đánh giá."
+    }
+  ]
+}

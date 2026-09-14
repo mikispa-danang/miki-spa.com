@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-13",
+  "source": "https://github.com/mikispa-danang/miki-spa",
+  "status": "local-tested-not-deployed",
+  "files": {
+    "api/chat.js": "cf9f2f5ccf4e253558e72cbbc16f504a8c9f4d175179f129844f9f1c483d4098",
+    "lib/miki-ai.js": "31bd53632080998e4aa9ed6109781ac7abb15eb0dbc0dbf0b57565e6cfb1a181",
+    "script.js": "d678cc90dca6311bc91f2cb41175b378fd3d16eeb52a22bbc45d0ce7a9929a0c",
+    "content-data.js": "250ff79e3ca02e3d78e7badeae3938e81160004a9fcf5d93b901e269d0881251",
+    "index.html": "b3a919c0343c06897dc79d9c54dd52b58b715d14f7837addc778d004670adf59",
+    "polish.css": "715f10dd493306fc9b62d21db08602266f6e4d049fa979dd7f9d61a9b972267f",
+    "privacy.html": "7eb6bf1e2b34d8c155c3744353f33cb02fc6f9c9dd1381bd4a0132c2800a5e6a",
+    "package.json": "b9aba081a02b8dd807c1a386c2b4dfca2ff3159c1929f4b23f1a4e1ccc2f8d78",
+    "vercel.json": "4d88dc2bdc7ec44cdfe3903685ca834d124944eba0211c55bfa7d49b604e8fbe",
+    "README_AI.md": "c1ae84a884fcbc10d951294d98991862cb4f0eae1a9ed582a3d68e56c415f974",
+    "tests/ai.test.js": "2f5117be03fd20d1f9939db2609a6b1fcf1709fdfcf034c019b75308a81ea577",
+    "tests/evaluation-cases.json": "5082c644e64f940ea368aa45e052ff95a95b3b7ec0d00011b195c049e7547d95"
+  }
+}
