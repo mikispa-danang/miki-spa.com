@@ -364,7 +364,7 @@ function renderAiLeadForm() {
   if (!aiMessages || aiMessages.querySelector('#mikiAiLeadForm')) return;
   const lang = currentLang();
   const languageOptions = [
-    ['vi','Tiếng Việt'],['en','English'],['ko','한국어'],['zh','中文'],['ru','Русский']
+    ['vi','Tiếng Việt'],['en','English'],['ko','한국어'],['zh','中文'],['ru','Русский'],['th','ไทย']
   ].map(([value,label]) => `<option value="${value}"${value===lang?' selected':''}>${label}</option>`).join('');
   const wrap=document.createElement('div');
   wrap.className='ai-lead-card';
