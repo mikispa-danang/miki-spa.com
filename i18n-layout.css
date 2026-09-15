@@ -163,3 +163,6 @@ html body .hero-visual-grid .hero-room {height:auto;aspect-ratio:912/992;}
 html body .hero-room img {object-fit:contain;object-position:center;}
 html body .booking-modal-visual {background-size:contain;background-position:center;background-color:#e9dfd1;min-height:480px;}
 @media(max-width:900px){html body .booking-modal-visual {min-height:0;aspect-ratio:912/992;}}
+
+html[data-lang="th"] body,html[data-lang="th"] button,html[data-lang="th"] input,html[data-lang="th"] select,html[data-lang="th"] textarea{font-family:"Noto Sans Thai","Leelawadee UI",Tahoma,"Manrope",sans-serif;}
+html[data-lang="th"] h1,html[data-lang="th"] h2,html[data-lang="th"] h3{line-height:1.22;letter-spacing:0;}

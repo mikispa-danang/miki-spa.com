@@ -60,7 +60,7 @@ window.MIKI_CONTENT = {
     }
   },
   "images": {
-    "heroTreatment": "assets/optimized/miki-hero-no-poster-lamp.png",
+    "heroTreatment": "assets/optimized/miki-hero-no-poster-lamp.webp",
     "heroSkin": "assets/optimized/service-skin-closeup.webp",
     "storefront": "assets/optimized/hero-storefront.webp",
     "room": "assets/optimized/hero-room.webp",

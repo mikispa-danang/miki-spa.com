@@ -17,7 +17,16 @@
     document.querySelectorAll('[data-miki]').forEach(el=>{
       const key=el.dataset.miki, value=get(data,key); if(value===undefined||value===null)return;
       const attr=el.dataset.mikiAttr;
-      if(attr){el.setAttribute(attr,value); return;}
+      if(attr){
+        const fallback=el.getAttribute(attr);
+        if(attr==='src' && fallback && String(value)!==fallback){
+          el.addEventListener('error',()=>{
+            if(el.getAttribute(attr)!==fallback) el.setAttribute(attr,fallback);
+          },{once:true});
+        }
+        el.setAttribute(attr,value);
+        return;
+      }
       if(el.dataset.mikiHtml==='1') el.innerHTML=value; else el.textContent=value;
     });
   }

@@ -1,2 +1,2 @@
-Miki Skin Spa V2.5 Production — UI Polish + Mobile Landing + 5-Language Pass
-Date: 2026-09-14
+Miki Skin Spa V2.6 Production — Thai Language Support (VI / EN / KO / ZH / RU / TH)
+2026-09-14
