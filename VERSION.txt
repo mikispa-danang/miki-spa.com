@@ -1,2 +1,1 @@
-Miki Skin Spa V2.6 Production — Thai Language Support (VI / EN / KO / ZH / RU / TH)
-2026-09-14
+Miki Skin Spa V2.7.1 Production — Booking Button Hotfix
