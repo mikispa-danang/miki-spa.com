@@ -1,6 +1,6 @@
 (() => {
-  const LANGS = ['vi','en','ko','zh','ru','th'];
-  const languageNames = {vi:'Tiếng Việt',en:'English',ko:'한국어',zh:'中文',ru:'Русский',th:'ไทย'};
+  const LANGS = ['vi','en','ko','zh','ru'];
+  const languageNames = {vi:'Tiếng Việt',en:'English',ko:'한국어',zh:'中文',ru:'Русский'};
   const packs = {
     en: {
       'Dịch vụ':'Services','Trải nghiệm Miki':'Miki Experience','Đào tạo':'Academy','Hình ảnh':'Gallery','Đánh giá':'Reviews','Khách quốc tế':'International Guests','Bảng giá':'Pricing','Đặt lịch':'Book Now','Đặt lịch tư vấn':'Book a Consultation','Xem hình ảnh dịch vụ →':'View service photos →','Vẻ đẹp tinh tế.':'Refined beauty.','Trải nghiệm chân thật.':'A genuine experience.','Chăm sóc vừa đủ. Không gian dễ chịu. Trải nghiệm chân thật.':'Thoughtful care. A comfortable space. A genuine experience.',
@@ -20,7 +20,7 @@
       'Miki AI Concierge':'Miki AI Concierge','Trợ lý tư vấn 24/7':'24/7 consultation assistant','Xin chào ✨ Mình là':'Hello ✨ I’m','Mình có thể giúp bạn tìm hiểu dịch vụ, tham khảo bảng giá, xem FAQ hoặc ghi nhận yêu cầu đặt lịch. Bạn đang quan tâm dịch vụ nào?':'I can help you explore services, check pricing, read FAQs or submit a booking request. Which service are you interested in?','Miki đang trả lời…':'Miki is replying…','AI hỗ trợ thông tin về dịch vụ và đặt lịch, không thay thế tư vấn hoặc chẩn đoán y khoa.':'AI provides service and booking information and does not replace medical advice or diagnosis.','Gặp nhân viên thật':'Talk to a staff member',
       'Chọn dịch vụ và thời gian phù hợp với bạn.':'Choose a service and time that suit you.','Ưu đãi đặt lịch trước: -10%':'Advance-booking offer: -10%','Miki sẽ xác nhận điều kiện áp dụng khi liên hệ':'Miki will confirm eligibility when contacting you','Họ và tên':'Full name','Số điện thoại / WhatsApp':'Phone / WhatsApp','Chọn dịch vụ':'Choose a service','Chăm sóc cơ thể (Body Care)':'Body Care','Tư vấn trước':'Pre-consultation','Ngày mong muốn':'Preferred date','Khung giờ':'Time period','Sáng':'Morning','Chiều':'Afternoon','Tối':'Evening','Ngôn ngữ mong muốn':'Preferred language','Tiếng Việt':'Vietnamese','Ghi chú':'Notes','Gửi yêu cầu đặt lịch':'Send booking request','Thông tin bạn cung cấp chỉ được dùng để Miki liên hệ tư vấn và xác nhận lịch. Nếu hệ thống gửi tự động chưa sẵn sàng, bạn có thể xác nhận trực tiếp qua WhatsApp.':'Your information is used only so Miki can contact you for consultation and booking confirmation. If automatic submission is unavailable, you can confirm directly via WhatsApp.','Đã ghi nhận yêu cầu':'Request received','Miki sẽ liên hệ để xác nhận dịch vụ và khung giờ phù hợp.':'Miki will contact you to confirm the service and suitable time.','Xác nhận qua WhatsApp':'Confirm via WhatsApp','Hoàn tất':'Done','Gửi':'Send'
     },
-    ko: {}, zh: {}, ru: {}, th: {}
+    ko: {}, zh: {}, ru: {}
   };
 
   // Compact localized equivalents for the most important customer-facing UI.
@@ -72,7 +72,6 @@
   Object.keys(luxeBookingI18n).forEach(lang => Object.assign(packs[lang], luxeBookingI18n[lang]));
 
 
-  Object.assign(packs.th, window.MIKI_TH || {});
   Object.assign(packs.ko, window.MIKI_KO_STATIC || {});
   for (const lang of ['en','zh','ru']) Object.assign(packs[lang], window.MIKI_STATIC_TRANSLATIONS?.[lang] || {});
   for (const lang of LANGS) packs[lang] = Object.assign(packs[lang] || {}, window.MIKI_EDITORIAL?.[lang] || {});
@@ -90,7 +89,7 @@
   };
   function translateText(value, lang = window.MIKI_LANGUAGE || 'vi') {
     const key = canonical(value);
-    return packs[lang]?.[key] ?? (lang === 'th' ? (packs.en?.[key] ?? key) : key);
+    return packs[lang]?.[key] ?? key;
   }
   const originals = new WeakMap(), attrOriginals = new WeakMap();
   const attrNames = ['placeholder','aria-label','title','alt','data-ai-prompt','data-laser-prompt'];

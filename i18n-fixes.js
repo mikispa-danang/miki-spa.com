@@ -135,28 +135,3 @@ const mikiProductionPolishRows=[
 ];
 for(const [key,...values] of mikiProductionPolishRows) ['en','ko','zh','ru'].forEach((l,i)=>window.MIKI_FIXES[l][key]=values[i]);
 for(const [lang,text] of Object.entries({en:'Lower legs (women)',ko:'여성 종아리',zh:'女士小腿',ru:'Голени (жен.)'})) window.MIKI_FIXES[lang]['Cẳng chân nữ']=text;
-
-// Google review QR section additions
-const mikiReviewQrRows=[
-['SCAN TO REVIEW','SCAN TO REVIEW','리뷰 바로가기','扫码评价','ОТСКАНИРУЙТЕ ДЛЯ ОТЗЫВА'],
-['Chia sẻ cảm nhận của bạn về Miki Skin Spa.','Share your experience with Miki Skin Spa.','Miki Skin Spa 이용 후기를 남겨주세요.','分享您对 Miki Skin Spa 的体验。','Поделитесь впечатлением о Miki Skin Spa.'],
-['Nếu bạn đã trải nghiệm dịch vụ tại Miki, hãy quét mã QR để mở trực tiếp phần viết đánh giá trên Google. Cách này rất nhanh, dễ dùng và giúp khách hàng mới yên tâm hơn khi lựa chọn Miki.','If you have visited Miki, scan the QR code to open the Google review form directly. It is quick, easy and helps new guests feel more confident when choosing Miki.','Miki 서비스를 이용하셨다면 QR 코드를 스캔해 Google 리뷰 작성 화면으로 바로 이동하세요. 빠르고 간편하며, 새로운 고객에게도 큰 도움이 됩니다.','如果您已经体验过 Miki 的服务，请扫描二维码直接进入 Google 评价页面。这样更快捷、也能帮助新顾客更安心地选择 Miki。','Если вы уже были в Miki, отсканируйте QR-код, чтобы сразу открыть форму отзыва Google. Это быстро, удобно и помогает новым гостям увереннее выбрать Miki.'],
-['Quét mã QR để mở thẳng trang viết đánh giá Google','Scan the QR code to open the Google review page directly','QR 코드를 스캔해 Google 리뷰 작성 페이지로 바로 이동하세요','扫描二维码，直接打开 Google 评价页面','Отсканируйте QR-код, чтобы сразу открыть страницу отзыва Google'],
-['Phù hợp cho khách đang ở spa hoặc đã trải nghiệm xong dịch vụ','Perfect for guests at the spa or after completing their service','스파에 계신 고객이나 시술 후 고객에게 편리합니다','适合在店顾客或刚完成服务的顾客使用','Удобно для гостей прямо в спа или сразу после процедуры'],
-['Nếu đang dùng điện thoại, bạn cũng có thể bấm nút để viết review ngay','If you are on your phone, you can also tap the button to leave a review immediately','휴대폰을 사용 중이라면 버튼을 눌러 바로 리뷰를 남길 수도 있습니다','如果您正使用手机，也可以直接点击按钮立即评价','Если вы пользуетесь телефоном, можно просто нажать кнопку и сразу оставить отзыв'],
-['Đánh giá Miki trên Google','Review Miki on Google','Google에서 Miki 평가하기','在 Google 上评价 Miki','Оставить отзыв о Miki в Google'],
-['Quét mã QR bằng camera điện thoại để mở trực tiếp mục Write a review của Miki Skin Spa.','Use your phone camera to scan the QR code and open Miki Skin Spa’s Write a review page directly.','휴대폰 카메라로 QR 코드를 스캔하면 Miki Skin Spa의 리뷰 작성 화면이 바로 열립니다.','使用手机相机扫描二维码，可直接打开 Miki Skin Spa 的评价页面。','Наведите камеру телефона на QR-код, чтобы сразу открыть страницу Write a review для Miki Skin Spa.'],
-['Viết đánh giá trên Google','Write a review on Google','Google에 리뷰 남기기','在 Google 上写评价','Написать отзыв в Google'],
-['Xem Google Maps','Open Google Maps','Google 지도 보기','打开 Google 地图','Открыть Google Maps'],
-['Scan to review','Scan to review','리뷰 QR','扫码评价','QR для отзыва']
-];
-for(const [key,...values] of mikiReviewQrRows) ['en','ko','zh','ru'].forEach((l,i)=>window.MIKI_FIXES[l][key]=values[i]);
-
-// V2.6: six-language label after adding Thai.
-for (const [lang,text] of Object.entries({
-  en:'Languages: VI · EN · 한국어 · 中文 · RU · ไทย',
-  ko:'지원 언어: VI · EN · 한국어 · 中文 · RU · ไทย',
-  zh:'支持语言：VI · EN · 한국어 · 中文 · RU · ไทย',
-  ru:'Языки: VI · EN · 한국어 · 中文 · RU · ไทย',
-  th:'ภาษา: VI · EN · 한국어 · 中文 · RU · ไทย'
-})) { (window.MIKI_FIXES[lang] ||= {})['Ngôn ngữ: VI · EN · 한국어 · 中文 · RU · ไทย'] = text; }

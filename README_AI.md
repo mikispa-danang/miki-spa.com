@@ -24,7 +24,7 @@ Chrome headless 390px: câu phủ định không mở form; streaming; khôi ph�
 1. Giải nén gói cập nhật và chép đè vào thư mục gốc repository hiện tại. Giữ cấu trúc api/, lib/ và các file đi kèm. Không chỉ tải mỗi chat.js.
 2. Trong Vercel Project Settings > Environment Variables, cấu hình OPENAI_API_KEY cho Preview/Production cần dùng. Không đưa khóa vào GitHub hoặc gửi qua chat. OPENAI_MODEL phải là mô hình tài khoản có quyền dùng.
 3. Root Directory chứa package.json/vercel.json. Node 22.x, Framework Other, không cần build frontend. Giữ nguyên LEAD_WEBHOOK_URL đang dùng.
-4. Deploy preview trước, kiểm thử giờ mở cửa, giá waxing nách, câu chưa muốn đặt lịch, hội thoại nhiều lượt và 6 ngôn ngữ; kiểm tra Functions Logs.
+4. Deploy preview trước, kiểm thử giờ mở cửa, giá waxing nách, câu chưa muốn đặt lịch, hội thoại nhiều lượt và 5 ngôn ngữ; kiểm tra Functions Logs.
 5. AI_NOT_CONFIGURED: kiểm tra biến môi trường đúng deployment rồi redeploy. AI_UNAVAILABLE: xem log miki_ai_upstream; 401/403 kiểm tra khóa/quyền, 404 mô hình, 429 hạn mức. Không gửi khóa trong log.
 6. Chỉ chuyển production sau khi API thật hoạt động và nội dung tư vấn được duyệt. Có thể khôi phục deployment trước trong Vercel nếu cần.
 
@@ -34,4 +34,4 @@ Tài liệu tham khảo:
 https://developers.openai.com/api/docs/guides/streaming-responses
 https://vercel.com/docs/project-configuration/vercel-json#functions
 
-Bộ tests/evaluation-cases.json gồm 25 câu hỏi thật bằng 6 ngôn ngữ và tiêu chí duyệt. Chưa chạy mô hình thật; dùng sau khi cấu hình API trên preview.
+Bộ tests/evaluation-cases.json gồm 25 câu hỏi thật bằng 5 ngôn ngữ và tiêu chí duyệt. Chưa chạy mô hình thật; dùng sau khi cấu hình API trên preview.

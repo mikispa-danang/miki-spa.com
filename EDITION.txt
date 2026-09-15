@@ -1,2 +1,5 @@
-Miki Skin Spa V2.6 Production
-6 languages: Vietnamese / English / Korean / Chinese / Russian / Thai
+Miki Skin Spa — Production 2026-09-14
+Main responsive website: index.html
+Dedicated mobile/booking landing: landing/index.html
+Languages: VI / EN / KO / ZH / RU
+AI FAQ knowledge base: 100 questions
