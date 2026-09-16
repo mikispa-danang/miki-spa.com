@@ -226,7 +226,8 @@ const AI_COPY = {
   en: { offline: 'Miki AI is temporarily unavailable. Please try again or contact Miki via Hotline/Zalo +84 935 555 170.', reset: 'New conversation', long: 'Please keep your question under 2,000 characters.' },
   ko: { offline: '현재 Miki AI에 연결할 수 없습니다. 다시 시도하거나 전화/Zalo +84 935 555 170으로 문의해 주세요.', reset: '새 대화', long: '질문은 2,000자 이내로 입력해 주세요.' },
   zh: { offline: 'Miki AI 暂时无法连接。请重试，或通过电话/Zalo +84 935 555 170 联系我们。', reset: '新对话', long: '请将问题控制在2,000字以内。' },
-  ru: { offline: 'Miki AI временно недоступен. Попробуйте снова или свяжитесь с Miki по телефону/Zalo +84 935 555 170.', reset: 'Новый разговор', long: 'Пожалуйста, ограничьте вопрос 2 000 символами.' }
+  ru: { offline: 'Miki AI временно недоступен. Попробуйте снова или свяжитесь с Miki по телефону/Zalo +84 935 555 170.', reset: 'Новый разговор', long: 'Пожалуйста, ограничьте вопрос 2 000 символами.' },
+  th: { offline: 'ขณะนี้ Miki AI ยังไม่สามารถเชื่อมต่อได้ กรุณาลองอีกครั้งหรือติดต่อ Miki ทาง Hotline/Zalo +84 935 555 170', reset: 'เริ่มการสนทนาใหม่', long: 'กรุณาส่งคำถามไม่เกิน 2,000 ตัวอักษร' }
 };
 const AI_SESSION_KEY = 'miki-ai-session-v2';
 const AI_SESSION_TTL = 30 * 60 * 1000;
@@ -271,6 +272,37 @@ function setAiBusy(busy) {
   document.querySelectorAll('[data-ai-prompt], [data-ai-booking], [data-ai-reset]').forEach(b => b.disabled = busy);
   aiMessages?.setAttribute('aria-busy', String(busy));
 }
+
+function localConciergeReply(question) {
+  const q = String(question || '').toLowerCase();
+  const lang = currentLang();
+  const booking = lang === 'vi' ? 'Bạn có thể bấm “Đặt lịch” để chọn dịch vụ và thời gian, hoặc nhắn Zalo 0935 555 170 để Miki xác nhận.' : 'You can tap “Book” to choose a service and time, or contact Miki at +84 935 555 170 for confirmation.';
+  const vi = {
+    laser: 'Miki có dịch vụ triệt lông Diode Laser với làm lạnh ICE Cooling -25°C. Với da nhạy cảm hoặc vùng đang kích ứng, Miki khuyên nên trao đổi tình trạng da trước khi thực hiện. ' + booking,
+    wax: 'Waxing phù hợp khi bạn muốn loại bỏ lông ngay trong một buổi. Nếu ưu tiên giảm lông lâu dài, bạn có thể cân nhắc triệt Diode Laser. Miki có thể giúp bạn so sánh theo vùng cần làm. ' + booking,
+    skin: 'Miki có chăm sóc da và hỗ trợ da mụn. Để tư vấn sát hơn, bạn cho mình biết da dầu/khô/nhạy cảm và vấn đề chính bạn đang quan tâm nhé. Miki AI không thay thế chẩn đoán y khoa.',
+    price: 'Bảng giá chính thức được cập nhật ngay trên mục “Bảng giá” của website. Vì giá phụ thuộc dịch vụ và vùng thực hiện, bạn cho mình biết dịch vụ/vùng muốn làm để mình hướng dẫn đúng mục nhé.',
+    address: 'Miki Skin Spa ở 47 Cô Giang, Hải Châu, Đà Nẵng. Giờ mở cửa 08:30–21:30 mỗi ngày. Bạn có thể mở Google Maps từ phần Liên hệ trên website.',
+    book: booking,
+    hello: 'Chào bạn 🌿 Mình là Miki Beauty Concierge. Mình có thể giúp bạn chọn dịch vụ, so sánh Laser và Waxing, tìm bảng giá, hướng dẫn đặt lịch hoặc thông tin đến Miki.'
+  };
+  if (lang !== 'vi') {
+    if (/price|cost|how much/.test(q)) return 'Official prices are shown in the Price section. Tell me the service and treatment area you are interested in, and I’ll guide you to the right option.';
+    if (/address|where|location|map/.test(q)) return 'Miki Skin Spa is at 47 Co Giang, Hai Chau, Da Nang, open daily 08:30–21:30. You can open Google Maps from the Contact section.';
+    if (/book|appointment|reserve/.test(q)) return booking;
+    if (/laser|hair removal/.test(q)) return 'Miki offers Diode Laser hair removal with ICE Cooling -25°C. If your skin is sensitive or irritated, please share that before treatment. ' + booking;
+    return 'I’m Miki Beauty Concierge 🌿 I can help with Laser Hair Removal, Waxing, Skin Care, Acne Care, Body Care, prices, directions and booking. Tell me what you would like to improve or which area you want to treat.';
+  }
+  if (/giá|bao nhiêu|chi phí|price/.test(q)) return vi.price;
+  if (/địa chỉ|ở đâu|google map|bản đồ|giờ mở/.test(q)) return vi.address;
+  if (/đặt lịch|booking|hẹn/.test(q)) return vi.book;
+  if (/wax/.test(q)) return vi.wax;
+  if (/laser|triệt|lông/.test(q)) return vi.laser;
+  if (/mụn|da|skin|chăm sóc/.test(q)) return vi.skin;
+  if (/chào|hello|hi|xin chào/.test(q)) return vi.hello;
+  return 'Mình có thể hỗ trợ về Triệt lông Laser, Waxing, Skin Care, Acne Care, Body Care, bảng giá, đường đến Miki và đặt lịch. Bạn nói giúp mình nhu cầu hoặc vùng bạn đang quan tâm nhé.';
+}
+
 async function askBackend(messages, onDelta) {
   if (location.protocol === 'file:') throw new Error('SERVER_REQUIRED');
   const controller = new AbortController();
@@ -328,8 +360,11 @@ async function handleAiQuestion(question) {
     aiHistory.push({ role: 'assistant', content: reply });
     persistAiHistory();
   } catch {
-    if (bubble) bubble.textContent = aiCopy().offline;
-    else addAiMessage(aiCopy().offline);
+    const reply = localConciergeReply(clean);
+    showTyping(false);
+    if (bubble) bubble.textContent = reply; else addAiMessage(reply);
+    aiHistory.push({ role: 'assistant', content: reply });
+    persistAiHistory();
   } finally { showTyping(false); setAiBusy(false); aiInput?.focus(); }
 }
 restoreAiHistory();
