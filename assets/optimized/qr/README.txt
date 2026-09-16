@@ -1,0 +1,1 @@
+QR assets for Miki Spa quick contact cards.
