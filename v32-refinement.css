@@ -1,0 +1,61 @@
+/* Miki Skin Spa V3.2 — refinement layer */
+:root{--v32-space:clamp(64px,8vw,112px)}
+.section-pad{padding-top:var(--v32-space);padding-bottom:var(--v32-space)}
+.hero{min-height:min(820px,88vh);display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(34px,5vw,78px);align-items:center}
+.hero-copy{max-width:610px}.hero h1{max-width:11ch;line-height:.94;letter-spacing:-.035em}.hero-lead{max-width:58ch;line-height:1.72}
+.hero-actions{gap:16px;align-items:center}.hero-actions .btn{min-height:50px}.hero-trust-badges{margin-top:28px}
+.hero-visual-grid{min-width:0}.hero-panel{overflow:hidden}.hero-panel img{width:100%;height:100%;object-fit:cover}
+.services .section-head,.pricing .section-head,.media-showcase .section-head,.faq .section-head{max-width:760px}
+.service-card img,.thumb-card img{object-fit:cover}.service-card{height:100%}
+/* Make secondary/long-form sections quieter */
+.technology-proof,.process,.academy{background:color-mix(in srgb,#f7efe5 54%,transparent)}
+/* Pricing: show popular choices first, details on demand */
+.pricing-catalogs{position:relative}.pricing-catalog-layout{content-visibility:auto;contain-intrinsic-size:700px}
+/* AI is a utility, not a competing hero */
+.laser-ai-consult{padding-block:clamp(54px,6vw,82px)}
+/* QR is useful on desktop, direct actions are better on phones */
+.connect-miki img[class*="qr"],.connect-miki [class*="qr-preview"] img{max-width:148px;height:auto}
+/* Unified CTA sizing */
+.btn,.contact-chip{min-height:48px}.booking-banner .btn{min-height:52px}
+/* Modal: calmer hierarchy and better usable viewport */
+.booking-modal-luxe{width:min(1080px,94vw);max-height:min(880px,92dvh);overflow:auto}.booking-modal-grid{align-items:stretch}.booking-modal-formpane{padding:clamp(28px,4vw,54px)}
+.booking-modal-formpane h2{max-width:15ch;line-height:1.02}.booking-modal-formpane label{gap:7px}.booking-modal-formpane input,.booking-modal-formpane select,.booking-modal-formpane textarea{min-height:48px}
+/* AI chat polish */
+.ai-chat-panel,.ai-chat{max-height:min(760px,86dvh)}.ai-chat-messages{line-height:1.55}.ai-chat-foot{line-height:1.45}
+/* Consistent media rhythm */
+.gallery-grid img,.uploaded-gallery img{object-fit:cover}
+@media(max-width:900px){
+ .section-pad{padding-top:clamp(54px,13vw,78px);padding-bottom:clamp(54px,13vw,78px)}
+ .hero{display:flex;flex-direction:column;min-height:auto;gap:30px;padding-top:42px}.hero-copy{max-width:none}.hero h1{max-width:12ch}.hero-visual-grid{width:100%}
+ .booking-modal-luxe{width:100%;max-width:none;max-height:94dvh;margin-top:auto;border-radius:24px 24px 0 0}.booking-modal-visual{min-height:220px}
+}
+@media(max-width:640px){
+ body{font-size:16px}.hero{padding-top:28px}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .btn{width:100%}.hero-actions .text-link{text-align:center;padding:8px}
+ .hero-trust-badges{display:grid;grid-template-columns:1fr;gap:8px;margin-top:20px}.hero-lead{font-size:15.5px}
+ .service-card{border-radius:20px}.service-card img{aspect-ratio:4/3}
+ .review-qr-top-card{display:none!important}.connect-miki [class*="qr-preview"]{display:none!important}
+ .booking-modal-grid{display:block}.booking-modal-visual{display:none}.booking-modal-formpane{padding:28px 20px 34px}.form-grid{grid-template-columns:1fr}
+ .ai-chat-panel,.ai-chat{inset:12px!important;width:auto!important;max-width:none!important;height:calc(100dvh - 24px)!important;max-height:none!important;border-radius:22px!important}
+ .faq-tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}.faq-tab{white-space:nowrap}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* V3.3.1 Quick-connect QR fix: compact cards aligned with Maps */
+.connect-miki .connect-grid{align-items:stretch}
+.connect-miki .connect-card{min-height:0;padding:24px;border-radius:24px}
+.connect-miki .qr-contact-card{display:grid;grid-template-columns:1fr 112px;grid-template-rows:auto auto 1fr auto;column-gap:18px;align-items:start}
+.connect-miki .qr-contact-card .connect-icon{grid-column:1;grid-row:1}
+.connect-miki .qr-contact-card>strong{grid-column:1;grid-row:2;margin:12px 0 7px;font-size:clamp(23px,2vw,28px)}
+.connect-miki .qr-contact-card>p{grid-column:1;grid-row:3;margin:0 0 14px;font-size:13px;line-height:1.55}
+.connect-miki .qr-contact-card>[class$="qr-preview"]{grid-column:2;grid-row:1/5;align-self:center;display:block;width:112px;height:112px;margin:0;padding:7px;border:1px solid rgba(184,150,103,.20);border-radius:16px;background:#fff;box-sizing:border-box;overflow:hidden}
+.connect-miki .qr-contact-card>[class$="qr-preview"] img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:10px!important;object-fit:contain!important;background:#fff}
+.connect-miki .qr-contact-card>.btn{grid-column:1;grid-row:4;justify-self:start;margin-top:0;min-height:42px;padding:10px 16px}
+.connect-miki .location-card{justify-content:flex-start}
+.connect-miki .location-card .btn{margin-top:auto}
+@media(max-width:1000px){.connect-miki .connect-grid{grid-template-columns:1fr 1fr!important}.connect-miki .location-card{grid-column:1/-1}}
+@media(max-width:640px){.connect-miki .connect-grid{grid-template-columns:1fr!important}.connect-miki .location-card{grid-column:auto}.connect-miki .qr-contact-card{grid-template-columns:1fr 92px;column-gap:14px}.connect-miki .qr-contact-card>[class$="qr-preview"]{display:block!important;width:92px;height:92px}.connect-miki .connect-card{padding:20px}}
+
+/* V3.3.2 FINAL QA: Quick Connect consistency */
+@media(min-width:1101px){.connect-miki .connect-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+.connect-miki .connect-card{height:100%;box-sizing:border-box}
+.connect-miki .location-card{min-height:0!important}

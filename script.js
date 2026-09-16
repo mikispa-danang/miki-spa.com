@@ -308,9 +308,12 @@ async function askBackend(messages, onDelta) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 55000);
   try {
-    const res = await fetch('/api/chat', {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/x-ndjson' },
-      body: JSON.stringify({ messages, language: currentLang() }), signal: controller.signal
+    const cfg = window.MIKI_AI_CONFIG || {};
+    const endpoint = String(cfg.endpoint || '').trim();
+    if (!cfg.enabled || !endpoint || endpoint.includes('YOUR-MIKI-AI-WORKER')) throw new Error('AI_GATEWAY_NOT_CONFIGURED');
+    const res = await fetch(endpoint, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ messages, language: currentLang(), page: location.pathname }), signal: controller.signal
     });
     if (!res.ok) throw new Error('AI_UNAVAILABLE');
     if (!res.headers.get('content-type')?.includes('application/x-ndjson')) {

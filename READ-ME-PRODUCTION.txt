@@ -1,33 +1,5 @@
-MIKI SKIN SPA — PRODUCTION READY 14/09/2026
-
-BẢN NÀY ĐÃ HOÀN THÀNH 3 BƯỚC TỐI ƯU:
-
-1) MOBILE LANDING
-- Hero mobile chuyển trọng tâm sang Laser Hair Removal + Skin Care in Da Nang.
-- Ảnh hero laser được tối ưu WebP 1200 x 1600 (~157 KB).
-- Tối ưu font-size, khoảng cách, service cards, bảng giá, review, FAQ, contact và booking modal cho màn hình nhỏ.
-- Mobile sticky CTA rút còn 2 hành động chính: Đặt lịch + WhatsApp.
-- Popup mềm chỉ hiện trên desktop để tránh che nội dung mobile.
-- Thêm liên kết xem toàn bộ bảng giá từ landing sang website chính.
-
-2) ĐA NGÔN NGỮ
-- Landing có bộ chọn VI / EN / KO / ZH / RU đồng bộ với website chính.
-- Nạp cùng hệ thống i18n của website chính để giảm nội dung sót tiếng Việt.
-- Bổ sung bản dịch cho toàn bộ copy mới trong đợt UI polish và mobile landing.
-- Tin nhắn WhatsApp từ booking landing tự đổi ngôn ngữ theo ngôn ngữ người dùng đang chọn.
-- Bố cục có điều chỉnh riêng cho KO / ZH / RU để hạn chế heading quá dài và vỡ dòng.
-
-3) PRODUCTION CHECK
-- 31/31 automated tests PASS.
-- Tất cả file JavaScript đã qua node --check.
-- Kiểm tra các đường dẫn local asset/script/CSS trong HTML: không phát hiện file thiếu.
-- Kiểm tra duplicate HTML id ở trang chính và landing: không phát hiện trùng.
-- Giữ nguyên API /api/chat và /api/lead, FAQ 100 câu, booking, AI, admin/content manager.
-
-TRIỂN KHAI
-- Giải nén ZIP và chọn thư mục chứa package.json + vercel.json làm root trên Vercel.
-- Giữ nguyên cấu trúc api/, assets/, landing/.
-- Cần cấu hình OPENAI_API_KEY/OPENAI_MODEL cho Miki AI và LEAD_WEBHOOK_URL nếu dùng webhook nhận lịch.
-- Nên kiểm tra lại trên domain thật sau deploy: gửi booking thật, WhatsApp deep link, QR trên điện thoại thật và Core Web Vitals.
-
-Không cần build frontend trước khi deploy.
+MIKI SKIN SPA V3.1 — GITHUB PAGES + MIKI BEAUTY CONCIERGE
+1. Website/landing/booking are static and deploy to GitHub Pages.
+2. AI frontend has a safe local fallback and supports a secure AI gateway.
+3. To enable real model responses, follow MIKI-AI-GITHUB-SETUP.md.
+4. Never put an OpenAI API key in public website files.

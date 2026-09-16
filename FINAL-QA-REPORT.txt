@@ -1,0 +1,22 @@
+MIKI SKIN SPA — FINAL QA REPORT — 2026-09-16
+
+Verified in package V3.3.2 FINAL QA:
+- ZIP integrity: pass.
+- All local HTML asset references: pass after fixing /booking/ relative paths.
+- All local anchor/page links: pass.
+- Duplicate HTML IDs: none detected.
+- External link inventory: 8 unique URLs; normalized Zalo QR link to HTTPS.
+- QR payload decoding: WhatsApp, Zalo, Telegram, Google Review, Facebook: pass.
+- WhatsApp/Zalo display QR images replaced with square QR crops so compact cards display the actual scannable code instead of the full portrait screenshot.
+- Telegram QR added to Quick Connect and generated deterministically from https://t.me/+84935555170.
+- JavaScript syntax: all external JS + inline scripts pass node --check.
+- Images: 53 files decoded/verified successfully.
+- CSS brace balance: pass.
+- Video files: ffprobe pass.
+- Booking /booking/ page: fixed broken relative image and CSS paths.
+- Quick Connect desktop: 4-column layout (WhatsApp, Zalo, Telegram, Google Maps), tablet 2-column, mobile 1-column.
+- No Vercel references found.
+- No OpenAI secret value is embedded; only the OPENAI_API_KEY environment variable name appears in setup/worker code.
+
+Important limitation:
+This environment could not complete a full interactive Chromium screenshot/browser session, so visual behavior on every real device/browser and the final destination shown after third-party app redirects must still be smoke-tested after GitHub Pages deployment. Source/asset/QR/static checks above are completed; this report does not claim a device-lab test that was not performed.

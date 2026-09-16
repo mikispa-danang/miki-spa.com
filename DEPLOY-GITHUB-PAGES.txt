@@ -4,5 +4,5 @@ MIKI SKIN SPA V3.0 — GITHUB PAGES
 3. Main website: https://miki-spa.com/
 4. Booking: https://miki-spa.com/booking/
 5. Share landing page: https://miki-spa.com/landing/
-6. This package contains no Vercel configuration/serverless backend.
+6. AI gateway setup is documented in MIKI-AI-GITHUB-SETUP.md.
 7. Miki AI has a built-in static concierge fallback so it remains useful on GitHub Pages. A future secure AI backend can be connected without exposing an API key in the frontend.

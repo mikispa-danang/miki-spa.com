@@ -4,7 +4,7 @@ Gói chung gồm Website/Mobile responsive và landing riêng tại /landing/.
 Giải nén toàn bộ và giữ nguyên cấu trúc thư mục. Trang chính: index.html.
 Landing dùng chung bản dịch và nội dung với Website, không tách riêng thư mục landing để triển khai.
 
-Có sẵn cấu hình Vercel. Khi triển khai, cấu hình OPENAI_API_KEY cho AI
+Website chạy trên GitHub Pages. Xem MIKI-AI-GITHUB-SETUP.md để bật Miki Beauty Concierge an toàn.
 và LEAD_WEBHOOK_URL cho hệ thống tiếp nhận yêu cầu đặt lịch.
 Chưa cấu hình các dịch vụ này: giao diện vẫn có bản dịch tĩnh, form có hướng dẫn liên hệ WhatsApp.
 Kiểm thử Booking và AI đã dùng phản hồi mô phỏng; chưa xác nhận kết nối tài khoản thật.
