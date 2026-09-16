@@ -8,3 +8,31 @@ window.MIKI_AI_CONFIG = Object.freeze({
   zalo: 'https://zalo.me/0935555170',
   enabled: true
 });
+
+/* Production booking routing hotfix — 2026-09-16.
+   Keep one booking experience: every legacy booking trigger goes to Booking Pro.
+   The old modal is disabled, including its delayed auto-popup behavior. */
+(() => {
+  try { sessionStorage.setItem('miki_auto_booking_shown', '1'); } catch (_) {}
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-open-booking]');
+    if (!trigger) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    try { sessionStorage.setItem('miki_booking_interacted', '1'); } catch (_) {}
+    const lang = window.MIKI_LANGUAGE || localStorage.getItem('miki-language') || 'vi';
+    const url = new URL('/booking/', window.location.origin);
+    if (lang && lang !== 'vi') url.searchParams.set('lang', lang);
+    window.location.assign(url.href);
+  }, true);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const legacyModal = document.getElementById('bookingModal');
+    if (legacyModal) {
+      legacyModal.setAttribute('aria-hidden', 'true');
+      legacyModal.remove();
+    }
+    document.body.style.overflow = '';
+  });
+})();
