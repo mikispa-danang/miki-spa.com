@@ -23,7 +23,7 @@ window.MIKI_AI_CONFIG = Object.freeze({
     try { sessionStorage.setItem('miki_booking_interacted', '1'); } catch (_) {}
     const lang = window.MIKI_LANGUAGE || localStorage.getItem('miki-language') || 'vi';
     const url = new URL('/booking.html', window.location.origin);
-    if (lang && lang !== 'vi') url.searchParams.set('lang', lang);
+    if (lang) url.searchParams.set('lang', lang);
     window.location.assign(url.href);
   }, true);
 
@@ -35,4 +35,16 @@ window.MIKI_AI_CONFIG = Object.freeze({
     }
     document.body.style.overflow = '';
   });
+})();
+
+/* Final production i18n polish.
+   i18n.js is loaded before this file on the main page, so this safely adds
+   the last Thai editorial/privacy translations without changing layout. */
+(() => {
+  if (document.querySelector('script[data-miki-final-i18n]')) return;
+  const s = document.createElement('script');
+  s.src = 'i18n-final.js?v=20260917-final';
+  s.defer = true;
+  s.dataset.mikiFinalI18n = '1';
+  document.head.appendChild(s);
 })();
