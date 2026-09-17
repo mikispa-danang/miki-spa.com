@@ -60,7 +60,19 @@
 .connect-miki .connect-card{height:100%;box-sizing:border-box}
 .connect-miki .location-card{min-height:0!important}
 
-/* Tablet service cleanup: the large image already opens the laser video. */
+/* Tablet: compact duplicate media + full-width pricing inspired by approved mockup. */
 @media(min-width:621px) and (max-width:1024px){
   #service-laser .laser-preview{display:none!important}
+  .pricing .price-panel{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+  .pricing .pricing-catalog-layout{display:flex!important;flex-direction:column!important;gap:22px!important;width:100%!important;max-width:none!important;margin:0!important}
+  .pricing .pricing-list-card{order:1!important;width:100%!important;max-width:none!important;margin:0!important;box-sizing:border-box!important;border-radius:30px!important;padding:30px 28px!important}
+  .pricing .pricing-source-card{order:2!important;width:100%!important;max-width:none!important;min-height:72px!important;margin:0!important;box-sizing:border-box!important;border-radius:999px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(90deg,#9a7148,#b98b56)!important;color:#fff!important;border:0!important;text-align:center!important}
+  .pricing .pricing-source-card span{font-size:15px!important;font-weight:800!important;letter-spacing:.13em!important;text-transform:uppercase!important;color:#fff!important}
+  .pricing .pricing-list-title{padding-bottom:20px!important}
+  .pricing .pricing-list-title strong{font-size:clamp(42px,6vw,62px)!important;line-height:1!important}
+  .pricing .price-row{min-height:92px!important;padding:18px 4px!important;align-items:center!important}
+  .pricing .price-row>div strong{font-size:20px!important}
+  .pricing .price-row>div small{font-size:14px!important;margin-top:5px!important}
+  .pricing .price-row>span{font-size:clamp(25px,3.5vw,36px)!important;white-space:nowrap!important}
+  .pricing .package-highlight{margin-top:18px!important}
 }
