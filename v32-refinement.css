@@ -40,4 +40,15 @@
  html body section.pricing .price-panel .price-row>div small{font-size:14px!important;margin-top:5px!important}
  html body section.pricing .price-panel .price-row>span{font-size:clamp(25px,3.5vw,36px)!important;white-space:nowrap!important}
  html body section.pricing .price-panel .package-highlight{margin-top:18px!important}
+
+ /* Google Review QR: visible and balanced on tablet. */
+ html body section.google-reviews .reviews-layout{grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr)!important;gap:28px!important;align-items:start!important}
+ html body section.google-reviews .review-qr-top-card{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;width:100%!important;max-width:320px!important;justify-self:end!important;padding:26px 22px!important;box-sizing:border-box!important;border-radius:28px!important;background:rgba(248,239,228,.82)!important;border:1px solid rgba(184,150,103,.16)!important;box-shadow:0 14px 34px rgba(66,44,37,.05)!important}
+ html body section.google-reviews .review-qr-top-label{font-size:12px!important;font-weight:800!important;letter-spacing:.14em!important;color:#9a7148!important;margin-bottom:14px!important}
+ html body section.google-reviews .review-qr-top-link{display:block!important;width:190px!important;height:190px!important;padding:10px!important;box-sizing:border-box!important;border-radius:20px!important;background:#fff!important}
+ html body section.google-reviews .review-qr-top-image{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:contain!important;border-radius:10px!important}
+ html body section.google-reviews .review-qr-top-card>strong{font-size:20px!important;line-height:1.25!important;margin-top:16px!important}
+ html body section.google-reviews .review-qr-top-card>p{font-size:13px!important;line-height:1.5!important;margin:8px 0 12px!important}
+ html body section.google-reviews .review-qr-top-link-text{font-size:12px!important;font-weight:800!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+ html body section.google-reviews .review-highlight-grid{grid-column:1/-1!important}
 }
