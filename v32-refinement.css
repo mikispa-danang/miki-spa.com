@@ -59,3 +59,8 @@
 @media(min-width:1101px){.connect-miki .connect-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 .connect-miki .connect-card{height:100%;box-sizing:border-box}
 .connect-miki .location-card{min-height:0!important}
+
+/* Tablet service cleanup: the large image already opens the laser video. */
+@media(min-width:621px) and (max-width:1024px){
+  #service-laser .laser-preview{display:none!important}
+}
