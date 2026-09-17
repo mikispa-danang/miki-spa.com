@@ -58,6 +58,37 @@
     cards.forEach(c=>c.style.removeProperty('height'));
   }
 
+  function refineMobileHero(){
+    const style=document.createElement('style');
+    style.id='miki-mobile-hero-refinement';
+    style.textContent=`
+      @media(max-width:620px){
+        .utility-bar{position:relative!important;min-height:64px!important;padding:8px 18px!important;display:flex!important;justify-content:flex-end!important;align-items:center!important}
+        .utility-address{display:none!important}
+        .utility-bar .lang-list{width:auto!important;max-width:100%!important;margin-left:auto!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:7px!important;flex-wrap:nowrap!important}
+        .utility-bar .lang-list button{flex:0 0 auto!important;padding:7px 8px!important;min-width:auto!important;font-size:13px!important;white-space:nowrap!important}
+        .site-header{padding-top:10px!important;padding-bottom:10px!important}
+        .hero.section-pad{padding-top:36px!important}
+        .hero-copy .eyebrow{font-size:11px!important;letter-spacing:.16em!important;white-space:nowrap!important;line-height:1.3!important}
+        .hero-copy h1{margin-top:24px!important}
+        .hero-copy h1 .hero-line{display:block!important;white-space:nowrap!important;letter-spacing:-.035em!important}
+        .hero-copy h1 .hero-line-main{font-size:clamp(34px,10.2vw,48px)!important;line-height:1.02!important}
+        .hero-copy h1 .hero-line-accent{font-size:clamp(31px,9.2vw,44px)!important;line-height:1.08!important;margin-top:7px!important}
+        .signature-slogan{margin-top:24px!important}
+      }
+      @media(max-width:390px){
+        .utility-bar{padding-left:10px!important;padding-right:10px!important}
+        .utility-bar .lang-list{gap:3px!important}
+        .utility-bar .lang-list button{font-size:12px!important;padding:6px!important}
+        .hero-copy .eyebrow{font-size:10px!important;letter-spacing:.1em!important}
+        .hero-copy h1 .hero-line-main{font-size:9.5vw!important}
+        .hero-copy h1 .hero-line-accent{font-size:8.7vw!important}
+      }
+    `;
+    document.getElementById(style.id)?.remove();
+    document.head.appendChild(style);
+  }
+
   document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.faq-more-toggle').forEach(btn=>{
       btn.addEventListener('click',()=>{
@@ -69,6 +100,7 @@
     });
     syncButtonLabels();
     fixQuickContact();
+    refineMobileHero();
     const observer = new MutationObserver(syncButtonLabels);
     observer.observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
   });
