@@ -68,3 +68,14 @@
  html body .miki-social-quick .wa .quick-icon{color:#8b6849!important;font-size:17px!important}
  html body .miki-social-quick small{display:block!important;font-size:11px!important;line-height:1!important;font-weight:700!important;color:#6f4b2e!important}
 }
+
+/* Laptop/desktop quick-connect: keep all four action buttons aligned and consistent. */
+@media(min-width:1001px){
+  html body .connect-miki .connect-grid{align-items:stretch!important}
+  html body .connect-miki .connect-card{display:flex!important;flex-direction:column!important;height:100%!important;min-width:0!important;padding:24px!important}
+  html body .connect-miki .qr-contact-card{display:grid!important;grid-template-columns:minmax(0,1fr) 112px!important;grid-template-rows:auto auto 1fr auto!important;column-gap:18px!important;align-content:start!important}
+  html body .connect-miki .qr-contact-card>.btn{grid-column:1/-1!important;grid-row:4!important;justify-self:stretch!important;width:100%!important;margin-top:18px!important}
+  html body .connect-miki .location-card>.btn{width:100%!important;margin-top:auto!important}
+  html body .connect-miki .connect-card>.btn{min-height:48px!important;height:48px!important;padding:0 14px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;border:1.5px solid #9a7148!important;border-radius:999px!important;background:#fffaf6!important;color:#6f4b2e!important;font-size:12px!important;font-weight:800!important;line-height:1!important;letter-spacing:.04em!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;box-shadow:none!important}
+  html body .connect-miki .connect-card>.btn:hover{background:#9a7148!important;color:#fff!important;border-color:#9a7148!important}
+}
