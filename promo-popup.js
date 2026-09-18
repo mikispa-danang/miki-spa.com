@@ -1,7 +1,7 @@
 (() => {
   const STORAGE_KEY='miki-promo-dismissed-at';
   const COOLDOWN_MS=24*60*60*1000;
-  const DELAY_MS=7000;
+  const DELAY_MS=30000;
   const LANGS=['vi','en','ko','zh','ru','th'];
   const copy={
     vi:{badge:'Ưu đãi tại Miki',title:'Đặt lịch trước · Giảm 20%',text:'Ưu đãi áp dụng cho tất cả dịch vụ theo chương trình hiện tại của Miki. Đặt lịch online để giữ ưu đãi và chọn khung giờ phù hợp.',book:'Đặt lịch ngay',later:'Để sau',close:'Đóng ưu đãi'},
