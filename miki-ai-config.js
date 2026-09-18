@@ -60,23 +60,3 @@ window.MIKI_AI_CONFIG = Object.freeze({
   link.dataset.mikiConnectSync = '1';
   document.head.appendChild(link);
 })();
-
-/* V3 promotional popup — 2026-09-18.
-   Self-contained loader. Copy/behavior live in promo-popup.js so campaigns can
-   be changed without touching the main page markup. */
-(() => {
-  if (!document.querySelector('link[data-miki-promo-style]')) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'promo-popup.css?v=20260918-poster-3';
-    link.dataset.mikiPromoStyle = '1';
-    document.head.appendChild(link);
-  }
-  if (!document.querySelector('script[data-miki-promo-script]')) {
-    const s = document.createElement('script');
-    s.src = 'promo-popup.js?v=20260918-poster-3';
-    s.defer = true;
-    s.dataset.mikiPromoScript = '1';
-    document.head.appendChild(s);
-  }
-})();
