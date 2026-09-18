@@ -4,12 +4,12 @@
   const DELAY_MS=30000;
   const LANGS=['vi','en','ko','zh','ru','th'];
   const copy={
-    vi:{badge:'Ưu đãi tại Miki',title:'Đặt lịch trước · Giảm 20%',text:'Ưu đãi áp dụng cho tất cả dịch vụ theo chương trình hiện tại của Miki. Đặt lịch online để giữ ưu đãi và chọn khung giờ phù hợp.',book:'Đặt lịch ngay',later:'Để sau',close:'Đóng ưu đãi'},
-    en:{badge:'Miki Special Offer',title:'Book ahead · Save 20%',text:'The current Miki promotion offers 20% off services when booking ahead. Book online to secure the offer and choose a suitable time.',book:'Book now',later:'Maybe later',close:'Close offer'},
-    ko:{badge:'Miki 특별 혜택',title:'사전 예약 · 20% 할인',text:'현재 Miki 프로모션으로 사전 예약 시 서비스 20% 할인 혜택을 받을 수 있습니다. 온라인으로 예약하고 원하는 시간을 선택하세요.',book:'지금 예약하기',later:'나중에',close:'혜택 닫기'},
-    zh:{badge:'Miki 专属优惠',title:'提前预约 · 享 8 折',text:'Miki 当前活动：提前预约可享服务 20% 优惠。在线预约即可保留优惠并选择合适时间。',book:'立即预约',later:'稍后再说',close:'关闭优惠'},
-    ru:{badge:'Спецпредложение Miki',title:'Запишитесь заранее · скидка 20%',text:'По текущей акции Miki при предварительной записи действует скидка 20% на услуги. Запишитесь онлайн, чтобы сохранить предложение и выбрать удобное время.',book:'Записаться',later:'Позже',close:'Закрыть предложение'},
-    th:{badge:'ข้อเสนอพิเศษจาก Miki',title:'จองล่วงหน้า · ลด 20%',text:'โปรโมชั่นปัจจุบันของ Miki มอบส่วนลด 20% สำหรับการจองล่วงหน้า จองออนไลน์เพื่อรับสิทธิ์และเลือกเวลาที่สะดวก',book:'จองตอนนี้',later:'ไว้ก่อน',close:'ปิดข้อเสนอ'}
+    vi:{badge:'Ưu đãi tại Miki',title:'Đặt lịch trước · Giảm 20%',text:'Ưu đãi áp dụng cho tất cả dịch vụ theo chương trình hiện tại của Miki. Đặt lịch online để giữ ưu đãi và chọn khung giờ phù hợp.',book:'Đặt lịch ngay',later:'Để sau',close:'Đóng ưu đãi',launcher:'Ưu đãi -20%',launcherAria:'Mở lại ưu đãi giảm 20%'},
+    en:{badge:'Miki Special Offer',title:'Book ahead · Save 20%',text:'The current Miki promotion offers 20% off services when booking ahead. Book online to secure the offer and choose a suitable time.',book:'Book now',later:'Maybe later',close:'Close offer',launcher:'20% OFF',launcherAria:'Open the 20% promotion'},
+    ko:{badge:'Miki 특별 혜택',title:'사전 예약 · 20% 할인',text:'현재 Miki 프로모션으로 사전 예약 시 서비스 20% 할인 혜택을 받을 수 있습니다. 온라인으로 예약하고 원하는 시간을 선택하세요.',book:'지금 예약하기',later:'나중에',close:'혜택 닫기',launcher:'20% 할인',launcherAria:'20% 할인 혜택 다시 열기'},
+    zh:{badge:'Miki 专属优惠',title:'提前预约 · 享 8 折',text:'Miki 当前活动：提前预约可享服务 20% 优惠。在线预约即可保留优惠并选择合适时间。',book:'立即预约',later:'稍后再说',close:'关闭优惠',launcher:'优惠 20%',launcherAria:'重新打开 20% 优惠'},
+    ru:{badge:'Спецпредложение Miki',title:'Запишитесь заранее · скидка 20%',text:'По текущей акции Miki при предварительной записи действует скидка 20% на услуги. Запишитесь онлайн, чтобы сохранить предложение и выбрать удобное время.',book:'Записаться',later:'Позже',close:'Закрыть предложение',launcher:'−20%',launcherAria:'Открыть скидку 20%'},
+    th:{badge:'ข้อเสนอพิเศษจาก Miki',title:'จองล่วงหน้า · ลด 20%',text:'โปรโมชั่นปัจจุบันของ Miki มอบส่วนลด 20% สำหรับการจองล่วงหน้า จองออนไลน์เพื่อรับสิทธิ์และเลือกเวลาที่สะดวก',book:'จองตอนนี้',later:'ไว้ก่อน',close:'ปิดข้อเสนอ',launcher:'ลด 20%',launcherAria:'เปิดโปรโมชั่นลด 20% อีกครั้ง'}
   };
 
   function currentLang(){
@@ -36,6 +36,35 @@
     const url=new URL('/booking.html',location.origin);
     if(lang) url.searchParams.set('lang',lang);
     return url.href;
+  }
+
+  function buildLauncher(){
+    if(location.pathname.includes('booking')) return null;
+    let button=document.getElementById('mikiPromoLauncher');
+    const t=copy[currentLang()]||copy.vi;
+    if(button){
+      button.querySelector('.miki-promo-launcher-text').textContent=t.launcher;
+      button.setAttribute('aria-label',t.launcherAria);
+      return button;
+    }
+    button=document.createElement('button');
+    button.id='mikiPromoLauncher';
+    button.className='miki-promo-launcher';
+    button.type='button';
+    button.setAttribute('aria-label',t.launcherAria);
+    button.innerHTML=`<span class="miki-promo-launcher-icon" aria-hidden="true">🎁</span><span class="miki-promo-launcher-text">${t.launcher}</span>`;
+    button.addEventListener('click',()=>openPopup(true));
+    document.body.appendChild(button);
+    return button;
+  }
+
+  function showLauncher(){
+    const button=buildLauncher();
+    if(button) requestAnimationFrame(()=>button.classList.add('is-visible'));
+  }
+
+  function hideLauncher(){
+    document.getElementById('mikiPromoLauncher')?.classList.remove('is-visible');
   }
 
   function build(){
@@ -72,13 +101,23 @@
     wrap.classList.remove('is-open');
     document.body.classList.remove('miki-promo-lock');
     rememberDismiss();
-    setTimeout(()=>wrap.remove(),320);
+    setTimeout(()=>{
+      wrap.remove();
+      showLauncher();
+    },320);
   }
 
-  function openPopup(){
-    if(recentlyDismissed()||location.pathname.includes('booking')) return;
+  function openPopup(force=false){
+    if(location.pathname.includes('booking')) return;
+    if(!force && recentlyDismissed()){
+      showLauncher();
+      return;
+    }
+    const existing=document.getElementById('mikiPromoPopup');
+    if(existing) return;
     const wrap=build();
     if(!wrap) return;
+    hideLauncher();
     const close=()=>closePopup(wrap);
     wrap.querySelector('.miki-promo-close')?.addEventListener('click',close);
     wrap.querySelector('.miki-promo-later')?.addEventListener('click',close);
@@ -92,6 +131,12 @@
     });
   }
 
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(openPopup,DELAY_MS));
-  else setTimeout(openPopup,DELAY_MS);
+  function init(){
+    if(location.pathname.includes('booking')) return;
+    if(recentlyDismissed()) showLauncher();
+    else setTimeout(()=>openPopup(false),DELAY_MS);
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
+  else init();
 })();
