@@ -68,13 +68,13 @@ window.MIKI_AI_CONFIG = Object.freeze({
   if (!document.querySelector('link[data-miki-promo-style]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'promo-popup.css?v=20260918-poster-2';
+    link.href = 'promo-popup.css?v=20260918-poster-3';
     link.dataset.mikiPromoStyle = '1';
     document.head.appendChild(link);
   }
   if (!document.querySelector('script[data-miki-promo-script]')) {
     const s = document.createElement('script');
-    s.src = 'promo-popup.js?v=20260918-poster-2';
+    s.src = 'promo-popup.js?v=20260918-poster-3';
     s.defer = true;
     s.dataset.mikiPromoScript = '1';
     document.head.appendChild(s);
