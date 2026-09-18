@@ -4,12 +4,12 @@
   const DELAY_MS=7000;
   const LANGS=['vi','en','ko','zh','ru','th'];
   const copy={
-    vi:{badge:'Ưu đãi tại Miki',title:'Ưu đãi dành cho khách đặt lịch online',text:'Miki đang có chương trình ưu đãi theo từng dịch vụ. Đặt lịch để được xác nhận mức ưu đãi hiện tại và khung giờ phù hợp.',book:'Đặt lịch ngay',later:'Để sau',close:'Đóng ưu đãi'},
-    en:{badge:'Miki Special Offer',title:'A special offer for online bookings',text:'Miki currently has service-specific promotions. Book now to confirm the current offer and a suitable appointment time.',book:'Book now',later:'Maybe later',close:'Close offer'},
-    ko:{badge:'Miki 특별 혜택',title:'온라인 예약 고객 특별 혜택',text:'Miki에서는 서비스별 프로모션을 운영하고 있습니다. 예약하시면 현재 적용 가능한 혜택과 가능한 시간을 확인해 드립니다.',book:'지금 예약하기',later:'나중에',close:'혜택 닫기'},
-    zh:{badge:'Miki 专属优惠',title:'线上预约专属优惠',text:'Miki 目前针对不同服务提供优惠活动。立即预约，可确认当前优惠及合适的预约时间。',book:'立即预约',later:'稍后再说',close:'关闭优惠'},
-    ru:{badge:'Спецпредложение Miki',title:'Специальное предложение для онлайн-записи',text:'В Miki действуют акции на отдельные услуги. Запишитесь, чтобы уточнить актуальное предложение и удобное время.',book:'Записаться',later:'Позже',close:'Закрыть предложение'},
-    th:{badge:'ข้อเสนอพิเศษจาก Miki',title:'สิทธิพิเศษสำหรับการจองออนไลน์',text:'Miki มีโปรโมชั่นสำหรับบริการบางรายการ กรุณาจองเพื่อยืนยันโปรโมชั่นปัจจุบันและช่วงเวลาที่สะดวก',book:'จองตอนนี้',later:'ไว้ก่อน',close:'ปิดข้อเสนอ'}
+    vi:{badge:'Ưu đãi tại Miki',title:'Đặt lịch trước · Giảm 20%',text:'Ưu đãi áp dụng cho tất cả dịch vụ theo chương trình hiện tại của Miki. Đặt lịch online để giữ ưu đãi và chọn khung giờ phù hợp.',book:'Đặt lịch ngay',later:'Để sau',close:'Đóng ưu đãi'},
+    en:{badge:'Miki Special Offer',title:'Book ahead · Save 20%',text:'The current Miki promotion offers 20% off services when booking ahead. Book online to secure the offer and choose a suitable time.',book:'Book now',later:'Maybe later',close:'Close offer'},
+    ko:{badge:'Miki 특별 혜택',title:'사전 예약 · 20% 할인',text:'현재 Miki 프로모션으로 사전 예약 시 서비스 20% 할인 혜택을 받을 수 있습니다. 온라인으로 예약하고 원하는 시간을 선택하세요.',book:'지금 예약하기',later:'나중에',close:'혜택 닫기'},
+    zh:{badge:'Miki 专属优惠',title:'提前预约 · 享 8 折',text:'Miki 当前活动：提前预约可享服务 20% 优惠。在线预约即可保留优惠并选择合适时间。',book:'立即预约',later:'稍后再说',close:'关闭优惠'},
+    ru:{badge:'Спецпредложение Miki',title:'Запишитесь заранее · скидка 20%',text:'По текущей акции Miki при предварительной записи действует скидка 20% на услуги. Запишитесь онлайн, чтобы сохранить предложение и выбрать удобное время.',book:'Записаться',later:'Позже',close:'Закрыть предложение'},
+    th:{badge:'ข้อเสนอพิเศษจาก Miki',title:'จองล่วงหน้า · ลด 20%',text:'โปรโมชั่นปัจจุบันของ Miki มอบส่วนลด 20% สำหรับการจองล่วงหน้า จองออนไลน์เพื่อรับสิทธิ์และเลือกเวลาที่สะดวก',book:'จองตอนนี้',later:'ไว้ก่อน',close:'ปิดข้อเสนอ'}
   };
 
   function currentLang(){
@@ -49,8 +49,10 @@
     wrap.setAttribute('aria-labelledby','mikiPromoTitle');
     wrap.innerHTML=`
       <section class="miki-promo-card">
-        <div class="miki-promo-accent"></div>
         <button type="button" class="miki-promo-close" aria-label="${t.close}">×</button>
+        <div class="miki-promo-media">
+          <img src="assets/optimized/miki-promo-20.webp?v=20260918" alt="Miki Skin Spa - đặt lịch trước giảm 20%" width="1100" height="904" loading="eager" decoding="async">
+        </div>
         <div class="miki-promo-inner">
           <div class="miki-promo-badge">${t.badge}</div>
           <h2 id="mikiPromoTitle" class="miki-promo-title">${t.title}</h2>
