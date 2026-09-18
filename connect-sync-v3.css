@@ -1,0 +1,64 @@
+/* Miki V3 — laptop quick-connect CTA synchronization
+   Keeps mobile/tablet/large-desktop layouts unchanged. */
+@media (min-width:1001px) and (max-width:1399px){
+  html body .connect-miki .connect-grid{
+    align-items:stretch!important;
+  }
+
+  html body .connect-miki .connect-card{
+    position:relative!important;
+    height:100%!important;
+    min-height:318px!important;
+    padding-bottom:92px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Keep existing QR/text layout; reserve a shared footer zone for CTA. */
+  html body .connect-miki .qr-contact-card>.btn,
+  html body .connect-miki .location-card>.btn{
+    position:absolute!important;
+    left:24px!important;
+    right:24px!important;
+    bottom:24px!important;
+    width:auto!important;
+    height:48px!important;
+    min-height:48px!important;
+    margin:0!important;
+    padding:0 14px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border:1.5px solid #9a7148!important;
+    border-radius:999px!important;
+    background:#fffaf6!important;
+    color:#6f4b2e!important;
+    box-shadow:none!important;
+    font-size:12px!important;
+    font-weight:800!important;
+    line-height:1!important;
+    letter-spacing:.03em!important;
+    text-align:center!important;
+    text-transform:none!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  html body .connect-miki .qr-contact-card>.btn:hover,
+  html body .connect-miki .qr-contact-card>.btn:focus-visible,
+  html body .connect-miki .location-card>.btn:hover,
+  html body .connect-miki .location-card>.btn:focus-visible{
+    background:#9a7148!important;
+    color:#fff!important;
+    border-color:#9a7148!important;
+    outline:none!important;
+  }
+
+  /* Neutralize old grid placement rules so every CTA uses the same footer. */
+  html body .connect-miki .qr-contact-card>.btn{
+    grid-column:auto!important;
+    grid-row:auto!important;
+    justify-self:auto!important;
+  }
+}
