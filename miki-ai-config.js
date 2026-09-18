@@ -48,3 +48,15 @@ window.MIKI_AI_CONFIG = Object.freeze({
   s.dataset.mikiFinalI18n = '1';
   document.head.appendChild(s);
 })();
+
+/* V3 laptop quick-connect polish — 2026-09-18.
+   Load a tiny cache-busted stylesheet so WhatsApp, Zalo, Telegram and Google Maps
+   use one consistent CTA treatment without changing mobile/tablet layouts. */
+(() => {
+  if (document.querySelector('link[data-miki-connect-sync]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'connect-sync-v3.css?v=20260918-laptop-sync-1';
+  link.dataset.mikiConnectSync = '1';
+  document.head.appendChild(link);
+})();
