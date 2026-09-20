@@ -14,7 +14,17 @@ The V4 Growth build has been upgraded in the preserved production package. The c
 - Booking enrichment with visitor/source data
 - CRM funnel metrics and lead stages
 - AI Concierge bridge to the consultation form
-- 30 localized home/service pages wired to the Growth Engine
+- Localized home/service pages wired to the Growth Engine
+
+## V3 service imagery synced into V4
+- Laser main image: `assets/laser/laser-feature-20260914.jpg`
+- Laser session detail image: `assets/laser/laser-session.jpg`
+- Waxing: `assets/optimized/miki-waxing-enhanced.webp`
+- Skin Care: `assets/optimized/service-skin-closeup.webp`
+- Acne Care: `assets/optimized/service-acne-treatment.webp`
+- Body Care: `assets/optimized/service-body-care-20260914.webp`
+- Body Care is now present in the V4 service grid, booking flow, lead capture and sitemap.
+- Body Care service pages were added for VI / EN / KO / ZH / RU / TH.
 
 ## Production activation still requires external IDs/endpoints
 Public analytics IDs and secure backend URLs are intentionally not invented or committed. Configure them in `data/config.json` only after the secure services exist.
