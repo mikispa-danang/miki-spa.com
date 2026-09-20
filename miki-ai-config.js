@@ -57,16 +57,6 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
-/* V3 laptop quick-connect polish. */
-(() => {
-  if (document.querySelector('link[data-miki-connect-sync]')) return;
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'connect-sync-v3.css?v=20260918-laptop-sync-1';
-  link.dataset.mikiConnectSync = '1';
-  document.head.appendChild(link);
-})();
-
 /* Unified typography/contrast layer. Kept separate now; final performance pass will merge it. */
 (() => {
   if (document.querySelector('link[data-miki-type-system]')) return;
@@ -77,11 +67,11 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(link);
 })();
 
-/* Cleanup layer: removes retired promo/browser-PII behavior without redesigning V3. */
+/* Cleanup layer: removes retired UI/promo/browser-PII behavior without redesigning V3. */
 (() => {
   if (document.querySelector('script[data-miki-cleanup]')) return;
   const s = document.createElement('script');
-  s.src = 'v3-cleanup.js?v=20260920-1';
+  s.src = 'v3-cleanup.js?v=20260920-2';
   s.defer = true;
   s.dataset.mikiCleanup = '1';
   document.head.appendChild(s);
