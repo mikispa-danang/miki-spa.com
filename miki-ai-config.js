@@ -58,6 +58,16 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
+/* Final customer-facing CTA/button language coverage for VI/EN/KO/ZH/RU/TH. */
+(() => {
+  if (document.querySelector('script[data-miki-button-i18n]')) return;
+  const s = document.createElement('script');
+  s.src = 'i18n-buttons.js?v=20260920-1';
+  s.defer = true;
+  s.dataset.mikiButtonI18n = '1';
+  document.head.appendChild(s);
+})();
+
 /* Unified typography/contrast layer. Kept separate now; final performance pass will merge it. */
 (() => {
   if (document.querySelector('link[data-miki-type-system]')) return;
