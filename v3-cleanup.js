@@ -1,6 +1,6 @@
 /* V3 Growth cleanup layer.
-   This file intentionally runs after the legacy V3 scripts without changing the approved layout.
-   It removes browser-persisted customer contact data from older builds and intercepts the legacy
+   Runs after the legacy V3 scripts without redesigning the approved layout.
+   It removes retired UI/browser-persisted customer data and intercepts the legacy
    AI lead form so personal data is never written to localStorage. */
 (() => {
   const PII_KEYS = ['miki_booking_request', 'miki_ai_leads'];
@@ -10,6 +10,11 @@
 
   const cfg = () => window.MIKI_GROWTH_CONFIG || {};
   const lang = () => window.MIKI_LANGUAGE || localStorage.getItem('miki-language') || document.documentElement.lang || 'vi';
+
+  function removeQuickConnect(root = document) {
+    const section = root.querySelector?.('#connect-miki, .connect-miki');
+    if (section) section.remove();
+  }
 
   async function postLead(lead) {
     const endpoint = String(cfg().leadEndpoint || '').trim();
@@ -133,12 +138,14 @@
     });
   }
 
+  removeQuickConnect();
   cleanPromo();
   normalizeReviewTrust();
   new MutationObserver((records) => {
     for (const record of records) {
       for (const node of record.addedNodes) {
         if (node.nodeType !== 1) continue;
+        removeQuickConnect(node);
         cleanPromo(node);
         normalizeReviewTrust(node);
       }
