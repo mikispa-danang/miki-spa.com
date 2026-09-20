@@ -60,3 +60,27 @@ window.MIKI_AI_CONFIG = Object.freeze({
   link.dataset.mikiConnectSync = '1';
   document.head.appendChild(link);
 })();
+
+/* V3 Growth layer — isolated from the approved V3 layout.
+   Public config only; analytics and backend activate only after real IDs/endpoints are supplied. */
+(() => {
+  if (document.querySelector('script[data-miki-growth]')) return;
+
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'v3-growth.css?v=20260920-1';
+  css.dataset.mikiGrowthCss = '1';
+  document.head.appendChild(css);
+
+  const cfg = document.createElement('script');
+  cfg.src = 'v3-growth-config.js?v=20260920-1';
+  cfg.dataset.mikiGrowthConfig = '1';
+  cfg.onload = () => {
+    const app = document.createElement('script');
+    app.src = 'v3-growth.js?v=20260920-1';
+    app.defer = true;
+    app.dataset.mikiGrowth = '1';
+    document.head.appendChild(app);
+  };
+  document.head.appendChild(cfg);
+})();
