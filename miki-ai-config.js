@@ -49,14 +49,21 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
-/* V3 laptop quick-connect polish — 2026-09-18.
-   Load a tiny cache-busted stylesheet so WhatsApp, Zalo, Telegram and Google Maps
-   use one consistent CTA treatment without changing mobile/tablet layouts. */
+/* Retired quick-connect section — 2026-09-20.
+   Hide immediately, then remove the section from the DOM so it takes no space
+   and its QR/contact cards no longer participate in layout. */
 (() => {
-  if (document.querySelector('link[data-miki-connect-sync]')) return;
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'connect-sync-v3.css?v=20260918-laptop-sync-1';
-  link.dataset.mikiConnectSync = '1';
-  document.head.appendChild(link);
+  const style = document.createElement('style');
+  style.dataset.mikiRemoveQuickConnect = '1';
+  style.textContent = '#connect-miki,.connect-miki{display:none!important}';
+  document.head.appendChild(style);
+
+  const remove = () => {
+    document.querySelectorAll('#connect-miki,.connect-miki').forEach((section) => section.remove());
+  };
+
+  remove();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', remove, { once: true });
+  }
 })();
