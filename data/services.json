@@ -1,0 +1,102 @@
+{
+  "version": "2026-09-20",
+  "currency": "VND",
+  "business": {
+    "name": "Miki Skin Spa",
+    "address": "47 Cô Giang, Hải Châu, Đà Nẵng",
+    "phone": "0935555170",
+    "openingHours": "08:30-21:30",
+    "timezone": "Asia/Ho_Chi_Minh"
+  },
+  "groups": [
+    {
+      "key": "laserWomen",
+      "title": "Laser Hair Removal - Women",
+      "items": [
+        {"key":"laser_upperlip_chin","label":"Mép & cằm","price":300000},
+        {"key":"laser_areola","label":"Quanh quầng vú","price":300000},
+        {"key":"laser_linea_alba","label":"Đường bụng","price":300000},
+        {"key":"laser_underarm","label":"Nách nữ","price":500000,"bookable":true},
+        {"key":"laser_lower_back_women","label":"Lưng dưới nữ","price":500000},
+        {"key":"laser_bikini","label":"Bikini cơ bản","price":600000,"bookable":true},
+        {"key":"laser_forearm_women","label":"Cẳng tay nữ","price":600000},
+        {"key":"laser_buttocks","label":"Mông","price":600000},
+        {"key":"laser_lowerlegs","label":"Cẳng chân gồm gối","price":700000,"bookable":true},
+        {"key":"laser_deep_bikini","label":"Deep Bikini","price":800000},
+        {"key":"laser_thighs","label":"Đùi","price":800000},
+        {"key":"laser_full_arms_women","label":"Full tay nữ","price":1000000},
+        {"key":"laser_full_legs","label":"Full chân","price":1300000},
+        {"key":"laser_package_women","label":"Package","price":3000000}
+      ]
+    },
+    {
+      "key": "laserMen",
+      "title": "Laser Hair Removal - Men",
+      "items": [
+        {"key":"laser_moustache","label":"Ria mép","price":300000},
+        {"key":"laser_beard","label":"Râu","price":500000},
+        {"key":"laser_underarm_men","label":"Nách nam","price":600000},
+        {"key":"laser_lower_back_men","label":"Lưng dưới nam","price":600000},
+        {"key":"laser_forearm_men","label":"Cẳng tay nam","price":800000},
+        {"key":"laser_chest","label":"Ngực","price":800000},
+        {"key":"laser_abdomen","label":"Bụng","price":800000},
+        {"key":"laser_full_arms_men","label":"Full tay nam","price":1200000},
+        {"key":"laser_back","label":"Lưng","price":1500000},
+        {"key":"laser_package_men","label":"Package","price":3900000}
+      ]
+    },
+    {
+      "key": "waxing",
+      "title": "Waxing",
+      "items": [
+        {"key":"wax_underarm","label":"Nách","price":180000,"bookable":true},
+        {"key":"wax_upperlip_chin","label":"Mép & cằm","price":180000},
+        {"key":"wax_brows","label":"Lông mày tạo dáng","price":200000},
+        {"key":"wax_arms","label":"Tay","price":450000},
+        {"key":"wax_half_legs","label":"Nửa chân","price":450000},
+        {"key":"wax_full_legs","label":"Full chân","price":700000},
+        {"key":"wax_bikini","label":"Bikini nữ","price":650000},
+        {"key":"wax_chest","label":"Ngực","price":400000},
+        {"key":"wax_abdomen","label":"Bụng","price":400000},
+        {"key":"wax_back","label":"Lưng","price":400000},
+        {"key":"wax_special_area","label":"Vùng đặc biệt","price":500000},
+        {"key":"wax_full_body","label":"Full body","price":1800000},
+        {"key":"wax_package","label":"Package","price":2300000}
+      ]
+    },
+    {
+      "key": "skin",
+      "title": "Skin Care",
+      "items": [
+        {"key":"facial","label":"Basic Facial","price":500000,"bookable":true},
+        {"key":"deep_cleansing_facial","label":"Deep Cleansing Facial","price":800000},
+        {"key":"anti_aging_facial","label":"Anti-Aging Facial","price":1200000},
+        {"key":"acne","label":"Acne Treatment","price":900000,"bookable":true},
+        {"key":"back_acne","label":"Clear Up Back Acne","price":1000000},
+        {"key":"brighten_underarm","label":"Brighten Underarm Area","price":500000},
+        {"key":"cold_algae_peel","label":"Cold Algae Peel","price":500000},
+        {"key":"skin_package","label":"Package","price":1200000}
+      ]
+    },
+    {
+      "key": "body",
+      "title": "Body Care",
+      "items": [
+        {"key":"body_consult","label":"Body Care consultation","price":null,"bookable":true}
+      ]
+    },
+    {
+      "key": "consult",
+      "title": "Consultation",
+      "items": [
+        {"key":"consult","label":"Tư vấn trước dịch vụ","price":null,"bookable":true}
+      ]
+    }
+  ],
+  "booking": {
+    "requestOnly": true,
+    "slotMinutes": 30,
+    "firstSlot": "08:30",
+    "lastSlot": "21:30"
+  }
+}

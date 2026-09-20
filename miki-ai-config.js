@@ -1,17 +1,17 @@
 /* Miki AI V3.1 runtime configuration.
-   GitHub Pages serves the frontend only. Set endpoint to your deployed secure gateway. */
+   The secure Supabase gateway is deployed; enable only after OPENAI_API_KEY is configured in Supabase Secrets. */
 window.MIKI_AI_CONFIG = Object.freeze({
-  endpoint: 'https://YOUR-MIKI-AI-WORKER.workers.dev/chat',
+  endpoint: 'https://flbbjvmxqmbaynrcnefv.supabase.co/functions/v1/miki-ai',
   siteOrigin: 'https://miki-spa.com',
   bookingUrl: '/booking.html',
   whatsapp: 'https://wa.me/84935555170',
   zalo: 'https://zalo.me/0935555170',
-  enabled: true
+  enabled: false
 });
 
-/* Production booking routing hotfix — 2026-09-16.
-   Route legacy booking triggers directly to the real GitHub Pages booking file.
-   This avoids /booking/ directory/canonical-host redirect issues and disables the old modal. */
+/* Production booking routing.
+   V3 uses booking.html as the single booking UI. Legacy modal markup is removed at runtime
+   until the final production cleanup physically removes the old source block. */
 (() => {
   try { sessionStorage.setItem('miki_auto_booking_shown', '1'); } catch (_) {}
 
@@ -37,9 +37,17 @@ window.MIKI_AI_CONFIG = Object.freeze({
   });
 })();
 
-/* Final production i18n polish.
-   i18n.js is loaded before this file on the main page, so this safely adds
-   the last Thai editorial/privacy translations without changing layout. */
+/* Technical SEO metadata and LocalBusiness structured data. */
+(() => {
+  if (document.querySelector('script[data-miki-seo]')) return;
+  const s = document.createElement('script');
+  s.src = 'seo-meta.js?v=20260920-1';
+  s.defer = true;
+  s.dataset.mikiSeo = '1';
+  document.head.appendChild(s);
+})();
+
+/* Final production i18n polish. */
 (() => {
   if (document.querySelector('script[data-miki-final-i18n]')) return;
   const s = document.createElement('script');
@@ -49,14 +57,55 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
-/* V3 laptop quick-connect polish — 2026-09-18.
-   Load a tiny cache-busted stylesheet so WhatsApp, Zalo, Telegram and Google Maps
-   use one consistent CTA treatment without changing mobile/tablet layouts. */
+/* Unified typography/contrast layer. Kept separate now; final performance pass will merge it. */
 (() => {
-  if (document.querySelector('link[data-miki-connect-sync]')) return;
+  if (document.querySelector('link[data-miki-type-system]')) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = 'connect-sync-v3.css?v=20260918-laptop-sync-1';
-  link.dataset.mikiConnectSync = '1';
+  link.href = 'v3-type-system.css?v=20260920-1';
+  link.dataset.mikiTypeSystem = '1';
   document.head.appendChild(link);
+})();
+
+/* Cleanup layer: removes retired UI/promo/browser-PII behavior without redesigning V3. */
+(() => {
+  if (document.querySelector('script[data-miki-cleanup]')) return;
+  const s = document.createElement('script');
+  s.src = 'v3-cleanup.js?v=20260920-2';
+  s.defer = true;
+  s.dataset.mikiCleanup = '1';
+  document.head.appendChild(s);
+})();
+
+/* Better multilingual/local fallback. It loads after legacy script.js has registered its UI handlers. */
+window.addEventListener('load', () => {
+  if (document.querySelector('script[data-miki-ai-quality]')) return;
+  const s = document.createElement('script');
+  s.src = 'miki-ai-quality.js?v=20260920-1';
+  s.dataset.mikiAiQuality = '1';
+  document.head.appendChild(s);
+}, { once: true });
+
+/* V3 Growth layer — isolated from the approved V3 layout.
+   Public config only; analytics and backend activate only after real IDs/endpoints are supplied. */
+(() => {
+  if (document.querySelector('script[data-miki-growth]')) return;
+
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'v3-growth.css?v=20260920-1';
+  css.dataset.mikiGrowthCss = '1';
+  document.head.appendChild(css);
+
+  const cfg = document.createElement('script');
+  cfg.src = 'v3-growth-config.js?v=20260920-1';
+  cfg.dataset.mikiGrowthConfig = '1';
+  cfg.onload = () => {
+    const app = document.createElement('script');
+    app.src = 'v3-growth.js?v=20260920-1';
+    app.defer = true;
+    app.dataset.mikiGrowth = '1';
+    document.head.appendChild(app);
+  };
+  document.head.appendChild(cfg);
 })();
