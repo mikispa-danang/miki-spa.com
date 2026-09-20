@@ -77,6 +77,15 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
+/* Better multilingual/local fallback. It loads after legacy script.js has registered its UI handlers. */
+window.addEventListener('load', () => {
+  if (document.querySelector('script[data-miki-ai-quality]')) return;
+  const s = document.createElement('script');
+  s.src = 'miki-ai-quality.js?v=20260920-1';
+  s.dataset.mikiAiQuality = '1';
+  document.head.appendChild(s);
+}, { once: true });
+
 /* V3 Growth layer — isolated from the approved V3 layout.
    Public config only; analytics and backend activate only after real IDs/endpoints are supplied. */
 (() => {
