@@ -2,9 +2,9 @@
    Public IDs/endpoints only. Never place private API keys here. */
 window.MIKI_GROWTH_CONFIG = Object.freeze({
   enabled: true,
-  leadEndpoint: null,
-  bookingEndpoint: null,
-  eventEndpoint: null,
+  leadEndpoint: 'https://flbbjvmxqmbaynrcnefv.supabase.co/functions/v1/miki-growth?type=lead',
+  bookingEndpoint: 'https://flbbjvmxqmbaynrcnefv.supabase.co/functions/v1/miki-growth?type=booking',
+  eventEndpoint: 'https://flbbjvmxqmbaynrcnefv.supabase.co/functions/v1/miki-growth?type=event',
   ga4MeasurementId: null,
   clarityProjectId: null,
   metaPixelId: null,
