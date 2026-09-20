@@ -238,14 +238,18 @@
     document.body.appendChild(b);
   }
 
-  window.MikiGrowth = Object.freeze({track,openLead,get visitorId(){return visitorId},get sessionId(){return sessionId},get source(){return storedSource}});
-
-  document.addEventListener('DOMContentLoaded',()=>{
+  function init() {
+    if (document.documentElement.dataset.mikiGrowthReady === '1') return;
+    document.documentElement.dataset.mikiGrowthReady = '1';
     renderConsent();
     bindClicks();
     bindScroll();
     bindBookingPage();
     addLeadCTA();
     track('page_view',{title:document.title});
-  });
+  }
+
+  window.MikiGrowth = Object.freeze({track,openLead,get visitorId(){return visitorId},get sessionId(){return sessionId},get source(){return storedSource}});
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
 })();
