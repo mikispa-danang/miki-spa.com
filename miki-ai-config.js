@@ -9,9 +9,9 @@ window.MIKI_AI_CONFIG = Object.freeze({
   enabled: true
 });
 
-/* Production booking routing hotfix — 2026-09-16.
-   Route legacy booking triggers directly to the real GitHub Pages booking file.
-   This avoids /booking/ directory/canonical-host redirect issues and disables the old modal. */
+/* Production booking routing.
+   V3 uses booking.html as the single booking UI. Legacy modal markup is removed at runtime
+   until the final production cleanup physically removes the old source block. */
 (() => {
   try { sessionStorage.setItem('miki_auto_booking_shown', '1'); } catch (_) {}
 
@@ -37,9 +37,7 @@ window.MIKI_AI_CONFIG = Object.freeze({
   });
 })();
 
-/* Final production i18n polish.
-   i18n.js is loaded before this file on the main page, so this safely adds
-   the last Thai editorial/privacy translations without changing layout. */
+/* Final production i18n polish. */
 (() => {
   if (document.querySelector('script[data-miki-final-i18n]')) return;
   const s = document.createElement('script');
@@ -49,9 +47,7 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
-/* V3 laptop quick-connect polish — 2026-09-18.
-   Load a tiny cache-busted stylesheet so WhatsApp, Zalo, Telegram and Google Maps
-   use one consistent CTA treatment without changing mobile/tablet layouts. */
+/* V3 laptop quick-connect polish. */
 (() => {
   if (document.querySelector('link[data-miki-connect-sync]')) return;
   const link = document.createElement('link');
@@ -59,6 +55,26 @@ window.MIKI_AI_CONFIG = Object.freeze({
   link.href = 'connect-sync-v3.css?v=20260918-laptop-sync-1';
   link.dataset.mikiConnectSync = '1';
   document.head.appendChild(link);
+})();
+
+/* Unified typography/contrast layer. Kept separate now; final performance pass will merge it. */
+(() => {
+  if (document.querySelector('link[data-miki-type-system]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'v3-type-system.css?v=20260920-1';
+  link.dataset.mikiTypeSystem = '1';
+  document.head.appendChild(link);
+})();
+
+/* Cleanup layer: removes retired promo/browser-PII behavior without redesigning V3. */
+(() => {
+  if (document.querySelector('script[data-miki-cleanup]')) return;
+  const s = document.createElement('script');
+  s.src = 'v3-cleanup.js?v=20260920-1';
+  s.defer = true;
+  s.dataset.mikiCleanup = '1';
+  document.head.appendChild(s);
 })();
 
 /* V3 Growth layer — isolated from the approved V3 layout.
