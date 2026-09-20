@@ -1,12 +1,12 @@
 /* Miki AI V3.1 runtime configuration.
-   GitHub Pages serves the frontend only. Set endpoint to your deployed secure gateway. */
+   The secure Supabase gateway is deployed; enable only after OPENAI_API_KEY is configured in Supabase Secrets. */
 window.MIKI_AI_CONFIG = Object.freeze({
-  endpoint: 'https://YOUR-MIKI-AI-WORKER.workers.dev/chat',
+  endpoint: 'https://flbbjvmxqmbaynrcnefv.supabase.co/functions/v1/miki-ai',
   siteOrigin: 'https://miki-spa.com',
   bookingUrl: '/booking.html',
   whatsapp: 'https://wa.me/84935555170',
   zalo: 'https://zalo.me/0935555170',
-  enabled: true
+  enabled: false
 });
 
 /* Production booking routing.
