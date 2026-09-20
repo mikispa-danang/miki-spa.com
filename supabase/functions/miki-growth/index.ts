@@ -1,17 +1,17 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const ALLOWED_ORIGINS = new Set([
-  'https://www.miki-spa.com',
   'https://miki-spa.com',
+  'https://www.miki-spa.com',
   'http://localhost:8080',
   'http://127.0.0.1:8080'
 ]);
 
 function cors(origin: string | null) {
-  const allowed = origin && ALLOWED_ORIGINS.has(origin) ? origin : 'https://www.miki-spa.com';
+  const allowed = origin && ALLOWED_ORIGINS.has(origin) ? origin : 'https://miki-spa.com';
   return {
     'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Headers': 'content-type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Vary': 'Origin'
   };
@@ -42,13 +42,13 @@ Deno.serve(async (req) => {
   if (origin && !ALLOWED_ORIGINS.has(origin)) return new Response(JSON.stringify({ error: 'origin_not_allowed' }), { status: 403, headers });
 
   const len = Number(req.headers.get('content-length') || 0);
-  if (len > 32_000) return new Response(JSON.stringify({ error: 'payload_too_large' }), { status: 413, headers });
+  if (len > 32000) return new Response(JSON.stringify({ error: 'payload_too_large' }), { status: 413, headers });
 
   let body: any;
-  try { body = await req.json(); } catch { return new Response(JSON.stringify({ error: 'invalid_json' }), { status: 400, headers }); }
+  try { body = await req.json(); }
+  catch { return new Response(JSON.stringify({ error: 'invalid_json' }), { status: 400, headers }); }
 
-  const url = new URL(req.url);
-  const route = url.pathname.split('/').filter(Boolean).pop() || '';
+  const route = new URL(req.url).searchParams.get('type') || '';
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
   const serviceRole = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
   if (!supabaseUrl || !serviceRole) return new Response(JSON.stringify({ error: 'server_not_configured' }), { status: 500, headers });
@@ -61,10 +61,24 @@ Deno.serve(async (req) => {
     const contact = text(body.contact, 160);
     if (!name || !contact || !body.consentAt) return new Response(JSON.stringify({ error: 'missing_required_fields' }), { status: 400, headers });
     const row = {
-      external_id: text(body.id, 160), name, contact,
-      channel: text(body.channel, 60), service: text(body.service, 120), language: text(body.lang, 12),
-      visitor_id: text(body.visitorId, 160), session_id: text(body.sessionId, 160),
-      ...src, last_page: text(body.lastPage, 1000), consent_at: text(body.consentAt, 80), status: 'new'
+      external_id: text(body.id, 160) || null,
+      name,
+      contact,
+      channel: text(body.channel, 60) || null,
+      service: text(body.service, 120) || null,
+      language: text(body.lang, 12) || null,
+      visitor_id: text(body.visitorId, 160) || null,
+      session_id: text(body.sessionId, 160) || null,
+      utm_source: src.utm_source || null,
+      utm_medium: src.utm_medium || null,
+      utm_campaign: src.utm_campaign || null,
+      utm_content: src.utm_content || null,
+      utm_term: src.utm_term || null,
+      referrer: src.referrer || null,
+      landing: text(body.landing, 1000) || src.landing || null,
+      last_page: text(body.lastPage, 1000) || null,
+      consent_at: text(body.consentAt, 80) || null,
+      status: 'new'
     };
     const { error } = await db.from('miki_leads').upsert(row, { onConflict: 'external_id', ignoreDuplicates: true });
     if (error) return new Response(JSON.stringify({ error: 'db_error' }), { status: 500, headers });
@@ -76,12 +90,24 @@ Deno.serve(async (req) => {
     const phone = text(body.phone, 160);
     if (!name || !phone) return new Response(JSON.stringify({ error: 'missing_required_fields' }), { status: 400, headers });
     const row = {
-      external_id: text(body.id, 160), name, phone,
-      service: text(body.service, 120), price: text(body.price, 80),
-      appointment_date: text(body.date, 20) || null, appointment_time: text(body.time, 20),
-      contact_channel: text(body.channel, 60), note: text(body.note, 1000), language: text(body.lang, 12),
-      visitor_id: text(body.visitorId, 160), session_id: text(body.sessionId, 160),
-      ...src, status: 'requested'
+      external_id: text(body.id, 160) || null,
+      name,
+      phone,
+      service: text(body.service, 120) || null,
+      price: text(body.price, 80) || null,
+      appointment_date: text(body.date, 20) || null,
+      appointment_time: text(body.time, 20) || null,
+      contact_channel: text(body.channel, 60) || null,
+      note: text(body.note, 1000) || null,
+      language: text(body.lang, 12) || null,
+      visitor_id: text(body.visitorId, 160) || null,
+      session_id: text(body.sessionId, 160) || null,
+      utm_source: src.utm_source || null,
+      utm_medium: src.utm_medium || null,
+      utm_campaign: src.utm_campaign || null,
+      referrer: src.referrer || null,
+      landing: src.landing || null,
+      status: 'requested'
     };
     const { error } = await db.from('miki_bookings').upsert(row, { onConflict: 'external_id', ignoreDuplicates: true });
     if (error) return new Response(JSON.stringify({ error: 'db_error' }), { status: 500, headers });
@@ -92,9 +118,16 @@ Deno.serve(async (req) => {
     const eventName = text(body.name, 100);
     if (!eventName) return new Response(JSON.stringify({ error: 'missing_event_name' }), { status: 400, headers });
     const row = {
-      external_id: text(body.id, 160), event_name: eventName,
-      visitor_id: text(body.visitorId, 160), session_id: text(body.sessionId, 160), language: text(body.lang, 12),
-      path: text(body.path, 500), ...src,
+      external_id: text(body.id, 160) || null,
+      event_name: eventName,
+      visitor_id: text(body.visitorId, 160) || null,
+      session_id: text(body.sessionId, 160) || null,
+      language: text(body.lang, 12) || null,
+      path: text(body.path, 500) || null,
+      utm_source: src.utm_source || null,
+      utm_medium: src.utm_medium || null,
+      utm_campaign: src.utm_campaign || null,
+      referrer: src.referrer || null,
       event_data: typeof body.data === 'object' && body.data !== null ? body.data : {}
     };
     const { error } = await db.from('miki_events').upsert(row, { onConflict: 'external_id', ignoreDuplicates: true });
@@ -102,5 +135,5 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
   }
 
-  return new Response(JSON.stringify({ error: 'unknown_route' }), { status: 404, headers });
+  return new Response(JSON.stringify({ error: 'unknown_type' }), { status: 404, headers });
 });
