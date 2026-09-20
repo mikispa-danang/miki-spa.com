@@ -26,6 +26,14 @@ The V4 Growth build has been upgraded in the preserved production package. The c
 - Body Care is now present in the V4 service grid, booking flow, lead capture and sitemap.
 - Body Care service pages were added for VI / EN / KO / ZH / RU / TH.
 
+## Google Reviews trust section added
+- Added a dedicated Google Reviews section to all six V4 homepages: VI / EN / KO / ZH / RU / TH.
+- Added localized review-theme summaries rather than fabricating customer names or quotes.
+- Added the existing Miki Google Review QR code.
+- Added direct actions for `View Google Maps` and `Write a review`.
+- Added tracking events: `google_reviews_open` and `google_review_write`.
+- Full review text, reviewer names and dates remain on Google Maps for transparency.
+
 ## Production activation still requires external IDs/endpoints
 Public analytics IDs and secure backend URLs are intentionally not invented or committed. Configure them in `data/config.json` only after the secure services exist.
 
