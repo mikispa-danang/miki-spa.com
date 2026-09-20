@@ -37,6 +37,16 @@ window.MIKI_AI_CONFIG = Object.freeze({
   });
 })();
 
+/* Technical SEO metadata and LocalBusiness structured data. */
+(() => {
+  if (document.querySelector('script[data-miki-seo]')) return;
+  const s = document.createElement('script');
+  s.src = 'seo-meta.js?v=20260920-1';
+  s.defer = true;
+  s.dataset.mikiSeo = '1';
+  document.head.appendChild(s);
+})();
+
 /* Final production i18n polish. */
 (() => {
   if (document.querySelector('script[data-miki-final-i18n]')) return;
