@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Miki CRM | Miki Skin Spa</title>
+<link rel="stylesheet" href="crm.css?v=20260920-1">
+</head>
+<body>
+<main class="crm-shell">
+  <header class="crm-head">
+    <div><span>MIKI SKIN SPA</span><h1>Mini CRM</h1><p>Lead · Booking · Follow-up</p></div>
+    <button id="logout" hidden>Đăng xuất</button>
+  </header>
+
+  <section id="authPanel" class="card auth-card">
+    <h2>Đăng nhập nhân viên</h2>
+    <p>Nhập email đã được cấp quyền CRM. Miki sẽ gửi magic link đăng nhập.</p>
+    <form id="loginForm">
+      <label>Email<input id="email" type="email" autocomplete="email" required></label>
+      <button type="submit">Gửi magic link</button>
+      <div id="authStatus" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section id="app" hidden>
+    <div class="metrics">
+      <article><small>LEADS</small><strong id="leadCount">0</strong></article>
+      <article><small>BOOKINGS</small><strong id="bookingCount">0</strong></article>
+      <article><small>NEW</small><strong id="newCount">0</strong></article>
+      <article><small>VISITED</small><strong id="visitedCount">0</strong></article>
+    </div>
+
+    <div class="crm-grid">
+      <section class="card"><div class="section-head"><h2>Leads</h2><button data-refresh>↻</button></div><div id="leads" class="table-wrap"></div></section>
+      <section class="card"><div class="section-head"><h2>Bookings</h2><button data-refresh>↻</button></div><div id="bookings" class="table-wrap"></div></section>
+    </div>
+  </section>
+
+  <section id="denied" class="card" hidden><h2>Chưa được cấp quyền</h2><p>Tài khoản này đăng nhập được Supabase nhưng chưa nằm trong danh sách nhân viên Miki CRM.</p></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="crm.js?v=20260920-1"></script>
+</body>
+</html>
