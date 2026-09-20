@@ -1,12 +1,13 @@
 /* Miki AI V3.1 runtime configuration.
-   The secure Supabase gateway is deployed; enable only after OPENAI_API_KEY is configured in Supabase Secrets. */
+   Secure Supabase gateway. If OPENAI_API_KEY is not configured yet, the website
+   automatically falls back to the local multilingual concierge. */
 window.MIKI_AI_CONFIG = Object.freeze({
   endpoint: 'https://flbbjvmxqmbaynrcnefv.supabase.co/functions/v1/miki-ai',
   siteOrigin: 'https://miki-spa.com',
   bookingUrl: '/booking.html',
   whatsapp: 'https://wa.me/84935555170',
   zalo: 'https://zalo.me/0935555170',
-  enabled: false
+  enabled: true
 });
 
 /* Production booking routing.
