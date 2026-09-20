@@ -59,6 +59,36 @@ window.MIKI_AI_CONFIG = Object.freeze({
   document.head.appendChild(s);
 })();
 
+/* Full live language audit completion — 2026-09-20.
+   Load exact-current copy patches first, then the complete Thai FAQ and its final wording fix.
+   These files only extend language packs and never change layout. */
+(() => {
+  if (document.querySelector('script[data-miki-live-i18n-complete]')) return;
+  const queue = [
+    ['i18n-live-complete.js?v=20260920-1', 'mikiLiveI18nComplete'],
+    ['i18n-th-faq-complete.js?v=20260920-1', 'mikiThaiFaqComplete'],
+    ['i18n-th-faq-fix.js?v=20260920-1', 'mikiThaiFaqFix']
+  ];
+
+  const loadNext = () => {
+    const item = queue.shift();
+    if (!item) {
+      window.MIKI_I18N?.apply?.();
+      return;
+    }
+    const [src, datasetKey] = item;
+    const s = document.createElement('script');
+    s.src = src;
+    s.async = false;
+    s.dataset[datasetKey] = '1';
+    if (datasetKey === 'mikiLiveI18nComplete') s.dataset.mikiLiveI18nComplete = '1';
+    s.onload = loadNext;
+    s.onerror = loadNext;
+    document.head.appendChild(s);
+  };
+  loadNext();
+})();
+
 /* Retired quick-connect section — 2026-09-20.
    Hide immediately, then remove the section from the DOM so it takes no space
    and its QR/contact cards no longer participate in layout. */
