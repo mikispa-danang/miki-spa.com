@@ -163,6 +163,7 @@ next.onclick=()=>{
   const msg=[m.head,`${m.guest}: ${nameEl.value}`,`${m.phone}: ${phoneEl.value}`,`${m.service}: ${svc}`,`${m.price}: ${service.price}`,`${m.date}: ${dateEl.value}`,`${m.time}: ${time}`,`${m.contact}: ${contactEl.value}`,`${m.note}: ${noteEl.value||'-'}`,`Language: ${lang.toUpperCase()}`].join('\n');
   waEl.href=contactEl.value==='Telegram'?'https://t.me/+84935555170?text='+encodeURIComponent(msg):'https://wa.me/84935555170?text='+encodeURIComponent(msg);
   waEl.textContent=contactEl.value==='Telegram'?copy.wa.replace(/WhatsApp/g,'Telegram'):copy.wa;
+  window.mikiAnalytics?.track('booking_message_ready',{booking_flow:'standard',contact_channel:contactEl.value.toLowerCase(),placement:'booking'});
   steps[s].classList.remove('active');$('done').style.display='block';document.querySelector('.bottom').style.display='none';
 };
 back.onclick=()=>{if(s){s--;render()}};
