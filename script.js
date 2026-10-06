@@ -426,7 +426,7 @@ async function submitAiLead(e) {
   const text = currentLang()==='vi' ? `Cảm ơn ${lead.name || 'bạn'} ✨ Miki đã ghi nhận yêu cầu ${lead.service || 'tư vấn'}. Miki sẽ liên hệ qua ${lead.phone || 'thông tin bạn cung cấp'} để xác nhận dịch vụ và khung giờ.` : tr('Cảm ơn bạn ✨ Miki đã ghi nhận yêu cầu. Miki sẽ liên hệ để xác nhận dịch vụ và khung giờ.');
   addAiMessage(saved.ok?text+(saved.code?' · '+saved.code:''):'Yêu cầu chưa lưu tự động. Hãy gửi qua WhatsApp bên dưới.','bot');
   const waText=encodeURIComponent(bookingMessage(lead));
-  addAiMessage(`<a class="ai-handoff" href="https://wa.me/qr/CZKPTD7OEQPII1?text=${waText}" target="_blank" rel="noopener">${tr('Mở WhatsApp để xác nhận ngay →')}</a>`,'bot',{html:true});
+  const row=document.createElement("div"),handoff=document.createElement("button");handoff.type="button";handoff.className="ai-handoff";handoff.setAttribute("data-miki-contact-send","");handoff.href="https://wa.me/84935555170?text="+waText;handoff.textContent=tr("Mở WhatsApp để xác nhận ngay →");row.appendChild(handoff);aiMessages.appendChild(row);
 }
 
 
