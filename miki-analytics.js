@@ -17,11 +17,11 @@ function track(name, values) {
  if (channels.includes(values?.contact_channel)) params.contact_channel=values.contact_channel;
  if (placements.includes(values?.placement)) params.placement=values.placement;
  if (['standard','combo'].includes(values?.booking_flow)) params.booking_flow=values.booking_flow;
- window.gtag('event',name,params);
+ window.gtag('event',name,params);window.MikiCRM?.event(name,params);
 }
 window.mikiAnalytics = {track:track,measurementId:ID};
 window.gtag('js',new Date());
-window.gtag('config',ID,{page_location:cleanLocation,page_referrer:cleanReferrer,allow_google_signals:false,allow_ad_personalization_signals:false});
+window.gtag('config',ID,{page_location:cleanLocation,page_referrer:cleanReferrer,campaign_source:window.MikiCRM?.source.utm_source||undefined,campaign_medium:window.MikiCRM?.source.utm_medium||undefined,campaign_name:window.MikiCRM?.source.utm_campaign||undefined,allow_google_signals:false,allow_ad_personalization_signals:false});
 const tag = document.createElement('script');
 tag.async=true;tag.src='https://www.googletagmanager.com/gtag/js?id='+ID;
 document.head.appendChild(tag);
@@ -62,3 +62,4 @@ document.addEventListener('click',function(e){
    track('booking_open',{placement:placement(el),booking_flow:'standard'});
 },true);
 })();
+

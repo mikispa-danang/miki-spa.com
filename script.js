@@ -93,24 +93,17 @@ form?.addEventListener('submit', async e => {
   const successText = document.getElementById('bookingSuccessText');
   let sent = false;
 
-  try {
-    if (location.protocol !== 'file:') {
-      const res = await fetch('/api/lead', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(lead)});
-      sent = res.ok;
-    }
-  } catch (_) { sent = false; }
-
-  localStorage.setItem('miki_booking_request', JSON.stringify(lead));
+  const saved=await window.MikiCRM.submitBooking({...lead,lang:lead.language,channel:'WhatsApp'});sent=saved.ok;
   sessionStorage.setItem('miki_booking_submitted', '1');
   sessionStorage.setItem('miki_booking_interacted', '1');
   form.hidden = true;
   success.hidden = false;
 
-  if (waBtn) { waBtn.href = waUrl; waBtn.hidden = sent; }
+  if (waBtn) { waBtn.href = waUrl; waBtn.hidden = false; }
   if (successTitle) successTitle.textContent = tr(sent ? 'Miki đã nhận yêu cầu' : 'Thông tin đã sẵn sàng');
   if (successText) successText.textContent = sent
-    ? tr('Miki sẽ liên hệ để xác nhận lịch phù hợp với bạn.')
-    : tr('Hệ thống nhận lịch tự động chưa được kết nối. Hãy bấm WhatsApp bên dưới để gửi yêu cầu trực tiếp cho Miki.');
+    ? tr('Miki sẽ liên hệ để xác nhận lịch phù hợp với bạn.')+(saved.code?' · '+saved.code:'')
+    : tr('Yêu cầu chưa lưu được tự động. Hãy bấm WhatsApp bên dưới để gửi yêu cầu trực tiếp cho Miki.');
 
   if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
 });
@@ -428,15 +421,10 @@ async function submitAiLead(e) {
   lead.language = lead.language || currentLang();
   lead.promo='MIKI10';
   lead.createdAt=new Date().toISOString();
-  const leads=JSON.parse(localStorage.getItem('miki_ai_leads')||'[]');
-  leads.push(lead); localStorage.setItem('miki_ai_leads',JSON.stringify(leads));
-  // Secure production hook. If /api/lead is configured it can forward to Make/Zapier/Google Apps Script/CRM.
-  if (location.protocol !== 'file:') {
-    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)}).catch(()=>{});
-  }
+  const submit=f.querySelector('button[type=submit]');submit.disabled=true;const saved=await window.MikiCRM.submitBooking({...lead,channel:'WhatsApp'});submit.disabled=false;
   f.closest('.ai-lead-card')?.remove();
   const text = currentLang()==='vi' ? `Cảm ơn ${lead.name || 'bạn'} ✨ Miki đã ghi nhận yêu cầu ${lead.service || 'tư vấn'}. Miki sẽ liên hệ qua ${lead.phone || 'thông tin bạn cung cấp'} để xác nhận dịch vụ và khung giờ.` : tr('Cảm ơn bạn ✨ Miki đã ghi nhận yêu cầu. Miki sẽ liên hệ để xác nhận dịch vụ và khung giờ.');
-  addAiMessage(text,'bot');
+  addAiMessage(saved.ok?text+(saved.code?' · '+saved.code:''):'Yêu cầu chưa lưu tự động. Hãy gửi qua WhatsApp bên dưới.','bot');
   const waText=encodeURIComponent(bookingMessage(lead));
   addAiMessage(`<a class="ai-handoff" href="https://wa.me/qr/CZKPTD7OEQPII1?text=${waText}" target="_blank" rel="noopener">${tr('Mở WhatsApp để xác nhận ngay →')}</a>`,'bot',{html:true});
 }
@@ -487,3 +475,4 @@ async function submitAiLead(e) {
     if (event.target.closest('[data-open-laser-ai]')) openExistingAI('');
   });
 })();
+

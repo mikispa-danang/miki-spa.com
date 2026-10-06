@@ -154,18 +154,20 @@ function render(){
     summaryEl.innerHTML=copy.sum.map((label,i)=>`<div class="row"><span>${esc(label)}</span><b>${esc(vals[i])}</b></div>`).join('');
   }
 }
-next.onclick=()=>{
+next.onclick=async()=>{
   if(s===0&&!service)return alert(copy.alerts[0]);
   if(s===1&&(!dateEl.value||!time))return alert(copy.alerts[1]);
   if(s===2&&(!nameEl.value.trim()||!phoneEl.value.trim()))return alert(copy.alerts[2]);
   if(s<3){s++;render();return}
   const svc=serviceName(service),m=copy.msg;
-  const msg=[m.head,`${m.guest}: ${nameEl.value}`,`${m.phone}: ${phoneEl.value}`,`${m.service}: ${svc}`,`${m.price}: ${service.price}`,`${m.date}: ${dateEl.value}`,`${m.time}: ${time}`,`${m.contact}: ${contactEl.value}`,`${m.note}: ${noteEl.value||'-'}`,`Language: ${lang.toUpperCase()}`].join('\n');
+  next.disabled=true; const saved=await window.MikiCRM.submitBooking({name:nameEl.value,phone:phoneEl.value,service:svc,price:service.price,date:dateEl.value,time,channel:contactEl.value,note:noteEl.value}); next.disabled=false;
+  const msg=[saved.code ? `Request: ${saved.code}` : "",m.head,`${m.guest}: ${nameEl.value}`,`${m.phone}: ${phoneEl.value}`,`${m.service}: ${svc}`,`${m.price}: ${service.price}`,`${m.date}: ${dateEl.value}`,`${m.time}: ${time}`,`${m.contact}: ${contactEl.value}`,`${m.note}: ${noteEl.value||'-'}`,`Language: ${lang.toUpperCase()}`].join('\n');
   waEl.href=contactEl.value==='Telegram'?'https://t.me/+84935555170?text='+encodeURIComponent(msg):'https://wa.me/84935555170?text='+encodeURIComponent(msg);
   waEl.textContent=contactEl.value==='Telegram'?copy.wa.replace(/WhatsApp/g,'Telegram'):copy.wa;
   window.mikiAnalytics?.track('booking_message_ready',{booking_flow:'standard',contact_channel:contactEl.value.toLowerCase(),placement:'booking'});
-  steps[s].classList.remove('active');$('done').style.display='block';document.querySelector('.bottom').style.display='none';
+  steps[s].classList.remove('active');$('done').style.display='block';$('doneLead').textContent+=(saved.ok ? (lang==='vi'?' Yêu cầu đã được lưu. Miki sẽ xác nhận lịch.':' Request saved. Miki will confirm your appointment.') : (lang==='vi'?' Chưa lưu tự động. Hãy gửi tin nhắn bên dưới.':' Not saved automatically. Please send the message below.'));document.querySelector('.bottom').style.display='none';
 };
 back.onclick=()=>{if(s){s--;render()}};
 applyLanguage();
+
 
