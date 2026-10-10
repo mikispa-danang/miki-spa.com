@@ -198,7 +198,7 @@ function applyLanguage(){
  render();
 }
 const d=new Date(),today=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;dateEl.min=today;dateEl.value=today;
-for(let h=9;h<=21;h++)for(const m of [0,30]){if(h===21&&m===30)continue;const t=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`,b=document.createElement('button');b.type='button';b.className='time';b.textContent=t;b.onclick=()=>{document.querySelectorAll('.time').forEach(q=>q.classList.remove('sel'));b.classList.add('sel');time=t};timesEl.appendChild(b)}
+for(let h=9;h<=21;h++)for(const m of [0,30]){if(h===21&&m===30)continue;const t=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`,b=document.createElement('button');b.type='button';b.className='time';b.textContent=t;b.onclick=()=>{document.querySelectorAll('.time').forEach(q=>q.classList.remove('sel'));b.classList.add('sel');time=t;render()};timesEl.appendChild(b)}
 
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function render(){
