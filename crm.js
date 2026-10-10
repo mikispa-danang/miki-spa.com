@@ -1,6 +1,56 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.95.3';
 const db=createClient('https://flbbjvmxqmbaynrcnefv.supabase.co','sb_publishable_AvRkk9Tx-vR1M7k7P1mx3w_txvZ6teS',{auth:{storage:sessionStorage,persistSession:true}});
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),money=v=>new Intl.NumberFormat('vi-VN').format(v)+' ₫';let rows=[],events=[],payments=[];
+
+let recoveryInProgress=false;
+function showRecoveryForm(){
+ recoveryInProgress=true;
+ $('login').hidden=false;$('workspace').hidden=true;$('logout').hidden=true;
+ $('loginForm').hidden=true;$('recoveryForm').hidden=false;
+ note('Nhập mật khẩu mới tối thiểu 12 ký tự rồi bấm Lưu mật khẩu mới.');
+}
+function showLoginForm(){
+ recoveryInProgress=false;
+ $('recoveryForm').hidden=true;$('loginForm').hidden=false;
+ $('newPassword').value='';$('confirmPassword').value='';
+}
+db.auth.onAuthStateChange(event=>{
+ if(event==='PASSWORD_RECOVERY')showRecoveryForm();
+});
+$('forgotPassword').onclick=async()=>{
+ const email=$('email').value.trim();
+ if(!email||!$('email').checkValidity()){
+  note('Nhập email tài khoản Miki CRM vào ô Email quản trị, rồi bấm Quên mật khẩu.');$('email').focus();return;
+ }
+ $('forgotPassword').disabled=true;note('Đang gửi email khôi phục…');
+ try{
+  const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:'https://miki-spa.com/crm.html'});
+  if(error)note(error.status===429?'Bạn đã gửi quá nhiều lần, vui lòng thử lại sau.':'Chưa gửi được email. Vui lòng thử lại sau.');
+  else note('Nếu email đã đăng ký tài khoản CRM, hãy kiểm tra Hộp thư đến hoặc Thư rác, rồi mở liên kết đặt lại mật khẩu.');
+ }catch(_){note('Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.')}
+ finally{$('forgotPassword').disabled=false}
+};
+$('recoveryForm').onsubmit=async e=>{
+ e.preventDefault();
+ const pass=$('newPassword').value;
+ if(pass.length<12){note('Mật khẩu phải có ít nhất 12 ký tự.');return}
+ if(pass!==$('confirmPassword').value){note('Hai lần nhập mật khẩu chưa giống nhau.');return}
+ $('savePassword').disabled=true;note('Đang lưu mật khẩu mới…');
+ try{
+  const {error}=await db.auth.updateUser({password:pass});
+  if(error){note('Chưa đổi được mật khẩu. Có thể liên kết hết hạn; hãy yêu cầu liên kết mới.');return}
+  $('password').value='';
+  await db.auth.signOut();
+  showLoginForm();
+  history.replaceState(null,'',location.pathname);
+  note('Đổi mật khẩu thành công! Hãy đăng nhập bằng email và mật khẩu mới.');
+ }catch(_){note('Chưa đổi được mật khẩu, vui lòng thử lại.')}
+ finally{$('savePassword').disabled=false}
+};
+$('cancelRecovery').onclick=()=>{
+ showLoginForm();note('Để đổi mật khẩu, hãy mở liên kết mới nhất trong email.');
+};
+
 const statuses={new:'Mới',requested:'Mới',contacted:'Đã liên hệ',confirmed:'Đã xác nhận',completed:'Đã hoàn thành',cancelled:'Đã hủy',no_show:'Không đến'};
 function note(t){$('notice').textContent=t}function date(v){return new Date(v).toLocaleDateString('sv-SE',{timeZone:'Asia/Ho_Chi_Minh'})}function source(r){return r.source?.utm_source||r.source?.referrer||'Trực tiếp / chưa rõ'}
 async function all(table){let out=[];for(let n=0;n<20;n++){const {data,error}=await db.from(table).select('*').order(table==='miki_payments'?'paid_at':'created_at',{ascending:false}).range(n*500,n*500+499);if(error)throw error;out.push(...data);if(data.length<500)return out;}throw Error('Vượt 10.000 bản ghi. Cần mở rộng phân trang trước khi tổng hợp.');}
@@ -14,6 +64,6 @@ $('logout').onclick=async()=>{await db.auth.signOut();rows=[];events=[];payments
 $('bookings').onchange=async e=>{const id=e.target.dataset.status;if(!id)return;e.target.disabled=true;const {error}=await db.from('miki_bookings').update({status:e.target.value}).eq('id',id).select('id').single();if(error){note('Chưa lưu được trạng thái.');render()}else await load()};
 $('bookings').onsubmit=async e=>{e.preventDefault();const id=e.target.dataset.payment;if(!id)return;const amount=Number(e.target.querySelector('input').value);if(!Number.isSafeInteger(amount)||amount<=0)return;const btn=e.submitter;btn.disabled=true;const {error}=await db.from('miki_payments').insert({booking_id:id,amount}).select('id').single();if(error){note('Chưa ghi nhận được khoản thu.');btn.disabled=false}else await load()};
 const today=date(new Date());$('to').value=today;$('from').value=today.slice(0,8)+'01';for(const id of ['from','to','search'])$(id).oninput=render;
-function links(){const campaign=$('campaign').value.trim().replace(/[^a-zA-Z0-9_-]/g,'').slice(0,60)||'miki_spa';$('links').innerHTML=['facebook','whatsapp','telegram','google_maps','qr'].map(s=>{const u=new URL('https://miki-spa.com/connect.html');u.searchParams.set('utm_source',s);u.searchParams.set('utm_medium',s==='qr'?'offline':'social');u.searchParams.set('utm_campaign',campaign);return `<div class="linkrow"><b>${esc(s)}</b><a href="${esc(u.href)}" target="_blank" rel="noopener">${esc(u.href)}</a></div>`}).join('')}$('campaign').oninput=links;links();const {data:{session}}=await db.auth.getSession();if(session)load();
+function links(){const campaign=$('campaign').value.trim().replace(/[^a-zA-Z0-9_-]/g,'').slice(0,60)||'miki_spa';$('links').innerHTML=['facebook','whatsapp','telegram','google_maps','qr'].map(s=>{const u=new URL('https://miki-spa.com/connect.html');u.searchParams.set('utm_source',s);u.searchParams.set('utm_medium',s==='qr'?'offline':'social');u.searchParams.set('utm_campaign',campaign);return `<div class="linkrow"><b>${esc(s)}</b><a href="${esc(u.href)}" target="_blank" rel="noopener">${esc(u.href)}</a></div>`}).join('')}$('campaign').oninput=links;links();const {data:{session}}=await db.auth.getSession();if(session&&!recoveryInProgress)load();
 
 $('signup').onclick=async()=>{if(!$('email').checkValidity()||$('email').value.trim().toLowerCase()!=='quyhuan@gmail.com'){note('Dùng email quản trị đã được cấp quyền: quyhuan@gmail.com');return}if($('password').value.length<12){note('Chọn mật khẩu ít nhất 12 ký tự.');return}$('signup').disabled=true;const {data,error}=await db.auth.signUp({email:$('email').value.trim(),password:$('password').value,options:{emailRedirectTo:'https://miki-spa.com/crm.html'}});$('password').value='';$('signup').disabled=false;if(error)note('Không tạo được tài khoản: '+error.message);else if(data.session)await load();else note('Kiểm tra email để xác nhận tài khoản, rồi quay lại đây đăng nhập. Nếu liên kết xác nhận không mở trang Miki, vẫn quay lại trang này sau khi xác nhận.');};
