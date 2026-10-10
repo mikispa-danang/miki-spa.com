@@ -67,3 +67,5 @@ body,button,input,select,textarea{font-family:"Segoe UI",Arial,Helvetica,sans-se
 .copy-booking[hidden]{display:none!important}
 .share-hint{color:var(--muted);font-size:13px;line-height:1.5}
 @media(max-width:820px){.stepper-item span{display:inline}.price-list{grid-template-columns:1fr}.price-panel{padding:14px}.price-option{min-height:56px}.price-name,.price-amount{font-size:13px}}
+
+#services .price-panel{grid-column:1/-1;margin:5px 0 10px}.service-continue{display:block;width:100%;margin-top:15px}.service-continue:disabled{opacity:.48;cursor:not-allowed}
