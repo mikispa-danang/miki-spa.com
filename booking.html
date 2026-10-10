@@ -1,135 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Đặt lịch | Miki Skin Spa</title>
-<meta name="description" content="Đặt lịch Miki Skin Spa tại 47 Cô Giang, Hải Châu, Đà Nẵng. Chọn dịch vụ, xem bảng giá và gửi yêu cầu đặt lịch.">
-<meta name="theme-color" content="#f7f3ec">
-<link rel="canonical" href="https://www.miki-spa.com/booking.html">
-<link rel="icon" type="image/png" href="assets/optimized/favicon-64.png">
-<link rel="stylesheet" href="booking-skinflow.css?v=20261010-skinglow-inspired-v1">
-<script defer src="miki-crm-client.js?v=20261006-crm"></script>
-<script defer src="miki-analytics.js?v=20261006-crm"></script>
+<meta content="Đặt lịch Miki Skin Spa tại 47 Cô Giang, Hải Châu, Đà Nẵng" name="description"/>
+<link href="https://www.miki-spa.com/booking.html" rel="canonical"/>
+<link href="booking-final.css?v=20261010-price-list-2step" rel="stylesheet"/>
+<style id="booking-laser-thumb">#services .card[data-service^="laser_"]::before{background-image:url('assets/optimized/booking-laser-hair-removal.webp')!important;background-position:center!important}</style>
+<script src="miki-crm-client.js?v=20261006-crm"></script><script src="miki-analytics.js?v=20261006-crm"></script>
 </head>
 <body>
 <div class="shell">
-<header class="site-header">
-<a class="brand" href="index.html" aria-label="Miki Skin Spa home">Miki<span>SKIN SPA</span></a>
-<div class="header-actions">
-<a class="back-home" href="index.html">← Home</a>
-<nav class="language-switch" aria-label="Select language">
+<header class="top">
+<a class="brand" href="index.html" style="text-decoration:none">Miki<span>SKIN SPA</span></a>
+<div class="top-actions">
+<div aria-label="Language" class="lang">
 <a data-lang="vi" href="booking.html?lang=vi">VI</a>
 <a data-lang="en" href="booking.html?lang=en">EN</a>
 <a data-lang="ko" href="booking.html?lang=ko">한국어</a>
 <a data-lang="zh" href="booking.html?lang=zh">中文</a>
 <a data-lang="ru" href="booking.html?lang=ru">RU</a>
 <a data-lang="th" href="booking.html?lang=th">ไทย</a>
-</nav>
+</div>
+<a class="map" href="https://maps.app.goo.gl/Mswc1KA4MVyok92NA?g_st=iz" rel="noopener" target="_blank">📍 Google Maps</a>
 </div>
 </header>
-<div class="intro">
-<div><span class="eyebrow" id="introLabel">ONLINE BOOKING</span><h1 id="heroTitle">Đặt lịch chăm sóc tại Miki</h1><p id="heroSub">Chọn dịch vụ, xem giá và gửi yêu cầu đặt lịch.</p></div>
-<span class="intro-trust">✓ Miki Skin Spa · Da Nang</span>
-</div>
-<div class="layout">
-<aside class="sidebar" aria-label="Miki Spa summary">
-<div class="photo-card">
-<img src="assets/optimized/miki-booking-team-20260914.jpg" alt="Miki Skin Spa tại Đà Nẵng" loading="eager">
-<div class="photo-copy"><strong>Miki Skin Spa</strong><p>Private care · Clear prices · Thoughtful service</p></div>
-</div>
-<div class="side-summary" id="sideSummary">
-<div class="summary-heading"><h2 id="summaryHead">Dịch vụ đã chọn</h2><span>MIKI</span></div>
-<div class="summary-list" id="summaryList" aria-live="polite"></div>
-<div class="total-line"><span id="summaryPriceLabel">Tổng giá tham khảo</span><strong id="total">0đ</strong></div>
-<p class="subtle" id="amountWarning"></p>
-<div class="summary-date" id="summaryDateRow" hidden><span>📅</span><b id="summaryDate"></b></div>
-<p class="subtle" id="staffWarning"></p>
-</div>
-<div class="side-note">
-<b>Miki Skin Spa · Da Nang</b>
-<p>47 Cô Giang, Hải Châu, Đà Nẵng</p>
-<p id="openingHours">08:30–21:30 · Daily</p>
-<b id="quickContact">Contact</b>
-<div class="quick-contact"><a target="_blank" rel="noopener" href="https://wa.me/84935555170">WhatsApp</a><a target="_blank" rel="noopener" href="https://t.me/+84935555170">Telegram</a></div>
-</div>
+<main class="main">
+<div class="booking-layout">
+<aside class="booking-visual">
+<img alt="Miki Skin Spa booking" src="assets/optimized/miki-booking-team-20260914.jpg"/>
+<div class="visual-copy"><div class="kicker">BOOKING</div><h2 id="visualTitle"></h2><p id="visualLead"></p></div>
 </aside>
-<main class="wizard" id="bookingCard">
-<div class="card-topline"><span class="eyebrow">MIKI SPA · BOOKING</span><span class="step-badge" id="stepBadge">STEP 1 / 4</span></div>
-<div class="progress" aria-label="Booking progress">
-<div class="progress-item active" data-progress="0"><span class="progress-number">1</span><span class="progress-name">Dịch vụ</span></div>
-<div class="progress-item" data-progress="1"><span class="progress-number">2</span><span class="progress-name">Chuẩn bị</span></div>
-<div class="progress-item" data-progress="2"><span class="progress-number">3</span><span class="progress-name">Ngày giờ</span></div>
-<div class="progress-item" data-progress="3"><span class="progress-number">4</span><span class="progress-name">Thông tin</span></div>
+<div class="booking-panel">
+<div class="stepper">
+<div class="stepper-item active"><i>1</i><span id="stepLabel1"></span></div>
+<div class="stepper-item"><i>2</i><span id="stepLabel2"></span></div>
 </div>
-
-<section data-step="0" aria-labelledby="menuTitle">
-<div class="pane-head"><h2 id="menuTitle">Chọn một hoặc nhiều dịch vụ</h2><p id="menuHint">Chạm chọn dịch vụ bạn muốn.</p></div>
-<div id="genderArea"><div class="section-head"><h3 id="genderTitle">Dành cho</h3></div>
-<div class="gender-grid"><button class="choice-btn selected" type="button" id="femaleBtn" aria-pressed="true">♀ Nữ</button><button class="choice-btn" type="button" id="maleBtn" aria-pressed="false">♂ Nam</button></div></div>
-<div class="section-head"><h3 id="categoryTitle">Danh mục dịch vụ</h3></div>
-<div class="groups" id="groups" role="group" aria-labelledby="categoryTitle"></div>
-<div class="section-head"><h3 id="servicesTitle">Bảng giá dịch vụ</h3><small>VND / Service</small></div>
-<div class="services" id="services" role="group" aria-labelledby="servicesTitle"></div>
-<div class="section-head"><h3 id="staffTitle">Nhân viên</h3></div>
-<div class="staff-card"><span class="staff-check" aria-hidden="true">✓</span><div><b id="staffAny">Nhân viên phù hợp</b><span id="staffDesc">Miki sẽ bố trí nhân viên và liên hệ xác nhận.</span></div></div>
-</section>
-
-<section data-step="1" aria-labelledby="preparationTitle" hidden>
-<div class="pane-head"><h2 id="preparationTitle">Chuẩn bị trước buổi hẹn</h2><p id="prepIntro">Một vài thông tin giúp Miki đón tiếp bạn chu đáo hơn.</p></div>
-<div class="section-head"><h3 id="visitTitle">Bạn đến lần đầu?</h3></div>
-<div class="option-grid"><button class="choice-btn selected" id="firstBtn" type="button">Lần đầu</button><button class="choice-btn" id="returnBtn" type="button">Đã từng đến</button></div>
-<div class="prep-box" id="laserPreparation" hidden>
-<h3 id="laserPrepTitle">Chuẩn bị vùng triệt lông</h3>
-<div class="option-grid"><button class="choice-btn selected" type="button" id="shaveHomeBtn"><span id="shaveHome">Tôi sẽ cạo lông tại nhà</span></button><button class="choice-btn" type="button" id="shaveHelpBtn"><span id="shaveHelp">Cần Miki hỗ trợ</span></button></div>
-<p class="prep-extra" id="shaveFee"></p>
+<section class="step active">
+<div class="kicker" id="kicker1"></div><h1 id="title1"></h1><p class="lead" id="lead1"></p>
+<div class="grid" id="services"></div>
+<div class="price-panel" id="pricePanel" hidden>
+<h2 id="detailLabel"></h2><p class="price-hint" id="priceHint"></p>
+<div class="price-list" id="serviceOptions" role="radiogroup" aria-labelledby="detailLabel"></div>
+<p class="selected-price" id="servicePrice" aria-live="polite"></p>
+<button class="btn next service-continue" id="serviceContinue" type="button"></button>
 </div>
-<div class="hint-box"><h3 id="prepNoteTitle">Lưu ý trước khi đến</h3><p id="prepNoteText"></p></div>
 </section>
-
-<section data-step="2" aria-labelledby="calendarTitle" hidden>
-<div class="pane-head"><h2 id="calendarTitle">Chọn ngày và giờ</h2><p id="calendarIntro"></p></div>
-<div class="section-head"><h3 id="dateLabel">Chọn ngày</h3></div>
-<div id="dateChoices" class="date-choices"></div>
-<div class="field"><label for="date" id="moreDateLabel">Chọn ngày khác</label><input type="date" id="date" required></div>
-<div class="section-head"><h3 id="timeLabel">Giờ mong muốn</h3></div>
-<div class="times" id="times" role="group" aria-labelledby="timeLabel"></div>
-<p class="time-hint" id="timeNotice"></p>
+<section class="step">
+<div class="kicker" id="kicker2"></div><h1 id="title2"></h1><p class="lead" id="lead2"></p>
+<div class="field"><label id="dateLabel" for="date"></label><input id="date" type="date" required/></div>
+<div class="field"><label id="timeLabel"></label><div class="times" id="times"></div></div>
+<div class="field"><label id="nameLabel" for="name"></label><input id="name" autocomplete="name" required/></div>
+<div class="field"><label id="phoneLabel" for="phone"></label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" required/></div>
+<div class="field"><label id="contactLabel" for="contact"></label><select id="contact"></select></div>
+<div class="field"><label id="noteLabel" for="note"></label><textarea id="note" rows="3"></textarea></div>
+<div class="summary" id="summary" aria-live="polite"></div><div class="notice" id="notice"></div>
 </section>
-
-<section data-step="3" aria-labelledby="profileTitle" hidden>
-<div class="pane-head"><h2 id="profileTitle">Thông tin đặt lịch</h2><p id="profileIntro"></p></div>
-<div class="fields-grid">
-<div class="field"><label for="name" id="nameLabel">Họ và tên</label><input id="name" type="text" autocomplete="name" required maxlength="100"></div>
-<div class="field"><label for="phone" id="phoneLabel">Số điện thoại</label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="35"></div>
+<section class="done" id="done">
+<div class="check">✓</div><h1 id="doneTitle"></h1><p class="lead" id="doneLead"></p>
+<a class="wa" id="wa" data-miki-contact-send rel="noopener" target="_blank"></a>
+<button class="copy-booking" type="button" id="copyBooking" hidden></button>
+<p class="share-hint" id="shareHint" aria-live="polite"></p>
+<a class="gm" href="https://maps.app.goo.gl/Mswc1KA4MVyok92NA?g_st=iz" id="mapDone" rel="noopener" target="_blank"></a>
+</section>
+<div class="contact-shortcuts">
+<a href="https://wa.me/84935555170" rel="noopener" target="_blank"><b>◉</b>WhatsApp</a>
+<a href="https://t.me/+84935555170" rel="noopener" target="_blank"><b>◉</b>Telegram</a>
 </div>
-<div class="field"><label for="channel" id="channelLabel">Kênh liên hệ</label><select id="channel"><option value="WhatsApp">WhatsApp</option><option value="Telegram">Telegram</option></select></div>
-<div class="field"><label for="note" id="noteLabel">Ghi chú thêm (không bắt buộc)</label><textarea id="note" rows="3" maxlength="1200"></textarea></div>
-<div class="review-box"><h3 id="reviewTitle">Tóm tắt lịch hẹn</h3><div id="reviewRows" aria-live="polite"></div></div>
-<label class="privacy-check"><input id="privacy" type="checkbox" required><span><span id="privacyCopy">Tôi đồng ý để Miki liên hệ xác nhận lịch.</span> <a id="privacyLink" target="_blank" rel="noopener" href="privacy.html">Chính sách bảo mật</a></span></label>
-</section>
-
-<div class="footer-nav"><button id="back" class="btn btn-back" type="button" hidden>Quay lại</button><button id="next" class="btn btn-primary" type="button">Tiếp tục</button></div>
+<div class="bottom"><button class="btn back" id="back"></button><button class="btn next" id="next"></button></div>
+</div>
+</div>
+<div class="info-strip">
+<div><strong id="hoursHead"></strong><span id="hoursValue"></span></div>
+<div><strong id="addressHead"></strong><span>47 Cô Giang, Hải Châu, Đà Nẵng</span></div>
+<div><strong>Hotline</strong><span>0935 555 170</span></div>
+</div>
 </main>
-
-<section class="done-card" id="doneCard" hidden>
-<div class="done-check">✓</div>
-<div class="eyebrow">MIKI SKIN SPA</div>
-<h2 id="doneTitle">Đã nhận yêu cầu</h2>
-<div class="done-code" id="doneCode"></div>
-<p id="doneStatus"></p>
-<div class="done-actions">
-<a id="wa" data-miki-contact-send class="main-action" target="_blank" rel="noopener" href="https://wa.me/84935555170">Gửi qua WhatsApp</a>
-<button id="copyBooking" type="button" hidden>Sao chép nội dung</button>
-<p id="copyHint" hidden></p><p id="copiedStatus" aria-live="polite"></p>
-<a id="mapDone" class="secondary-action" target="_blank" rel="noopener" href="https://maps.app.goo.gl/Mswc1KA4MVyok92NA?g_st=iz">Google Maps</a>
-<button id="restart" type="button">Đặt lịch khác</button>
-</div>
-</section>
-</div>
-<p class="note-footer">Miki Skin Spa · 47 Cô Giang, Đà Nẵng · <a href="privacy.html">Privacy policy</a> · <a href="https://www.miki-spa.com/">Back to website</a></p>
 </div>
 <script src="content-data.js?v=20261005-services"></script>
-<script src="booking-skinflow.js?v=20261010-skinglow-inspired-v1"></script>
-</body>
+<script src="booking-final.js?v=20261010-price-list-2step"></script>
+<p style="text-align:center;padding:20px">Khi tiếp tục gửi yêu cầu, thông tin được lưu vào Miki CRM để xác nhận lịch. <a href="privacy.html">Quyền riêng tư / Privacy</a></p></body>
 </html>
+
