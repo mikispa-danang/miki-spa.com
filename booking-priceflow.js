@@ -126,9 +126,9 @@ const continueBtn=$('next'),backBtn=$('back'),waEl=$('wa');
 function itemsSelected(){return [...selected.keys()].map(key=>CATALOG.find(x=>x.key===key)).filter(Boolean)}
 function estimate(){return itemsSelected().reduce((n,item)=>n+priceNumber(servicePrice(item)),0)}
 function quoteNeeded(){return itemsSelected().some(item=>!servicePrice(item))}
-function summaryCost(){const amount=formatMoney(estimate());return quoteNeeded()?amount+tr('partial'):amount}
+function summaryCost(){const amount=formatMoney(estimate());return quoteNeeded()?(estimate()?amount+tr('partial'):tr('unknown')):amount}
 function simpleDate(iso){const parts=iso.split('-');return parts.length===3?parts[2]+'/'+parts[1]+'/'+parts[0]:iso}
-function todayVN(){return new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'Asia/Ho_Chi_Minh'}).format(new Date())}
+function todayVN(){const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'Asia/Ho_Chi_Minh'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return p.year+'-'+p.month+'-'+p.day}
 function groupCount(group){return CATALOG.filter(item=>item.group===group).length}
 function renderGroups(){
  const wrapper=$('services');wrapper.replaceChildren();
