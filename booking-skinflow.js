@@ -314,10 +314,10 @@ async function finish(){
  const words=confirmCopy[lang]||confirmCopy.vi;
  // Saving to CRM does not mean the owner has seen an alert, or that an appointment is confirmed.
  $('wa').href='https://wa.me/84935555170?text='+encodeURIComponent(msg);
- $('wa').textContent=words.whatsapp;
+ $('wa').textContent=saved?words.whatsapp:({vi:'Gửi yêu cầu qua WhatsApp',en:'Send request via WhatsApp',ko:'WhatsApp으로 예약 요청 보내기',zh:'通过 WhatsApp 发送预约请求',ru:'Отправить заявку через WhatsApp',th:'ส่งคำขอผ่าน WhatsApp'})[lang];
  $('wa').classList.toggle('main-action',!saved);
  $('wa').classList.toggle('secondary-action',saved);
- $('zalo').textContent=words.zalo;
+ $('zalo').textContent=saved?words.zalo:({vi:'Mở Zalo để gửi (cần dán nội dung)',en:'Open Zalo (paste booking details)',ko:'Zalo 열기 (내용 붙여넣기)',zh:'打开 Zalo（需粘贴信息）',ru:'Открыть Zalo (вставить данные)',th:'เปิด Zalo (วางรายละเอียด)'})[lang];
  $('copyBooking').hidden=false;
  $('copyHint').hidden=saved;
  $('copyHint').textContent=words.hint;
