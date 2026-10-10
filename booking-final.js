@@ -143,10 +143,11 @@ function renderDetails(){
    label.append(radio,name,amount);list.appendChild(label);
  }
  $('servicePrice').textContent=service?PICKED[lang]+': '+serviceName(service)+' — '+service.price:'';
+ $('serviceContinue').disabled=!service;
 }
 function renderGroups(){
  const keys=['laser','waxing','skin','acne','body','training'];$('services').replaceChildren();
- keys.forEach((key,i)=>{const b=document.createElement('button');b.type='button';b.className='card';b.dataset.group=key;b.setAttribute('aria-pressed','false');const title=document.createElement('b');title.textContent=GROUPS[lang][i];b.appendChild(title);b.onclick=()=>{selectedGroup=key;service=null;document.querySelectorAll('#services .card').forEach(x=>{x.classList.toggle('sel',x===b);x.setAttribute('aria-pressed',String(x===b))});renderDetails();render()};$('services').appendChild(b)});renderDetails();
+ keys.forEach((key,i)=>{const b=document.createElement('button');b.type='button';b.className='card';b.dataset.group=key;b.setAttribute('aria-pressed','false');const title=document.createElement('b');title.textContent=GROUPS[lang][i];b.appendChild(title);b.onclick=()=>{selectedGroup=key;service=null;b.insertAdjacentElement('afterend',$('pricePanel'));document.querySelectorAll('#services .card').forEach(x=>{x.classList.toggle('sel',x===b);x.setAttribute('aria-pressed',String(x===b))});renderDetails();render()};$('services').appendChild(b)});renderDetails();
 }
 
 
@@ -189,6 +190,7 @@ function applyLanguage(){
  nameEl.placeholder=copy.namePh;phoneEl.placeholder=copy.phonePh;noteEl.placeholder=copy.notePh;
  contactEl.replaceChildren(...['WhatsApp','Telegram'].map(v=>new Option(v,v)));
  $('notice').textContent=REQUEST_NOTICE[lang];
+ $('serviceContinue').textContent=copy.continue;
  $('doneTitle').textContent=copy.doneTitle;$('doneLead').textContent=copy.doneLead;
  waEl.textContent=copy.wa;$('mapDone').textContent=copy.map;
  $('hoursHead').textContent=copy.hoursHead;$('hoursValue').textContent=copy.hoursValue;
@@ -250,6 +252,7 @@ next.onclick=async()=>{
  document.querySelector('.bottom').style.display='none';
  document.querySelector('.booking-panel').scrollIntoView({behavior:'smooth',block:'start'});
 };
+$('serviceContinue').onclick=()=>next.click();
 back.onclick=()=>{if(s){s--;render()}};
 applyLanguage();
 
