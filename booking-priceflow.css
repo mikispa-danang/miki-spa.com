@@ -1,1 +1,88 @@
-/* Placeholder; expanded price-list visual rules will replace this before booking.html rollout. */
+
+/* Miki Spa | all service prices first, personal details second */
+:root{--price-shadow:0 10px 35px rgba(108,70,35,.06)}
+.stepper{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:25px}
+.stepper-item{font-size:13px}
+.stepper-item i{width:35px;height:35px}
+.booking-panel{min-width:0}
+#services{margin-bottom:10px}
+#services .card{min-height:88px}
+#services .card b{line-height:1.32;font-size:14px}
+#services .card small{font-size:11px;font-weight:600;color:#84786b}
+#services .card.selected,#services .card.sel{border-color:var(--gold);background:#fff6e8;box-shadow:inset 0 0 0 1px rgba(184,136,71,.20)}
+#services .card[data-group="laser"]::before{background-image:url("assets/optimized/booking-laser-hair-removal.webp")}
+#services .card[data-group="waxing"]::before{background-image:url("assets/optimized/waxing-pricing.webp")}
+#services .card[data-group="skin"]::before{background-image:url("assets/optimized/miki-skin-care-enhanced.webp")}
+#services .card[data-group="acne"]::before{background-image:url("assets/optimized/service-acne-treatment.webp")}
+#services .card[data-group="body"]::before{background-image:url("assets/optimized/service-body-care-20260914.webp")}
+#services .card[data-group="training"]::before{background:none;background-color:#f5eee5}
+.price-panel{margin:18px 0 20px;border:1px solid #e7d6bf;border-radius:18px;background:#fffaf3;overflow:hidden;scroll-margin-top:15px;box-shadow:var(--price-shadow)}
+.price-panel[hidden]{display:none!important}
+.price-panel-header{padding:19px 21px 13px;background:linear-gradient(120deg,#fff4e4,#fffaf4);border-bottom:1px solid #ecdcc8}
+.price-panel-header h2{font-size:22px;font-weight:700;line-height:1.3;margin:7px 0}
+.price-hint{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.price-list{display:grid;grid-template-columns:1fr;padding:12px;gap:7px}
+.service-section{color:#8b5d31;background:#f6ead9;border-radius:11px;padding:10px 14px;font-size:14px;font-weight:800;margin:7px 0 3px}
+.service-option{display:flex;align-items:center;min-height:55px;gap:13px;border:1px solid #ebdfce;border-radius:12px;background:#fff;padding:11px 13px;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+.service-option input{width:18px;height:18px;margin:0;flex:none;accent-color:#ad7940}
+.service-option:focus-within{outline:2px solid #c08b50;outline-offset:1px}
+.service-option.selected,.service-option:has(input:checked){background:#fff1dd;border-color:#b88847}
+.service-option-name{flex:1;min-width:0;line-height:1.45;font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.service-option-price{font-size:14px;font-weight:800;color:#9a612c;text-align:right;white-space:nowrap}
+.chosen-panel{border:1px solid #eadbca;border-radius:18px;padding:18px;background:#fff;box-shadow:var(--price-shadow)}
+.chosen-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.chosen-head strong{font-size:16px}
+.chosen-count{display:grid;place-items:center;border-radius:50%;width:26px;height:26px;background:#ede0d0;color:#87592d;font-weight:800;font-size:12px}
+.empty-selected{font-size:13px;color:var(--muted);margin:10px 0}
+.chosen-list{display:grid;gap:4px}
+.chosen-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px dashed #e9dfd2}
+.chosen-row span{font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.chosen-row b{color:#95602c;font-size:13px;white-space:nowrap}
+.chosen-total{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:14px 0 12px;font-size:13px}
+.chosen-total strong{font-size:20px;color:#985e23;line-height:1.35;text-align:right;overflow-wrap:anywhere}
+.price-continue{width:100%;margin-top:6px}
+.price-continue:disabled{opacity:.45;cursor:not-allowed}
+#stepInformation .field{margin:15px 0}
+#stepInformation input,#stepInformation select,#stepInformation textarea{font-size:16px}
+#stepInformation .times{grid-template-columns:repeat(4,minmax(0,1fr))}
+#stepInformation .time:disabled{background:#f5f0e9;color:#aba194;cursor:not-allowed}
+.review-title{font-size:15px;font-weight:800;margin:22px 0 9px}
+.summary .row{align-items:flex-start}
+.summary .row b{max-width:60%;overflow-wrap:anywhere;text-align:right}
+.privacy-check{display:flex;align-items:flex-start;gap:10px;margin:16px 0 0;line-height:1.6;font-size:12px;color:#645c52}
+.privacy-check input{margin-top:3px;width:18px;height:18px;accent-color:#a97942;flex:none}
+.privacy-check a{color:#8c612f;text-decoration:underline;font-weight:700}
+.done a.wa{display:block;margin:15px auto;max-width:400px;padding:16px;color:white;background:#284b35;border-radius:14px;text-decoration:none;font-weight:700}
+.booking-code{font-size:13px;font-weight:700;color:#895a32;overflow-wrap:anywhere}
+.copy-booking{margin:12px auto;padding:12px 17px;border:1px solid #ab8554;border-radius:12px;background:#fff5e5;color:#62432b;font-weight:800;cursor:pointer}
+.copy-booking[hidden],.telegram-help[hidden]{display:none!important}
+.telegram-help{font-size:12px;line-height:1.6;color:var(--muted)}
+.reset-booking{background:#f2e9dd;display:block;margin:12px auto}
+.privacy-footer{text-align:center;font-size:12px;color:#81766b;padding:12px 20px 27px}
+.privacy-footer a{color:#815b37}
+@media(max-width:820px){
+ .stepper-item span{display:inline;font-size:11px}
+ #services{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #services .card{padding:12px 8px;display:block;min-height:87px}
+ #services .card::before{display:none}
+ #services .card b,#services .card small{display:block;grid-column:auto}
+ #services .card b{font-size:13px}
+ #services .card small{margin-top:5px;font-size:10px}
+ .price-panel-header{padding:15px 14px}
+ .price-panel-header h2{font-size:19px}
+ .price-list{padding:9px}
+ .service-option{gap:9px;padding:10px;min-height:51px}
+ .service-option-name{font-size:13px}
+ .service-option-price{font-size:13px}
+ .chosen-panel{padding:14px}
+ #stepInformation .times{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .summary .row b{max-width:55%}
+}
+@media(max-width:420px){
+ #services{gap:7px}
+ #services .card{padding:10px 8px}
+ #services .card b{font-size:12px}
+ .service-option-name{font-size:12px}
+ .service-option-price{font-size:12px}
+ .chosen-total strong{font-size:16px}
+}
