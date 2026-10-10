@@ -236,12 +236,15 @@ async function submit(){
  const tg=contactEl.value==='Telegram';
  waEl.href=tg?'https://t.me/+84935555170?text='+encodeURIComponent(msg):'https://wa.me/84935555170?text='+encodeURIComponent(msg);
  waEl.textContent=tg?tr('tg'):tr('wa');
- $('copyBooking').hidden=!tg;
+ // A successful CRM save is a completed booking request: never require a second app send.
+ // A failed save must not look successful; retain a manual contact fallback.
+ waEl.hidden=!!result.ok;
+ $('copyBooking').hidden=!!result.ok||!tg;
  $('copyBooking').textContent=tr('copy');
- $('telegramHelp').hidden=!tg;
+ $('telegramHelp').hidden=!!result.ok||!tg;
  $('telegramHelp').textContent=tr('sendTelegram');
- $('doneTitle').textContent=result.ok?tr('done'):(lang==='vi'?'Chưa gửi được booking tự động':'Unable to save your booking');
- $('doneLead').textContent=result.ok?tr('pending'):tr('notSaved');
+ $('doneTitle').textContent=result.ok?(lang==='vi'?'Đã nhận yêu cầu đặt lịch':tr('done')):(lang==='vi'?'Chưa lưu được yêu cầu':'Unable to save your booking');
+ $('doneLead').textContent=result.ok?(lang==='vi'?'Yêu cầu đã được lưu vào Miki CRM. Miki sẽ liên hệ xác nhận lịch hẹn. Bạn không cần gửi thêm tin nhắn.':'Your request has been saved to Miki CRM. Miki will contact you to confirm. No additional message is needed.'):tr('notSaved');
  $('bookingCode').textContent=result.ok&&result.code?tr('code')+': '+result.code:'';
  $('done').style.display='block';
  steps.forEach(x=>x.classList.remove('active'));document.querySelector('.bottom').style.display='none';
