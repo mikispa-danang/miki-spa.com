@@ -38,34 +38,9 @@ body,button,input,select,textarea{font-family:"Segoe UI",Arial,Helvetica,sans-se
 .main h1,.visual-copy h2{font-family:"Segoe UI",Arial,Helvetica,sans-serif;font-weight:600;letter-spacing:-.025em}
 .card b{font-weight:600;font-size:16px}.field label{font-size:13px}.field select{font-size:16px}.selected-price{color:var(--gold);font-weight:700;margin:8px 0 0}.contact-shortcuts{grid-template-columns:repeat(2,1fr)}
 #services .card::before{background-image:url("assets/optimized/booking-laser-hair-removal.webp")}
-/* Photo: Larysa Stratiichuk / Pexels — https://www.pexels.com/photo/close-up-of-waxing-procedure-in-salon-35103884/ */
-#services .card[data-group="waxing"]::before{background-image:url("https://images.pexels.com/photos/35103884/pexels-photo-35103884.jpeg?cs=srgb&dl=pexels-larysa-stratiichuk-1606923648-35103884.jpg&fm=jpg");background-position:center}
+#services .card[data-group="waxing"]::before{background-image:url("assets/optimized/waxing-pricing.webp")}
 #services .card[data-group="skin"]::before{background-image:url("assets/optimized/miki-skin-care-enhanced.webp")}
 #services .card[data-group="acne"]::before{background-image:url("assets/optimized/service-acne-treatment.webp")}
 #services .card[data-group="body"]::before{background-image:url("assets/optimized/service-body-care-20260914.webp")}
 #services .card[data-group="training"]::before{background-image:none;background-color:var(--ivory)}
 .card:focus-visible,.btn:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-
-/* Expanded on-page price list and simplified two-step booking */
-.stepper{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.stepper-item{font-size:13px}
-.price-panel{margin:22px 0 8px;padding:20px;border-radius:18px;border:1px solid var(--line);background:#fffaf3;scroll-margin-top:16px}
-.price-panel[hidden]{display:none!important}
-.price-panel h2{margin:0 0 5px;font-size:19px;font-weight:700}
-.price-hint{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.6}
-.price-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.price-section{grid-column:1/-1;margin:12px 0 0;font-size:14px;color:#7d542f;font-weight:800}
-.price-option{display:flex;align-items:center;gap:10px;min-height:60px;padding:11px;border:1px solid var(--line);border-radius:13px;background:#fff;cursor:pointer}
-.price-option.sel,.price-option:focus-within{border-color:var(--gold);background:#fff4df;box-shadow:0 0 0 1px rgba(184,136,71,.20)}
-.price-option input{accent-color:#b88847;flex:none;width:18px;height:18px;min-height:0}
-.price-name{flex:1;font-size:13px;font-weight:600;line-height:1.45;overflow-wrap:anywhere}
-.price-amount{font-size:13px;color:#a26725;text-align:right;white-space:nowrap}
-.price-panel .selected-price{margin:15px 0 0;font-size:14px}
-.summary{margin-top:20px}
-.done a.wa{display:block;margin:12px auto;padding:15px;border-radius:13px;text-decoration:none;max-width:360px;background:#213c2a;color:#fff;font-weight:700}
-.copy-booking{margin:12px auto;padding:12px;border:1px solid var(--gold);border-radius:12px;background:#fff;color:var(--dark);font:inherit;cursor:pointer}
-.copy-booking[hidden]{display:none!important}
-.share-hint{color:var(--muted);font-size:13px;line-height:1.5}
-@media(max-width:820px){.stepper-item span{display:inline}.price-list{grid-template-columns:1fr}.price-panel{padding:14px}.price-option{min-height:56px}.price-name,.price-amount{font-size:13px}}
-
-#services .price-panel{grid-column:1/-1;margin:5px 0 10px}.service-continue{display:block;width:100%;margin-top:15px}.service-continue:disabled{opacity:.48;cursor:not-allowed}
