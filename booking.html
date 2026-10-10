@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#f7f3ec">
 <link rel="canonical" href="https://www.miki-spa.com/booking.html">
 <link rel="icon" type="image/png" href="assets/optimized/favicon-64.png">
-<link rel="stylesheet" href="booking-skinflow.css?v=20261010-booking-status-v4">
+<link rel="stylesheet" href="booking-skinflow.css?v=20261010-skinglow-inspired-v1">
 <script defer src="miki-crm-client.js?v=20261006-crm"></script>
 <script defer src="miki-analytics.js?v=20261006-crm"></script>
 </head>
@@ -51,7 +51,7 @@
 <p>47 Cô Giang, Hải Châu, Đà Nẵng</p>
 <p id="openingHours">08:30–21:30 · Daily</p>
 <b id="quickContact">Contact</b>
-<div class="quick-contact"><a target="_blank" rel="noopener" href="https://wa.me/84935555170">WhatsApp</a><a target="_blank" rel="noopener" href="https://zalo.me/0935555170">Zalo</a></div>
+<div class="quick-contact"><a target="_blank" rel="noopener" href="https://wa.me/84935555170">WhatsApp</a><a target="_blank" rel="noopener" href="https://t.me/+84935555170">Telegram</a></div>
 </div>
 </aside>
 <main class="wizard" id="bookingCard">
@@ -103,7 +103,7 @@
 <div class="field"><label for="name" id="nameLabel">Họ và tên</label><input id="name" type="text" autocomplete="name" required maxlength="100"></div>
 <div class="field"><label for="phone" id="phoneLabel">Số điện thoại</label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="35"></div>
 </div>
-<div class="field"><label for="channel" id="channelLabel">Kênh liên hệ</label><select id="channel"><option value="WhatsApp">WhatsApp</option><option value="Telegram">Telegram</option><option value="Zalo">Zalo</option><option value="Phone">Điện thoại / SMS</option></select></div>
+<div class="field"><label for="channel" id="channelLabel">Kênh liên hệ</label><select id="channel"><option value="WhatsApp">WhatsApp</option><option value="Telegram">Telegram</option></select></div>
 <div class="field"><label for="note" id="noteLabel">Ghi chú thêm (không bắt buộc)</label><textarea id="note" rows="3" maxlength="1200"></textarea></div>
 <div class="review-box"><h3 id="reviewTitle">Tóm tắt lịch hẹn</h3><div id="reviewRows" aria-live="polite"></div></div>
 <label class="privacy-check"><input id="privacy" type="checkbox" required><span><span id="privacyCopy">Tôi đồng ý để Miki liên hệ xác nhận lịch.</span> <a id="privacyLink" target="_blank" rel="noopener" href="privacy.html">Chính sách bảo mật</a></span></label>
@@ -115,14 +115,12 @@
 <section class="done-card" id="doneCard" hidden>
 <div class="done-check">✓</div>
 <div class="eyebrow">MIKI SKIN SPA</div>
-<h2 id="doneTitle">Thông tin đặt lịch đã được lưu</h2>
+<h2 id="doneTitle">Đã nhận yêu cầu</h2>
 <div class="done-code" id="doneCode"></div>
-<p id="doneStatus" role="status" aria-live="polite"></p>
-<div id="doneSummary" class="review-box done-summary" aria-label="Booking summary"></div>
+<p id="doneStatus"></p>
 <div class="done-actions">
-<a id="wa" data-miki-contact-send class="secondary-action" target="_blank" rel="noopener" href="https://wa.me/84935555170">Liên hệ WhatsApp (tùy chọn)</a>
-<a id="zalo" class="secondary-action" target="_blank" rel="noopener" href="https://zalo.me/0935555170">Liên hệ Zalo (tùy chọn)</a>
-<button id="copyBooking" type="button">Sao chép chi tiết đặt lịch</button>
+<a id="wa" data-miki-contact-send class="main-action" target="_blank" rel="noopener" href="https://wa.me/84935555170">Gửi qua WhatsApp</a>
+<button id="copyBooking" type="button" hidden>Sao chép nội dung</button>
 <p id="copyHint" hidden></p><p id="copiedStatus" aria-live="polite"></p>
 <a id="mapDone" class="secondary-action" target="_blank" rel="noopener" href="https://maps.app.goo.gl/Mswc1KA4MVyok92NA?g_st=iz">Google Maps</a>
 <button id="restart" type="button">Đặt lịch khác</button>
@@ -132,6 +130,6 @@
 <p class="note-footer">Miki Skin Spa · 47 Cô Giang, Đà Nẵng · <a href="privacy.html">Privacy policy</a> · <a href="https://www.miki-spa.com/">Back to website</a></p>
 </div>
 <script src="content-data.js?v=20261005-services"></script>
-<script src="booking-skinflow.js?v=20261010-booking-status-v4"></script>
+<script src="booking-skinflow.js?v=20261010-skinglow-inspired-v1"></script>
 </body>
 </html>
