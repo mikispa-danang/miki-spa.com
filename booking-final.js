@@ -107,11 +107,42 @@ const DETAIL={vi:['DỊCH VỤ CHI TIẾT','Chọn dịch vụ chi tiết','Liê
 let selectedGroup=null;
 function serviceName(item){return lang==='vi'?item.vi:item.en}
 function servicePrice(item){let value=window.MIKI_CONTENT?.prices;for(const key of item.pricePath||[])value=value?.[key];return item.pricePath?(value||item.price):DETAIL[lang][2]}
+const PRICE_HINT={
+ vi:'Chọn một dịch vụ trong bảng giá bên dưới. Giá hiển thị là giá tham khảo cho từng dịch vụ.',
+ en:'Select a service from the price list below. Prices are shown per treatment for reference.',
+ ko:'아래 가격표에서 서비스를 선택해 주세요. 가격은 참고용입니다.',
+ zh:'请在下方价格表选择具体服务，所示为参考价格。',
+ ru:'Выберите услугу из прайс-листа ниже. Цены ориентировочные.',
+ th:'เลือกบริการจากรายการราคาด้านล่าง ราคาที่แสดงเป็นราคาอ้างอิง'
+};
+const PICKED={vi:'Đã chọn',en:'Selected',ko:'선택됨',zh:'已选择',ru:'Выбрано',th:'เลือกแล้ว'};
 function renderDetails(){
- const select=$('serviceDetail'),words=DETAIL[lang];$('detailLabel').textContent=words[0];
- select.replaceChildren(new Option(words[1],''));
- for(const item of CATALOG.filter(x=>x.group===selectedGroup)){let parent=select;if(selectedGroup==='laser'){const label=item.section==='laser-women'?words[3]:words[4];parent=[...select.children].find(x=>x.tagName==='OPTGROUP'&&x.label===label);if(!parent){parent=document.createElement('optgroup');parent.label=label;select.appendChild(parent)}}parent.appendChild(new Option(serviceName(item)+' — '+servicePrice(item),item.key))}
- select.value=service?.key||'';select.disabled=!selectedGroup;$('servicePrice').textContent=service?service.price:'';
+ const panel=$('pricePanel'), list=$('serviceOptions'), words=DETAIL[lang];
+ $('detailLabel').textContent=words[0];
+ $('priceHint').textContent=PRICE_HINT[lang];
+ list.replaceChildren();
+ panel.hidden=!selectedGroup;
+ if(!selectedGroup){$('servicePrice').textContent='';return}
+ let previousSection='';
+ for(const item of CATALOG.filter(x=>x.group===selectedGroup)){
+   if(selectedGroup==='laser'&&item.section!==previousSection){
+     const h=document.createElement('h3');h.className='price-section';
+     h.textContent=item.section==='laser-women'?words[3]:words[4];
+     list.appendChild(h);previousSection=item.section;
+   }
+   const label=document.createElement('label');label.className='price-option';
+   if(service?.key===item.key)label.classList.add('sel');
+   const radio=document.createElement('input');radio.type='radio';radio.name='bookingService';
+   radio.value=item.key;radio.checked=service?.key===item.key;
+   const name=document.createElement('span');name.className='price-name';name.textContent=serviceName(item);
+   const amount=document.createElement('strong');amount.className='price-amount';amount.textContent=servicePrice(item);
+   radio.onchange=()=>{
+      service={...item,price:servicePrice(item)};
+      renderDetails();render();
+   };
+   label.append(radio,name,amount);list.appendChild(label);
+ }
+ $('servicePrice').textContent=service?PICKED[lang]+': '+serviceName(service)+' — '+service.price:'';
 }
 function renderGroups(){
  const keys=['laser','waxing','skin','acne','body','training'];$('services').replaceChildren();
@@ -122,50 +153,102 @@ function renderGroups(){
 const $=id=>document.getElementById(id);
 const steps=[...document.querySelectorAll('.step')],back=$('back'),next=$('next'),dateEl=$('date'),timesEl=$('times'),nameEl=$('name'),phoneEl=$('phone'),contactEl=$('contact'),noteEl=$('note'),summaryEl=$('summary'),waEl=$('wa');
 
+const TWO_STEP_KICKERS={
+ vi:['Bước 1 / 2','Bước 2 / 2'],en:['Step 1 / 2','Step 2 / 2'],
+ ko:['1단계 / 2','2단계 / 2'],zh:['第 1 步 / 2','第 2 步 / 2'],
+ ru:['Шаг 1 / 2','Шаг 2 / 2'],th:['ขั้นตอน 1 / 2','ขั้นตอน 2 / 2']
+};
+const REQUEST_NOTICE={
+ vi:'Giá là mức tham khảo. Miki sẽ liên hệ để xác nhận lịch và tổng tiền. Sau khi gửi yêu cầu, bạn có thể nhắn trực tiếp qua WhatsApp hoặc Telegram.',
+ en:'Prices are for reference. Miki will confirm your appointment and total. After submitting, you can message us on WhatsApp or Telegram.',
+ ko:'가격은 참고용입니다. Miki가 일정과 총액을 확인해 드립니다. 예약 요청 후 WhatsApp 또는 Telegram으로 문의하실 수 있습니다.',
+ zh:'价格仅供参考，Miki 将确认预约及总费用。提交后可通过 WhatsApp 或 Telegram 联系我们。',
+ ru:'Цены ориентировочные. Miki подтвердит время и сумму. После заявки можно написать в WhatsApp или Telegram.',
+ th:'ราคาเป็นราคาอ้างอิง Miki จะยืนยันเวลาและยอดรวม หลังส่งคำขอสามารถติดต่อทาง WhatsApp หรือ Telegram'
+};
+const TELEGRAM_COPY={
+ vi:'Sao chép nội dung đặt lịch',en:'Copy booking message',ko:'예약 메시지 복사',
+ zh:'复制预约信息',ru:'Скопировать текст заявки',th:'คัดลอกข้อความจอง'
+};
 function applyLanguage(){
-  copy=T[lang];document.documentElement.lang=lang;document.title=copy.title;
-  document.querySelector('meta[name="description"]').setAttribute('content',copy.description);
-  document.querySelectorAll('.lang a').forEach(a=>{a.classList.toggle('active',a.dataset.lang===lang);a.setAttribute('aria-current',a.dataset.lang===lang?'true':'false')});
-  $('visualTitle').textContent=copy.visualTitle;$('visualLead').textContent=copy.visualLead;
-  copy.stepLabels.forEach((v,i)=>$('stepLabel'+(i+1)).textContent=v);
-  copy.kickers.forEach((v,i)=>$('kicker'+(i+1)).textContent=v);
-  copy.titles.forEach((v,i)=>$('title'+(i+1)).textContent=v);
-  copy.leads.forEach((v,i)=>$('lead'+(i+1)).textContent=v);
-  renderGroups();
-  $('dateLabel').textContent=copy.dateLabel;$('timeLabel').textContent=copy.timeLabel;$('nameLabel').textContent=copy.nameLabel;$('phoneLabel').textContent=copy.phoneLabel;$('contactLabel').textContent=copy.contactLabel;$('noteLabel').textContent=copy.noteLabel;
-  nameEl.placeholder=copy.namePh;phoneEl.placeholder=copy.phonePh;noteEl.placeholder=copy.notePh;
-  contactEl.innerHTML=['WhatsApp','Telegram'].map(v=>`<option>${esc(v)}</option>`).join('');
-  $('notice').textContent=copy.notice.replace(/WhatsApp/g,'WhatsApp / Telegram');$('doneTitle').textContent=copy.doneTitle;$('doneLead').textContent=copy.doneLead;waEl.textContent=copy.wa;$('mapDone').textContent=copy.map;
-  $('hoursHead').textContent=copy.hoursHead;$('hoursValue').textContent=copy.hoursValue;$('addressHead').textContent=copy.addressHead;
-  render();
+ copy=T[lang];document.documentElement.lang=lang;document.title=copy.title;
+ document.querySelector('meta[name="description"]').setAttribute('content',copy.description);
+ document.querySelectorAll('.lang a').forEach(a=>{a.classList.toggle('active',a.dataset.lang===lang);a.setAttribute('aria-current',a.dataset.lang===lang?'true':'false')});
+ $('visualTitle').textContent=copy.visualTitle;$('visualLead').textContent=copy.visualLead;
+ [0,2].forEach((sourceIndex,i)=>{
+   $('stepLabel'+(i+1)).textContent=copy.stepLabels[sourceIndex];
+   $('title'+(i+1)).textContent=copy.titles[sourceIndex];
+   $('kicker'+(i+1)).textContent=TWO_STEP_KICKERS[lang][i];
+ });
+ $('lead1').textContent=copy.leads[0];
+ $('lead2').textContent=copy.leads[1]+' '+copy.leads[2];
+ renderGroups();
+ $('dateLabel').textContent=copy.dateLabel;$('timeLabel').textContent=copy.timeLabel;
+ $('nameLabel').textContent=copy.nameLabel;$('phoneLabel').textContent=copy.phoneLabel;
+ $('contactLabel').textContent=copy.contactLabel;$('noteLabel').textContent=copy.noteLabel;
+ nameEl.placeholder=copy.namePh;phoneEl.placeholder=copy.phonePh;noteEl.placeholder=copy.notePh;
+ contactEl.replaceChildren(...['WhatsApp','Telegram'].map(v=>new Option(v,v)));
+ $('notice').textContent=REQUEST_NOTICE[lang];
+ $('doneTitle').textContent=copy.doneTitle;$('doneLead').textContent=copy.doneLead;
+ waEl.textContent=copy.wa;$('mapDone').textContent=copy.map;
+ $('hoursHead').textContent=copy.hoursHead;$('hoursValue').textContent=copy.hoursValue;
+ $('addressHead').textContent=copy.addressHead;
+ render();
 }
-
-$('serviceDetail').onchange=()=>{const item=CATALOG.find(x=>x.key===$('serviceDetail').value);service=item?{...item,price:servicePrice(item)}:null;renderDetails();render()};
 const d=new Date(),today=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;dateEl.min=today;dateEl.value=today;
 for(let h=9;h<=21;h++)for(const m of [0,30]){if(h===21&&m===30)continue;const t=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`,b=document.createElement('button');b.type='button';b.className='time';b.textContent=t;b.onclick=()=>{document.querySelectorAll('.time').forEach(q=>q.classList.remove('sel'));b.classList.add('sel');time=t};timesEl.appendChild(b)}
 
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function render(){
-  steps.forEach((x,i)=>x.classList.toggle('active',i===s));back.style.display=s?'block':'none';next.textContent=s===3?copy.send:copy.continue;back.textContent=copy.back;
-  document.querySelectorAll('.stepper-item').forEach((el,i)=>{el.classList.toggle('active',i===s);el.classList.toggle('done',i<s)});
-  if(s===3&&service){
-    const svc=serviceName(service);
-    const vals=[svc,service.price,dateEl.value,time||'',nameEl.value,phoneEl.value];
-    summaryEl.innerHTML=copy.sum.map((label,i)=>`<div class="row"><span>${esc(label)}</span><b>${esc(vals[i])}</b></div>`).join('');
-  }
+ steps.forEach((x,i)=>x.classList.toggle('active',i===s));
+ back.style.display=s?'block':'none';next.textContent=s===1?copy.send:copy.continue;back.textContent=copy.back;
+ document.querySelectorAll('.stepper-item').forEach((el,i)=>{el.classList.toggle('active',i===s);el.classList.toggle('done',i<s)});
+ if(s===1&&service){
+  const vals=[serviceName(service),service.price,dateEl.value,time||'',nameEl.value,phoneEl.value];
+  summaryEl.innerHTML=copy.sum.map((label,i)=>'<div class="row"><span>'+esc(label)+'</span><b>'+esc(vals[i])+'</b></div>').join('');
+ }
 }
+[dateEl,nameEl,phoneEl,contactEl,noteEl].forEach(el=>{
+ el.addEventListener('input',()=>{if(s===1)render()});
+ el.addEventListener('change',()=>{if(s===1)render()});
+});
+const copyBooking=$('copyBooking'),shareHint=$('shareHint');
 next.onclick=async()=>{
-  if(s===0&&!service)return alert(copy.alerts[0]);
-  if(s===1&&(!dateEl.value||!time))return alert(copy.alerts[1]);
-  if(s===2&&(!nameEl.value.trim()||!phoneEl.value.trim()))return alert(copy.alerts[2]);
-  if(s<3){s++;render();return}
-  const svc=serviceName(service),m=copy.msg;
-  next.disabled=true; const saved=await window.MikiCRM.submitBooking({name:nameEl.value,phone:phoneEl.value,service:svc,price:service.price,date:dateEl.value,time,channel:contactEl.value,note:noteEl.value}); next.disabled=false;
-  const msg=[saved.code ? `Request: ${saved.code}` : "",m.head,`${m.guest}: ${nameEl.value}`,`${m.phone}: ${phoneEl.value}`,`${m.service}: ${svc}`,`${m.price}: ${service.price}`,`${m.date}: ${dateEl.value}`,`${m.time}: ${time}`,`${m.contact}: ${contactEl.value}`,`${m.note}: ${noteEl.value||'-'}`,`Language: ${lang.toUpperCase()}`].join('\n');
-  waEl.href=contactEl.value==='Telegram'?'https://t.me/+84935555170?text='+encodeURIComponent(msg):'https://wa.me/84935555170?text='+encodeURIComponent(msg);
-  waEl.textContent=contactEl.value==='Telegram'?copy.wa.replace(/WhatsApp/g,'Telegram'):copy.wa;
-  window.mikiAnalytics?.track('booking_message_ready',{booking_flow:'standard',contact_channel:contactEl.value.toLowerCase(),placement:'booking'});
-  steps[s].classList.remove('active');$('done').style.display='block';$('doneLead').textContent+=(saved.ok ? (lang==='vi'?' Yêu cầu đã được lưu. Miki sẽ xác nhận lịch.':' Request saved. Miki will confirm your appointment.') : (lang==='vi'?' Chưa lưu tự động. Hãy gửi tin nhắn bên dưới.':' Not saved automatically. Please send the message below.'));document.querySelector('.bottom').style.display='none';
+ if(s===0){
+   if(!service)return alert(copy.alerts[0]);
+   s=1;render();document.querySelector('.booking-panel').scrollIntoView({behavior:'smooth',block:'start'});return;
+ }
+ if(!dateEl.value||!time)return alert(copy.alerts[1]);
+ if(!nameEl.value.trim()||!phoneEl.value.trim())return alert(copy.alerts[2]);
+ const svc=serviceName(service),m=copy.msg;
+ next.disabled=true;
+ let saved={ok:false};
+ try{
+   if(window.MikiCRM?.submitBooking)saved=await window.MikiCRM.submitBooking({
+     name:nameEl.value.trim(),phone:phoneEl.value.trim(),service:svc,price:service.price,
+     date:dateEl.value,time,channel:contactEl.value,note:noteEl.value
+   });
+ }catch(_){}
+ next.disabled=false;
+ const msg=[saved.code?'Request: '+saved.code:'',m.head,m.guest+': '+nameEl.value.trim(),
+ m.phone+': '+phoneEl.value.trim(),m.service+': '+svc,m.price+': '+service.price,
+ m.date+': '+dateEl.value,m.time+': '+time,m.contact+': '+contactEl.value,
+ m.note+': '+(noteEl.value||'-'),'Language: '+lang.toUpperCase()].filter(Boolean).join('\n');
+ const tg=contactEl.value==='Telegram';
+ waEl.href=tg?'https://t.me/+84935555170':'https://wa.me/84935555170?text='+encodeURIComponent(msg);
+ waEl.textContent=tg?copy.wa.replace(/WhatsApp/g,'Telegram'):copy.wa;
+ copyBooking.hidden=!tg;
+ copyBooking.textContent=TELEGRAM_COPY[lang];
+ copyBooking.onclick=async()=>{
+   try{await navigator.clipboard.writeText(msg);shareHint.textContent=lang==='vi'?'Đã sao chép. Hãy mở Telegram và dán vào cuộc trò chuyện với Miki.':'Copied. Paste the message into your Telegram chat with Miki.'}
+   catch(_){shareHint.textContent=msg}
+ };
+ shareHint.textContent=tg?(lang==='vi'?'Telegram: sao chép tin nhắn rồi dán vào cuộc trò chuyện với Miki.':'For Telegram, copy the booking message and paste it in your chat with Miki.'):'';
+ window.mikiAnalytics?.track('booking_message_ready',{booking_flow:'standard',contact_channel:contactEl.value.toLowerCase(),placement:'booking'});
+ steps[s].classList.remove('active');$('done').style.display='block';
+ $('doneLead').textContent+=(saved.ok?(lang==='vi'?' Yêu cầu đã được lưu. Miki sẽ xác nhận lịch.':' Request saved. Miki will confirm your appointment.'):(lang==='vi'?' Chưa lưu tự động. Vui lòng gửi tin nhắn bên dưới.':' Not saved automatically. Please send the message below.'));
+ document.querySelector('.bottom').style.display='none';
+ document.querySelector('.booking-panel').scrollIntoView({behavior:'smooth',block:'start'});
 };
 back.onclick=()=>{if(s){s--;render()}};
 applyLanguage();
