@@ -303,7 +303,7 @@ async function finish(){
  }catch(e){}
  const msg=composeMessage(result.code||'');state.msg=msg;
  const tg=$('channel').value==='Telegram';
- $('wa').href=tg?'https://t.me/+84935555170?text='+encodeURIComponent(msg):'https://wa.me/84935555170?text='+encodeURIComponent(msg);
+ $('wa').href=tg?'https://t.me/+84935555170':'https://wa.me/84935555170?text='+encodeURIComponent(msg);
  $('wa').textContent=tg?tr('viaTG'):tr('viaWA');
  $('copyBooking').hidden=!tg;$('copyHint').hidden=!tg;
  $('doneStatus').textContent=result.ok?tr('donePending'):tr('doneFail');
@@ -328,6 +328,13 @@ function init(){
  $('back').onclick=()=>{if(state.step>0)goStep(state.step-1)};
  $('name').oninput=renderReview;$('phone').oninput=renderReview;$('channel').onchange=renderReview;
  $('copyBooking').onclick=async()=>{try{await navigator.clipboard.writeText(state.msg);$('copiedStatus').textContent=tr('copied')}catch(e){$('copiedStatus').textContent=state.msg}};
+ $('wa').addEventListener('click',async(e)=>{
+  if($('channel').value!=='Telegram')return;
+  e.preventDefault();
+  try{await navigator.clipboard.writeText(state.msg);$('copiedStatus').textContent=tr('copied')}
+  catch(err){$('copiedStatus').textContent=state.msg}
+  window.open($('wa').href,'_blank','noopener');
+ });
  $('restart').onclick=()=>{location.assign('booking.html?lang='+lang)};
  $('date').min=vnToday();
  renderGroups();renderServices();renderSummary();renderPrep();renderDates();renderTimes();renderFooter();
