@@ -6,7 +6,12 @@
 <title>Đặt lịch | Miki Skin Spa</title>
 <meta content="Đặt lịch Miki Skin Spa tại 47 Cô Giang, Hải Châu, Đà Nẵng" name="description"/>
 <link href="https://www.miki-spa.com/booking.html" rel="canonical"/>
-<link href="booking-final.css?v=20261005-services" rel="stylesheet"/>
+
+<link href="booking-final.css?v=20261005-services" rel="stylesheet">
+<link href="booking-priceflow.css?v=20261010-list-v1" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/optimized/favicon-64.png">
+<script defer src="miki-crm-client.js?v=20261006-crm"></script>
+<script defer src="miki-analytics.js?v=20261006-crm"></script>
 <style id="booking-laser-thumb">#services .card[data-service^="laser_"]::before{background-image:url('assets/optimized/booking-laser-hair-removal.webp')!important;background-position:center!important}</style>
 </head>
 <body>
@@ -35,34 +40,44 @@
 <div class="stepper">
 <div class="stepper-item active"><i>1</i><span id="stepLabel1"></span></div>
 <div class="stepper-item"><i>2</i><span id="stepLabel2"></span></div>
-<div class="stepper-item"><i>3</i><span id="stepLabel3"></span></div>
-<div class="stepper-item"><i>4</i><span id="stepLabel4"></span></div>
 </div>
-<section class="step active">
+<section class="step active" id="stepService">
 <div class="kicker" id="kicker1"></div><h1 id="title1"></h1><p class="lead" id="lead1"></p>
-<div class="grid" id="services"></div>
-<div class="field"><label id="detailLabel" for="serviceDetail"></label><select id="serviceDetail" disabled></select><p class="selected-price" id="servicePrice" aria-live="polite"></p></div>
+<div class="grid" id="services" role="group" aria-label="Service categories"></div>
+<div class="price-panel" id="pricePanel" hidden>
+<div class="price-panel-header">
+<div class="kicker" id="detailsTitle"></div>
+<h2 id="selectedGroupTitle"></h2><p id="detailsHint" class="price-hint"></p>
+</div>
+<div class="price-list" id="serviceOptions" role="group" aria-label="Detailed services and prices"></div>
+</div>
+<div class="chosen-panel" id="chosenPanel">
+<div class="chosen-head"><strong id="selectedHead"></strong><span class="chosen-count" id="selectedCount">0</span></div>
+<p class="empty-selected" id="emptySelected"></p>
+<div class="chosen-list" id="selectedServices" aria-live="polite"></div>
+<div class="chosen-total"><span id="totalHead"></span><strong id="totalPrice">0đ</strong></div>
+<button class="btn next price-continue" id="continuePrice" type="button" disabled></button>
+</div>
 </section>
-<section class="step">
+<section class="step" id="stepInformation">
 <div class="kicker" id="kicker2"></div><h1 id="title2"></h1><p class="lead" id="lead2"></p>
-<div class="field"><label id="dateLabel" for="date"></label><input id="date" type="date"/></div>
-<div class="field"><label id="timeLabel"></label><div class="times" id="times"></div></div>
-</section>
-<section class="step">
-<div class="kicker" id="kicker3"></div><h1 id="title3"></h1><p class="lead" id="lead3"></p>
-<div class="field"><label id="nameLabel" for="name"></label><input id="name"/></div>
-<div class="field"><label id="phoneLabel" for="phone"></label><input id="phone" inputmode="tel"/></div>
-<div class="field"><label id="contactLabel" for="contact"></label><select id="contact"></select></div>
-<div class="field"><label id="noteLabel" for="note"></label><textarea id="note" rows="4"></textarea></div>
-</section>
-<section class="step">
-<div class="kicker" id="kicker4"></div><h1 id="title4"></h1><p class="lead" id="lead4"></p>
-<div class="summary" id="summary"></div><div class="notice" id="notice"></div>
+<div class="field"><label id="dateLabel" for="date"></label><input id="date" type="date" required></div>
+<div class="field"><label id="timeLabel"></label><div class="times" id="times" role="group" aria-labelledby="timeLabel"></div></div>
+<div class="field"><label id="nameLabel" for="name"></label><input id="name" autocomplete="name" maxlength="120" required></div>
+<div class="field"><label id="phoneLabel" for="phone"></label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" required></div>
+<div class="field"><label id="contactLabel" for="contact"></label><select id="contact"><option>WhatsApp</option><option>Telegram</option></select></div>
+<div class="field"><label id="noteLabel" for="note"></label><textarea id="note" rows="3" maxlength="1000"></textarea></div>
+<div class="review-title" id="reviewTitle"></div><div class="summary" id="summary"></div>
+<label class="privacy-check"><input id="privacy" type="checkbox" required><span><span id="privacyText"></span> <a href="privacy.html" id="policyLink" rel="noopener" target="_blank"></a></span></label>
+<div class="notice" id="notice"></div>
 </section>
 <section class="done" id="done">
-<div class="check">✓</div><h1 id="doneTitle"></h1><p class="lead" id="doneLead"></p>
-<a class="wa" id="wa" rel="noopener" target="_blank"></a>
+<div class="check">✓</div><h1 id="doneTitle"></h1><p id="bookingCode" class="booking-code"></p><p class="lead" id="doneLead"></p>
+<a class="wa" id="wa" href="https://wa.me/84935555170" data-miki-contact-send rel="noopener" target="_blank"></a>
+<button class="copy-booking" id="copyBooking" type="button" hidden></button>
+<p id="telegramHelp" class="telegram-help" hidden></p>
 <a class="gm" href="https://maps.app.goo.gl/Mswc1KA4MVyok92NA?g_st=iz" id="mapDone" rel="noopener" target="_blank"></a>
+<button class="btn reset-booking" id="resetBooking" type="button"></button>
 </section>
 <div class="contact-shortcuts">
 <a href="https://wa.me/84935555170" rel="noopener" target="_blank"><b>◉</b>WhatsApp</a>
@@ -79,6 +94,6 @@
 </main>
 </div>
 <script src="content-data.js?v=20261005-services"></script>
-<script src="booking-final.js?v=20261005-services"></script>
-</body>
+<script src="booking-priceflow.js?v=20261010-list-v1"></script>
+<p class="privacy-footer">Dữ liệu đặt lịch được gửi đến Miki CRM để spa liên hệ xác nhận. <a href="privacy.html">Quyền riêng tư / Privacy</a></p></body>
 </html>
