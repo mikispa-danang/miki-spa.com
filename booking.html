@@ -6,7 +6,7 @@
 <title>Đặt lịch | Miki Skin Spa</title>
 <meta content="Đặt lịch Miki Skin Spa tại 47 Cô Giang, Hải Châu, Đà Nẵng" name="description"/>
 <link href="https://www.miki-spa.com/booking.html" rel="canonical"/>
-<link href="booking-final.css?v=20261005-wax-photo" rel="stylesheet"/>
+<link href="booking-final.css?v=20261010-price-list-2step" rel="stylesheet"/>
 <style id="booking-laser-thumb">#services .card[data-service^="laser_"]::before{background-image:url('assets/optimized/booking-laser-hair-removal.webp')!important;background-position:center!important}</style>
 <script src="miki-crm-client.js?v=20261006-crm"></script><script src="miki-analytics.js?v=20261006-crm"></script>
 </head>
@@ -36,33 +36,31 @@
 <div class="stepper">
 <div class="stepper-item active"><i>1</i><span id="stepLabel1"></span></div>
 <div class="stepper-item"><i>2</i><span id="stepLabel2"></span></div>
-<div class="stepper-item"><i>3</i><span id="stepLabel3"></span></div>
-<div class="stepper-item"><i>4</i><span id="stepLabel4"></span></div>
 </div>
 <section class="step active">
 <div class="kicker" id="kicker1"></div><h1 id="title1"></h1><p class="lead" id="lead1"></p>
 <div class="grid" id="services"></div>
-<div class="field"><label id="detailLabel" for="serviceDetail"></label><select id="serviceDetail" disabled></select><p class="selected-price" id="servicePrice" aria-live="polite"></p></div>
+<div class="price-panel" id="pricePanel" hidden>
+<h2 id="detailLabel"></h2><p class="price-hint" id="priceHint"></p>
+<div class="price-list" id="serviceOptions" role="radiogroup" aria-labelledby="detailLabel"></div>
+<p class="selected-price" id="servicePrice" aria-live="polite"></p>
+</div>
 </section>
 <section class="step">
 <div class="kicker" id="kicker2"></div><h1 id="title2"></h1><p class="lead" id="lead2"></p>
-<div class="field"><label id="dateLabel" for="date"></label><input id="date" type="date"/></div>
+<div class="field"><label id="dateLabel" for="date"></label><input id="date" type="date" required/></div>
 <div class="field"><label id="timeLabel"></label><div class="times" id="times"></div></div>
-</section>
-<section class="step">
-<div class="kicker" id="kicker3"></div><h1 id="title3"></h1><p class="lead" id="lead3"></p>
-<div class="field"><label id="nameLabel" for="name"></label><input id="name"/></div>
-<div class="field"><label id="phoneLabel" for="phone"></label><input id="phone" inputmode="tel"/></div>
+<div class="field"><label id="nameLabel" for="name"></label><input id="name" autocomplete="name" required/></div>
+<div class="field"><label id="phoneLabel" for="phone"></label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" required/></div>
 <div class="field"><label id="contactLabel" for="contact"></label><select id="contact"></select></div>
-<div class="field"><label id="noteLabel" for="note"></label><textarea id="note" rows="4"></textarea></div>
-</section>
-<section class="step">
-<div class="kicker" id="kicker4"></div><h1 id="title4"></h1><p class="lead" id="lead4"></p>
-<div class="summary" id="summary"></div><div class="notice" id="notice"></div>
+<div class="field"><label id="noteLabel" for="note"></label><textarea id="note" rows="3"></textarea></div>
+<div class="summary" id="summary" aria-live="polite"></div><div class="notice" id="notice"></div>
 </section>
 <section class="done" id="done">
 <div class="check">✓</div><h1 id="doneTitle"></h1><p class="lead" id="doneLead"></p>
-<button type="button" class="wa" id="wa" data-miki-contact-send style="border:0;cursor:pointer;font:inherit;text-align:center"></button>
+<a class="wa" id="wa" data-miki-contact-send rel="noopener" target="_blank"></a>
+<button class="copy-booking" type="button" id="copyBooking" hidden></button>
+<p class="share-hint" id="shareHint" aria-live="polite"></p>
 <a class="gm" href="https://maps.app.goo.gl/Mswc1KA4MVyok92NA?g_st=iz" id="mapDone" rel="noopener" target="_blank"></a>
 </section>
 <div class="contact-shortcuts">
@@ -80,7 +78,7 @@
 </main>
 </div>
 <script src="content-data.js?v=20261005-services"></script>
-<script src="booking-final.js?v=crm-20261006-crm"></script>
+<script src="booking-final.js?v=20261010-price-list-2step"></script>
 <p style="text-align:center;padding:20px">Khi tiếp tục gửi yêu cầu, thông tin được lưu vào Miki CRM để xác nhận lịch. <a href="privacy.html">Quyền riêng tư / Privacy</a></p></body>
 </html>
 
