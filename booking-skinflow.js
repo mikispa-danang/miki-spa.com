@@ -301,14 +301,39 @@ async function finish(){
      price:priceSummary,date:state.date,time:state.time,channel:$('channel').value,note:preparationNote
    });
  }catch(e){}
- const msg=composeMessage(result.code||'');state.msg=msg;
- const tg=$('channel').value==='Telegram';
- $('wa').href=tg?'https://t.me/+84935555170':'https://wa.me/84935555170?text='+encodeURIComponent(msg);
- $('wa').textContent=tg?tr('viaTG'):tr('viaWA');
- $('copyBooking').hidden=!tg;$('copyHint').hidden=!tg;
- $('doneStatus').textContent=result.ok?tr('donePending'):tr('doneFail');
- $('doneTitle').textContent=result.ok?tr('done'):(lang==='vi'?'Gửi tin nhắn để Miki nhận yêu cầu':'Send a message to finish your request');
- $('doneCode').textContent=result.code?'#'+result.code:'';
+ const saved=result?.ok===true;
+ const msg=composeMessage(saved?(result.code||''):'');state.msg=msg;
+ const confirmCopy={
+   vi:{done:'Đã lưu thông tin đặt lịch',pending:'Yêu cầu đã được lưu vào hệ thống Miki Spa và đang chờ nhân viên kiểm tra. Bạn KHÔNG cần mở Telegram hoặc WhatsApp hay gửi thêm tin nhắn. Miki sẽ liên hệ để xác nhận thời gian và giá cuối cùng; lịch hiện chưa được xác nhận.',error:'Chưa thể lưu yêu cầu đặt lịch',failed:'Website chưa lưu được yêu cầu. Vui lòng gửi chi tiết qua WhatsApp hoặc sao chép thông tin rồi dán vào Zalo để Miki tiếp nhận.',whatsapp:'Liên hệ WhatsApp (tùy chọn)',zalo:'Liên hệ Zalo (tùy chọn)',hint:'Zalo không tự điền sẵn tin nhắn: bấm Sao chép, rồi dán nội dung vào cuộc trò chuyện nếu cần.'},
+   en:{done:'Booking request saved',pending:'Your request is saved in Miki Spa’s system for staff review. You do NOT need to open Telegram or WhatsApp. The appointment is not confirmed until Miki contacts you.',error:'Booking request not saved',failed:'The website could not save your request. Please contact Miki via WhatsApp, or copy the details and paste them into Zalo.',whatsapp:'WhatsApp contact (optional)',zalo:'Zalo contact (optional)',hint:'Zalo cannot prefill your booking details. Copy and paste them into the chat if needed.'},
+   ko:{done:'예약 요청이 저장되었습니다',pending:'예약 요청이 Miki Spa 시스템에 저장되었습니다. Telegram이나 WhatsApp을 열 필요가 없습니다. Miki의 연락 후 예약이 확정됩니다.',error:'예약 저장 실패',failed:'예약을 저장할 수 없습니다. WhatsApp으로 연락하거나 내용을 복사해 Zalo로 보내 주세요.',whatsapp:'WhatsApp 문의 (선택)',zalo:'Zalo 문의 (선택)',hint:'Zalo에 자동 입력되지 않습니다. 예약 내용을 복사해 채팅에 붙여넣으세요.'},
+   zh:{done:'预约申请已保存',pending:'预约信息已保存在 Miki Spa 系统中，无需打开 Telegram 或 WhatsApp。Miki 联系确认后预约才正式生效。',error:'未能保存预约申请',failed:'无法保存预约，请通过 WhatsApp 联系 Miki，或复制详情发送至 Zalo。',whatsapp:'WhatsApp 联系（可选）',zalo:'Zalo 联系（可选）',hint:'Zalo 不会自动填充预约内容，请复制并粘贴到聊天框。'},
+   ru:{done:'Заявка на запись сохранена',pending:'Заявка сохранена в системе Miki Spa. Открывать Telegram или WhatsApp не нужно. Запись будет подтверждена после ответа Miki.',error:'Не удалось сохранить заявку',failed:'Не удалось сохранить запись. Напишите через WhatsApp или скопируйте данные для Zalo.',whatsapp:'WhatsApp (необязательно)',zalo:'Zalo (необязательно)',hint:'Zalo не подставляет данные автоматически: скопируйте детали и вставьте в чат.'},
+   th:{done:'บันทึกคำขอจองแล้ว',pending:'ระบบ Miki Spa บันทึกคำขอจองแล้ว ไม่ต้องเปิด Telegram หรือ WhatsApp ทางร้านจะติดต่อยืนยันคิวและราคาก่อนถือว่าจองสำเร็จ',error:'ไม่สามารถบันทึกคำขอจอง',failed:'เว็บไซต์บันทึกคำขอไม่ได้ กรุณาติดต่อ WhatsApp หรือคัดลอกรายละเอียดเพื่อส่งผ่าน Zalo',whatsapp:'ติดต่อ WhatsApp (ไม่บังคับ)',zalo:'ติดต่อ Zalo (ไม่บังคับ)',hint:'Zalo ไม่กรอกข้อความอัตโนมัติ กรุณาคัดลอกแล้ววางในแชต'}
+ };
+ const words=confirmCopy[lang]||confirmCopy.vi;
+ // Saving to CRM does not mean the owner has seen an alert, or that an appointment is confirmed.
+ $('wa').href='https://wa.me/84935555170?text='+encodeURIComponent(msg);
+ $('wa').textContent=words.whatsapp;
+ $('wa').classList.toggle('main-action',!saved);
+ $('wa').classList.toggle('secondary-action',saved);
+ $('zalo').textContent=words.zalo;
+ $('copyBooking').hidden=false;
+ $('copyHint').hidden=saved;
+ $('copyHint').textContent=words.hint;
+ $('doneStatus').textContent=saved?words.pending:words.failed;
+ $('doneTitle').textContent=saved?words.done:words.error;
+ $('doneCode').textContent=saved&&result.code?'#'+result.code:'';
+ $('doneCard').classList.toggle('is-error',!saved);
+ $('doneCard').querySelector('.done-check').textContent=saved?'✓':'!';
+ const details=[[tr('customer'),$('name').value.trim()],[tr('phone'),$('phone').value.trim()],[tr('selectedServices'),serviceSummary],[tr('estimate'),priceSummary],[tr('preferred'),state.date+' · '+state.time]];
+ const panel=$('doneSummary');panel.replaceChildren();
+ for(const [label,value] of details){
+   const row=document.createElement('div');row.className='review-row';
+   const key=document.createElement('span');key.textContent=label;
+   const val=document.createElement('b');val.textContent=value;
+   row.append(key,val);panel.appendChild(row);
+ }
  $('bookingCard').hidden=true;$('doneCard').hidden=false;
  window.mikiAnalytics?.track('booking_message_ready',{booking_flow:'standard',contact_channel:$('channel').value.toLowerCase(),placement:'booking'});
  window.scrollTo({top:0,behavior:'smooth'});
@@ -327,15 +352,8 @@ function init(){
  $('next').onclick=async()=>{if(!validateStep())return;if(state.step<3){goStep(state.step+1);return}await finish()};
  $('back').onclick=()=>{if(state.step>0)goStep(state.step-1)};
  $('name').oninput=renderReview;$('phone').oninput=renderReview;$('channel').onchange=renderReview;
- $('copyBooking').onclick=async()=>{try{await navigator.clipboard.writeText(state.msg);$('copiedStatus').textContent=tr('copied')}catch(e){$('copiedStatus').textContent=state.msg}};
- $('wa').addEventListener('click',async(e)=>{
-  if($('channel').value!=='Telegram')return;
-  e.preventDefault();
-  const copying=navigator.clipboard?.writeText(state.msg);
-  window.open($('wa').href,'_blank','noopener');
-  if(copying){copying.then(()=>{$('copiedStatus').textContent=tr('copied')}).catch(()=>{$('copiedStatus').textContent=state.msg})}
-  else {$('copiedStatus').textContent=state.msg}
- });
+ $('copyBooking').onclick=async()=>{try{await navigator.clipboard.writeText(state.msg);$('copiedStatus').textContent=({vi:'Đã sao chép. Bạn có thể dán vào Zalo hoặc WhatsApp nếu cần.',en:'Details copied. Paste into your chat if needed.',ko:'복사 완료. 필요한 채팅에 붙여넣으세요.',zh:'已复制。需要时请粘贴到聊天中。',ru:'Данные скопированы. При необходимости вставьте их в чат.',th:'คัดลอกแล้ว คุณสามารถวางในแชตได้'})[lang]}catch(e){$('copiedStatus').textContent=state.msg}};
+
  $('restart').onclick=()=>{location.assign('booking.html?lang='+lang)};
  $('date').min=vnToday();
  renderGroups();renderServices();renderSummary();renderPrep();renderDates();renderTimes();renderFooter();
