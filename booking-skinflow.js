@@ -331,9 +331,10 @@ function init(){
  $('wa').addEventListener('click',async(e)=>{
   if($('channel').value!=='Telegram')return;
   e.preventDefault();
-  try{await navigator.clipboard.writeText(state.msg);$('copiedStatus').textContent=tr('copied')}
-  catch(err){$('copiedStatus').textContent=state.msg}
+  const copying=navigator.clipboard?.writeText(state.msg);
   window.open($('wa').href,'_blank','noopener');
+  if(copying){copying.then(()=>{$('copiedStatus').textContent=tr('copied')}).catch(()=>{$('copiedStatus').textContent=state.msg})}
+  else {$('copiedStatus').textContent=state.msg}
  });
  $('restart').onclick=()=>{location.assign('booking.html?lang='+lang)};
  $('date').min=vnToday();
