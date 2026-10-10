@@ -321,8 +321,7 @@ async function finish(){
  $('copyBooking').hidden=false;
  $('copyHint').hidden=saved;
  $('copyHint').textContent=words.hint;
- const pushed=Boolean(result?.notifications?.telegram||result?.notifications?.whatsapp||result?.notifications?.phone);
- $('doneStatus').textContent=saved?(pushed?words.pending:({vi:'Yêu cầu đã được lưu vào hệ thống, nhưng thông báo tới điện thoại Miki CHƯA gửi thành công. Vui lòng liên hệ trực tiếp Miki để chắc chắn nhân viên nhận được lịch.',en:'Your request was saved, but the automatic phone notification did NOT send. Please contact Miki directly to ensure staff sees your booking.',ko:'요청이 저장되었지만 자동 알림 전송에 실패했습니다. 매장에 직접 연락해 주세요.',zh:'预约已保存，但自动通知未能发送。请直接联系 Miki 确保店员收到预约。',ru:'Заявка сохранена, но автоматическое уведомление не отправлено. Пожалуйста, свяжитесь с Miki напрямую.',th:'บันทึกคำขอแล้ว แต่การแจ้งเตือนอัตโนมัติไม่สำเร็จ กรุณาติดต่อ Miki โดยตรง'})[lang]):words.failed;
+ $('doneStatus').textContent=saved?words.pending:words.failed;
  $('doneTitle').textContent=saved?words.done:words.error;
  $('doneCode').textContent=saved&&result.code?'#'+result.code:'';
  $('doneCard').classList.toggle('is-error',!saved);
