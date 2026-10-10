@@ -74,6 +74,22 @@ async def start(update:Update,ctx:ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Miki Skin Spa 💛\n\n🌐 Choose your language:",reply_markup=lang_kb()); return
     await update.message.reply_text(c(ctx)["hello"],reply_markup=main_kb(ctx),parse_mode="HTML")
 
+async def chatid(update:Update,ctx:ContextTypes.DEFAULT_TYPE):
+    """Show the numeric Telegram chat ID for private alert configuration."""
+    chat=update.effective_chat
+    if not chat or not update.effective_message:
+        return
+    if chat.type != "private":
+        await update.effective_message.reply_text("🔒 Vui lòng mở chat riêng với @MikiSpaDaNangBot và gửi /chatid ở đó.")
+        return
+    await update.effective_message.reply_text(
+        f"✅ Telegram Chat ID: `{chat.id}`\n\n"
+        "Đây là ID dùng để nhận thông báo booking Miki Spa. "
+        "Bạn có thể sao chép số ID này và gửi cho người cấu hình CRM. "
+        "KHÔNG chia sẻ BOT TOKEN.",
+        parse_mode="Markdown"
+    )
+
 async def show(q,text,kb):
     await q.edit_message_text(text,reply_markup=kb,parse_mode="HTML",disable_web_page_preview=True)
 
@@ -105,6 +121,7 @@ async def click(update:Update,ctx:ContextTypes.DEFAULT_TYPE):
 
 app=Application.builder().token(TOKEN).build()
 app.add_handler(CommandHandler("start",start))
+app.add_handler(CommandHandler("chatid",chatid))
 app.add_handler(CommandHandler("menu",start))
 app.add_handler(CallbackQueryHandler(click))
 app.run_polling(allowed_updates=Update.ALL_TYPES)
