@@ -115,3 +115,10 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{
 #doneCode{display:block;max-width:100%;overflow-wrap:anywhere;word-break:break-word;white-space:normal;font-size:clamp(12px,3vw,18px);line-height:1.65;padding:0 4px}
 .done-card{overflow-wrap:anywhere}
 .done-actions .main-action{overflow-wrap:anywhere}
+
+/* Clear distinction between saved booking requests and chat fallback */
+.done-summary{max-width:470px;margin:20px auto 6px;text-align:left}
+.done-summary .review-row{align-items:flex-start}
+.done-card.is-error .done-check{background:#fce9e6;color:#a43f32}
+.done-card.is-error h2{color:#8d3f32}
+.done-card #copyHint,.done-card #copiedStatus{max-width:470px;margin:8px auto 0;font-size:12px}
