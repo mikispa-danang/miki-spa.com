@@ -43,6 +43,13 @@
 .price-continue{width:100%;margin-top:6px}
 .price-continue:disabled{opacity:.45;cursor:not-allowed}
 #stepInformation .field{margin:15px 0}
+#stepInformation fieldset.field{border:0;padding:0;min-width:0}
+#stepInformation .gender-field legend{padding:0;margin:0 0 8px;font-size:12px;letter-spacing:.08em;font-weight:800;color:#6f6256}
+.gender-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.gender-option{display:flex;align-items:center;gap:10px;min-height:48px;padding:11px 13px;border:1px solid #ebdfce;border-radius:12px;background:#fff;cursor:pointer;font-size:14px;font-weight:700;transition:background .15s ease,border-color .15s ease}
+.gender-option:focus-within{outline:2px solid #c08b50;outline-offset:1px}
+.gender-option:has(input:checked){background:#fff1dd;border-color:#b88847;box-shadow:inset 0 0 0 1px rgba(184,136,71,.18)}
+.gender-option input{width:18px;height:18px;margin:0;accent-color:#ad7940;flex:none}
 #stepInformation input,#stepInformation select,#stepInformation textarea{font-size:16px}
 #stepInformation .times{grid-template-columns:repeat(4,minmax(0,1fr))}
 #stepInformation .time:disabled{background:#f5f0e9;color:#aba194;cursor:not-allowed}

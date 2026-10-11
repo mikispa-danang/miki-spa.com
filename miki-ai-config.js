@@ -1,7 +1,8 @@
 /* Miki AI V3.1 runtime configuration.
-   GitHub Pages serves the frontend only. Set endpoint to your deployed secure gateway. */
+   The production Vercel deployment exposes the server-side gateway at the same origin.
+   Keep the OpenAI key in the hosting environment; never put it in this public file. */
 window.MIKI_AI_CONFIG = Object.freeze({
-  endpoint: 'https://YOUR-MIKI-AI-WORKER.workers.dev/chat',
+  endpoint: '/api/chat',
   siteOrigin: 'https://miki-spa.com',
   bookingUrl: '/booking.html',
   whatsapp: 'https://wa.me/84935555170',

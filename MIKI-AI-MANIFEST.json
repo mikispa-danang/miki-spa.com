@@ -1,19 +1,24 @@
 {
-  "date": "2026-09-13",
-  "source": "https://github.com/mikispa-danang/miki-spa",
+  "date": "2026-10-11",
+  "source": "https://github.com/mikispa-danang/miki-spa.com",
   "status": "local-tested-not-deployed",
   "files": {
-    "api/chat.js": "cf9f2f5ccf4e253558e72cbbc16f504a8c9f4d175179f129844f9f1c483d4098",
-    "lib/miki-ai.js": "31bd53632080998e4aa9ed6109781ac7abb15eb0dbc0dbf0b57565e6cfb1a181",
-    "script.js": "d678cc90dca6311bc91f2cb41175b378fd3d16eeb52a22bbc45d0ce7a9929a0c",
-    "content-data.js": "250ff79e3ca02e3d78e7badeae3938e81160004a9fcf5d93b901e269d0881251",
-    "index.html": "b3a919c0343c06897dc79d9c54dd52b58b715d14f7837addc778d004670adf59",
-    "polish.css": "715f10dd493306fc9b62d21db08602266f6e4d049fa979dd7f9d61a9b972267f",
-    "privacy.html": "7eb6bf1e2b34d8c155c3744353f33cb02fc6f9c9dd1381bd4a0132c2800a5e6a",
-    "package.json": "b9aba081a02b8dd807c1a386c2b4dfca2ff3159c1929f4b23f1a4e1ccc2f8d78",
+    "api/chat.js": "03e93c41a8b6c51fd15d7748eff5d92b27a92a251790f560b37328077f29db3b",
+    "api/miki-growth.js": "50faac11318d05f1332cf0c1ca875c6975fb48391bc9f850614e45f2b07d9cfe",
+    "api/booking-telegram.js": "d7846996a7babe167a4b7358551c7ed566e4150a6e9abe61e1f23662e527b94a",
+    "lib/miki-ai.js": "4b37ad6b11ed29b2b79ad9408ca2e84facc51ebb41b4d134fd9ed470127a26c8",
+    "miki-ai-config.js": "220e878d761336817993cb691c011dce6739e3660f44fb129d1a318b85e24ded",
+    "miki-crm-client.js": "a5860bf980644fcb6e141e4a0f571b7872f2d0dc8a9361539cef96d9014e0677",
+    "booking.html": "0e6da2210a6992b7fa08c49fef9a5cdd5dc857bf51afa899fda12155efc3fac1",
+    "booking-priceflow.js": "f2b20692b512f635aa056a6531492ca944ca95c129b6071e9ebe543e812f91dd",
+    "booking-priceflow.css": "2a7de606ae7a8ac711c9be101de21907f08ca399f0225ad8b184bbf2062e7390",
+    "index.html": "e53c232dce4f02f8fbd447ecb58b7c29a2b29c5b30c1a99ac6cc23e4d3d640b1",
+    "crm.js": "d12c65df2dc52b87e488bacb18527a88c3d50106b93cc760f4b3e77c41bf37c3",
     "vercel.json": "4d88dc2bdc7ec44cdfe3903685ca834d124944eba0211c55bfa7d49b604e8fbe",
-    "README_AI.md": "c1ae84a884fcbc10d951294d98991862cb4f0eae1a9ed582a3d68e56c415f974",
-    "tests/ai.test.js": "2f5117be03fd20d1f9939db2609a6b1fcf1709fdfcf034c019b75308a81ea577",
-    "tests/evaluation-cases.json": "5082c644e64f940ea368aa45e052ff95a95b3b7ec0d00011b195c049e7547d95"
+    "DEPLOY.md": "aad470c390aa893cca3bc7509835e34e43f227ed214ce6d989d39a68f4c5684e",
+    "README_AI.md": "59d8629881983af6339a1bad2d5599cb16dbe54478ecbc4d53d4c2f7e3bafffd",
+    "MIKI-AI-GITHUB-SETUP.md": "3f2c8618f3256d66a5f0032ee05a75e153eaf99e1dde9babc6ec766422e1f421",
+    "MIKI-RELEASE-QA-20261011.md": "d182c0a28acc00afa93dc5082f04cf40e23242dd3502f699b9866bdbfbfac4c9",
+    "supabase/migrations/20261011_add_booking_gender.sql": "6c60fc7a243ccad0f340308b8f727c756da10e5294a5b6e95eefe6c675ef5d2b"
   }
 }

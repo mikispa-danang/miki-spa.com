@@ -5,7 +5,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Đặt lịch | Miki Skin Spa</title>
 <meta content="Đặt lịch Miki Skin Spa tại 47 Cô Giang, Hải Châu, Đà Nẵng" name="description"/>
-<link href="https://www.miki-spa.com/booking.html" rel="canonical"/>
+<link href="https://miki-spa.com/booking.html" rel="canonical"/>
 
 <link href="booking-final.css?v=20261005-services" rel="stylesheet">
 <link href="booking-priceflow.css?v=20261010-list-v1" rel="stylesheet">
@@ -63,6 +63,7 @@
 <div class="kicker" id="kicker2"></div><h1 id="title2"></h1><p class="lead" id="lead2"></p>
 <div class="field"><label id="dateLabel" for="date"></label><input id="date" type="date" required></div>
 <div class="field"><label id="timeLabel"></label><div class="times" id="times" role="group" aria-labelledby="timeLabel"></div></div>
+<fieldset class="field gender-field"><legend id="genderLabel"></legend><div class="gender-options" role="radiogroup" aria-labelledby="genderLabel"><label class="gender-option"><input id="genderMale" name="gender" type="radio" value="male" required><span id="genderMaleText"></span></label><label class="gender-option"><input id="genderFemale" name="gender" type="radio" value="female" required><span id="genderFemaleText"></span></label></div></fieldset>
 <div class="field"><label id="nameLabel" for="name"></label><input id="name" autocomplete="name" maxlength="120" required></div>
 <div class="field"><label id="phoneLabel" for="phone"></label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" required></div>
 <div class="field"><label id="contactLabel" for="contact"></label><select id="contact"><option>WhatsApp</option><option>Telegram</option></select></div>
@@ -72,7 +73,7 @@
 <div class="notice" id="notice"></div>
 </section>
 <section class="done" id="done">
-<div class="check">✓</div><h1 id="doneTitle"></h1><p id="bookingCode" class="booking-code"></p><p class="lead" id="doneLead"></p>
+<div class="check">✓</div><h1 id="doneTitle"></h1><p id="bookingCode" class="booking-code" aria-live="polite"></p><p class="lead" id="doneLead" role="status" aria-live="polite"></p>
 <a class="wa" id="wa" href="https://wa.me/84935555170" data-miki-contact-send rel="noopener" target="_blank"></a>
 <button class="copy-booking" id="copyBooking" type="button" hidden></button>
 <p id="telegramHelp" class="telegram-help" hidden></p>

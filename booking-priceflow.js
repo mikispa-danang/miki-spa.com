@@ -115,13 +115,24 @@ const labels={
  ru:{first:'1. Выберите категорию',intro:'Выберите категорию, чтобы посмотреть полный прайс-лист.',details:'2. Выберите услуги и цены',hint:'Можно выбрать несколько услуг. Miki подтвердит цены и время.',male:'Мужчины',female:'Женщины',selected:'Выбранные услуги',chosen:'выбрано',none:'Услуги не выбраны',total:'Примерная стоимость',unknown:'Уточнить цену',continue:'Перейти к данным',stage2:'Данные для записи',lead2:'Укажите удобную дату, время и контакты.',date:'Желаемая дата',time:'Желаемое время',name:'Имя',phone:'Телефон',channel:'Способ связи',note:'Комментарий (необязательно)',review:'Проверить услуги',privacy:'Я согласен(-на) на использование данных для подтверждения записи.',wait:'Отправка...',done:'Miki получил вашу заявку!',pending:'Miki свяжется с вами для подтверждения.',notSaved:'Не удалось автоматически сохранить заявку. Отправьте сообщение ниже.',wa:'Написать в WhatsApp',tg:'Написать в Telegram',copy:'Скопировать заявку',copied:'Скопировано.',sendTelegram:'В Telegram нужно нажать «Отправить».',send:'Отправить заявку',back:'Назад к услугам',choose:'Выберите хотя бы одну услугу.',needDate:'Выберите дату и время.',needInfo:'Введите имя и корректный номер.',needConsent:'Подтвердите согласие на связь.',hours:'08:30–21:30 · Ежедневно',summary:['Услуги','Ориентировочная цена','Дата','Время','Имя','Телефон'],code:'Код заявки',hintConfirm:'Miki подтвердит цену и время.',close:'Запись подтверждается после ответа Miki.',reset:'Новая запись'},
  th:{first:'1. เลือกประเภทบริการ',intro:'เลือกหมวดเพื่อดูรายการบริการและราคาทั้งหมด',details:'2. เลือกบริการและราคา',hint:'เลือกหลายบริการได้ Miki จะยืนยันราคาและเวลา',male:'ผู้ชาย',female:'ผู้หญิง',selected:'บริการที่เลือก',chosen:'เลือกแล้ว',none:'ยังไม่ได้เลือกบริการ',total:'ยอดรวมโดยประมาณ',unknown:'สอบถามราคา',continue:'กรอกข้อมูลการจอง',stage2:'ข้อมูลการจอง',lead2:'เลือกวันเวลาและกรอกข้อมูลติดต่อ',date:'วันที่ต้องการ',time:'เวลาที่ต้องการ',name:'ชื่อ',phone:'เบอร์โทร',channel:'ช่องทางติดต่อ',note:'หมายเหตุ (ถ้ามี)',review:'ตรวจสอบบริการ',privacy:'ยินยอมให้ Miki ใช้ข้อมูลเพื่อติดต่อยืนยันการจอง',wait:'กำลังส่ง...',done:'Miki ได้รับคำขอจองแล้ว!',pending:'Miki จะติดต่อยืนยันการจองอีกครั้ง',notSaved:'บันทึกอัตโนมัติไม่สำเร็จ กรุณาส่งข้อความด้านล่าง',wa:'ส่ง WhatsApp',tg:'ส่ง Telegram',copy:'คัดลอกรายละเอียด',copied:'คัดลอกแล้ว',sendTelegram:'ต้องกดส่งใน Telegram เพื่อส่งข้อความ',send:'ส่งคำขอจอง',back:'กลับไปเลือกบริการ',choose:'กรุณาเลือกอย่างน้อยหนึ่งบริการ',needDate:'กรุณาเลือกวันและเวลา',needInfo:'กรุณากรอกชื่อและเบอร์โทรที่ถูกต้อง',needConsent:'กรุณายอมรับการใช้ข้อมูลติดต่อ',hours:'08:30–21:30 · ทุกวัน',summary:['บริการ','ราคารวม','วันที่','เวลา','ชื่อ','โทรศัพท์'],code:'หมายเลขการจอง',hintConfirm:'Miki จะยืนยันราคาและเวลา',close:'จองสำเร็จเมื่อ Miki ตอบกลับเท่านั้น',reset:'จองใหม่'}
 };
+const GENDER_TEXT={
+ vi:{label:'GIỚI TÍNH',male:'Nam',female:'Nữ',required:'Vui lòng chọn giới tính.'},
+ en:{label:'GENDER',male:'Male',female:'Female',required:'Please choose a gender.'},
+ ko:{label:'성별',male:'남성',female:'여성',required:'성별을 선택해 주세요.'},
+ zh:{label:'性别',male:'男士',female:'女士',required:'请选择性别。'},
+ ru:{label:'ПОЛ',male:'Мужчина',female:'Женщина',required:'Выберите пол.'},
+ th:{label:'เพศ',male:'ผู้ชาย',female:'ผู้หญิง',required:'กรุณาเลือกเพศ'}
+};
+function genderText(key){return GENDER_TEXT[lang]?.[key]||GENDER_TEXT.en[key]||key}
+function selectedGender(){return document.querySelector('input[name="gender"]:checked')?.value||''}
+function displayGender(){const value=selectedGender();return value?genderText(value):'—'}
 function tr(k){return labels[lang]?.[k]||labels.en[k]||k}
 function servicePrice(item){let v=window.MIKI_CONTENT?.prices;for(const k of item.pricePath||[])v=v?.[k];return item.pricePath?(v||item.price):null}
 function serviceName(item){return lang==='vi'?item.vi:item.en}
 function priceNumber(p){if(!p)return 0;const d=String(p).replace(/\D/g,'');return Number(d)||0}
 function formatMoney(n){return new Intl.NumberFormat('vi-VN').format(n)+'đ'}
 const steps=[...document.querySelectorAll('.step')];
-const dateEl=$('date'),timeArea=$('times'),nameEl=$('name'),phoneEl=$('phone'),contactEl=$('contact'),noteEl=$('note');
+const dateEl=$('date'),timeArea=$('times'),nameEl=$('name'),phoneEl=$('phone'),contactEl=$('contact'),noteEl=$('note'),genderInputs=[...document.querySelectorAll('input[name="gender"]')];
 const continueBtn=$('next'),backBtn=$('back'),waEl=$('wa');
 function itemsSelected(){return [...selected.keys()].map(key=>CATALOG.find(x=>x.key===key)).filter(Boolean)}
 function estimate(){return itemsSelected().reduce((n,item)=>n+priceNumber(servicePrice(item)),0)}
@@ -192,9 +203,10 @@ function renderTimes(){
 }
 function renderReview(){
  const items=itemsSelected();
- const vals=[items.map(x=>serviceName(x)+' — '+(servicePrice(x)||tr('unknown'))).join('; '),summaryCost(),simpleDate(dateEl.value||''),preferredTime,nameEl.value.trim(),phoneEl.value.trim()];
+ const vals=[items.map(x=>serviceName(x)+' — '+(servicePrice(x)||tr('unknown'))).join('; '),summaryCost(),simpleDate(dateEl.value||''),preferredTime,displayGender(),nameEl.value.trim(),phoneEl.value.trim()];
  const wrap=$('summary');wrap.replaceChildren();
- labels[lang].summary.forEach((label,index)=>{
+ const summaryLabels=[...labels[lang].summary.slice(0,4),genderText('label'),...labels[lang].summary.slice(4)];
+ summaryLabels.forEach((label,index)=>{
     const row=document.createElement('div');row.className='row';
     const k=document.createElement('span');k.textContent=label;
     const v=document.createElement('b');v.textContent=vals[index]||'—';
@@ -215,7 +227,7 @@ function goStep(n){
 function composeMessage(code){
  const m=copy.msg,info=itemsSelected().map(item=>serviceName(item)+' ('+(servicePrice(item)||tr('unknown'))+')').join('; ');
  return [code?tr('code')+': '+code:'',m.head,
- m.guest+': '+nameEl.value.trim(),m.phone+': '+phoneEl.value.trim(),m.service+': '+info,
+ m.guest+': '+nameEl.value.trim(),genderText('label')+': '+displayGender(),m.phone+': '+phoneEl.value.trim(),m.service+': '+info,
  m.price+': '+summaryCost(),m.date+': '+dateEl.value,m.time+': '+preferredTime,
  m.contact+': '+contactEl.value,m.note+': '+(noteEl.value.trim()||'-'),'Language: '+lang.toUpperCase()].filter(Boolean).join('\n');
 }
@@ -223,12 +235,14 @@ async function submit(){
  if(isSubmitting)return;
  if(!dateEl.value||!preferredTime){alert(tr('needDate'));return}
  if(dateEl.value<todayVN()){alert(tr('needDate'));return}
+ if(!selectedGender()){alert(genderText('required'));return}
  if(!nameEl.value.trim()||phoneEl.value.replace(/\D/g,'').length<8){alert(tr('needInfo'));return}
  if(!$('privacy').checked){alert(tr('needConsent'));return}
  isSubmitting=true;continueBtn.disabled=true;continueBtn.textContent=tr('wait');
- const booking={name:nameEl.value.trim(),phone:phoneEl.value.trim(),
+ const gender=selectedGender();
+ const booking={name:nameEl.value.trim(),phone:phoneEl.value.trim(),gender,
  service:itemsSelected().map(serviceName).join(' + '),price:summaryCost(),
- date:dateEl.value,time:preferredTime,channel:contactEl.value,note:noteEl.value.trim()};
+ date:dateEl.value,time:preferredTime,channel:contactEl.value,note:[genderText('label')+': '+displayGender(),noteEl.value.trim()].filter(Boolean).join(' · ')};
  let result={ok:false};
  try{if(window.MikiCRM?.submitBooking)result=await window.MikiCRM.submitBooking(booking)}catch(_){}
  isSubmitting=false;
@@ -259,6 +273,7 @@ function applyLanguage(){
  $('detailsTitle').textContent=tr('details');$('detailsHint').textContent=tr('hint');
  $('title2').textContent=tr('stage2');$('lead2').textContent=tr('lead2');
  $('dateLabel').textContent=tr('date');$('timeLabel').textContent=tr('time');
+ $('genderLabel').textContent=genderText('label');$('genderMaleText').textContent=genderText('male');$('genderFemaleText').textContent=genderText('female');
  $('nameLabel').textContent=tr('name');$('phoneLabel').textContent=tr('phone');
  $('contactLabel').textContent=tr('channel');$('noteLabel').textContent=tr('note');
  nameEl.placeholder=copy.namePh;phoneEl.placeholder=copy.phonePh;noteEl.placeholder=copy.notePh;
@@ -277,7 +292,7 @@ function start(){
  if(requested){const item=CATALOG.find(x=>x.key===requested);if(item){activeGroup=item.group;selected.set(item.key,true)}}
  const day=todayVN();dateEl.min=day;dateEl.value=day;
  dateEl.addEventListener('change',()=>{preferredTime='';renderTimes();renderReview()});
- [nameEl,phoneEl,contactEl,noteEl].forEach(e=>e.addEventListener('input',renderReview));
+ [nameEl,phoneEl,contactEl,noteEl].forEach(e=>e.addEventListener('input',renderReview));genderInputs.forEach(e=>e.addEventListener('change',renderReview));
  continueBtn.onclick=()=>step===0?(selected.size?goStep(1):alert(tr('choose'))):submit();
  $('continuePrice').onclick=()=>{if(selected.size)goStep(1)};
  backBtn.onclick=()=>{if(step>0)goStep(0)};

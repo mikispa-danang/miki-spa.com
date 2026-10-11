@@ -1,19 +1,18 @@
-# Miki Beauty Concierge V3.1 — GitHub Pages frontend
+# Miki Beauty Concierge V3.1 — server-side gateway
 
 ## Architecture
-- Website: GitHub Pages (`www.miki-spa.com`)
-- AI gateway: Cloudflare Worker (separate, secure)
+- Website: this repository, deployed with a serverless Node runtime
+- AI gateway: Vercel function at `/api/chat`
 - AI provider: OpenAI Responses API
-- API key: stored only as Worker secret, never committed to GitHub
+- API key: stored only as a hosting environment variable, never committed to GitHub
 - If gateway is unavailable/not configured, the website automatically uses the built-in local concierge fallback.
 
 ## One-time setup
-1. Open `miki-ai-worker/` and deploy it to Cloudflare Workers.
-2. Add secret `OPENAI_API_KEY` in Cloudflare Worker Settings > Variables and Secrets > Add > Secret.
-3. Optionally change `OPENAI_MODEL` in `wrangler.jsonc` to a model available to your OpenAI account.
-4. Copy the deployed Worker URL, e.g. `https://miki-ai-concierge.<account>.workers.dev/chat`.
-5. Open root file `miki-ai-config.js` and replace `https://YOUR-MIKI-AI-WORKER.workers.dev/chat` with that URL.
-6. Commit/push the whole website to GitHub Pages.
+1. Deploy the repository to Vercel (or an equivalent Node/serverless host).
+2. In the deployment's Environment Variables, add `OPENAI_API_KEY` as a secret.
+3. Optionally set `OPENAI_MODEL`, `OPENAI_ENABLE_WEB_SEARCH=true`, and `OPENAI_REASONING_EFFORT=medium`.
+4. Keep `miki-ai-config.js` set to the same-origin `/api/chat`; do not paste a secret or a public key into it.
+5. Open the deployed site, send one harmless test such as “Miki ở đâu?”, and confirm the answer is returned. If the key is absent, the site should show the local FAQ fallback rather than a blank chat.
 
 ## Security
 Never paste `OPENAI_API_KEY` into `miki-ai-config.js`, `script.js`, HTML, GitHub Actions output, or any public repository file.
@@ -24,4 +23,4 @@ Never paste `OPENAI_API_KEY` into `miki-ai-config.js`, `script.js`, HTML, GitHub
 - concise service guidance and one useful follow-up at a time
 - does not invent prices, promotions, medical diagnoses or live availability
 - fallback concierge still works if the AI gateway is offline
-- booking/WhatsApp/Zalo remain the human/action handoff paths
+- booking/WhatsApp/Zalo/Telegram remain the human/action handoff paths
