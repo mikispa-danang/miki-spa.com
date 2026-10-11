@@ -17,6 +17,7 @@ export default async function handler(req, res) {
   const name = limit(body.name, 120);
   const phone = limit(body.phone, 35);
   const service = limit(body.service, 1200);
+  const gender = limit(body.gender, 30);
   const date = limit(body.date, 20);
   const time = limit(body.time, 20);
   if (!name || !phone || !service || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !time) return res.status(400).json({ok:false});
@@ -25,6 +26,7 @@ export default async function handler(req, res) {
     '👤 Khách: ' + name,
     '📞 SĐT: ' + phone,
     '💆 Dịch vụ: ' + service,
+    '⚧ Giới tính: ' + (gender || 'Chưa chọn'),
     '💰 Giá tham khảo: ' + limit(body.price, 100),
     '📅 Ngày: ' + date,
     '🕒 Giờ: ' + time,
